@@ -1,0 +1,35 @@
+2022-07-19 21:53:29.573  INFO 18860 --- [main] b.c.PropertySourceBootstrapConfiguration : Located property source: CompositePropertySource {name='NACOS', propertySources=[NacosPropertySource {name='product-service.properties'}]}
+2022-07-19 21:53:29.739  INFO 18860 --- [main] t.w.gulimall.product.ProductApplication  : No active profile set, falling back to default profiles: default
+2022-07-19 21:53:30.809  WARN 18860 --- [main] o.s.boot.actuate.endpoint.EndpointId     : Endpoint ID 'nacos-config' contains invalid characters, please migrate to a valid format.
+2022-07-19 21:53:30.812  WARN 18860 --- [main] o.s.boot.actuate.endpoint.EndpointId     : Endpoint ID 'nacos-discovery' contains invalid characters, please migrate to a valid format.
+2022-07-19 21:53:31.028  WARN 18860 --- [main] o.s.boot.actuate.endpoint.EndpointId     : Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+2022-07-19 21:53:31.201  INFO 18860 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=ce41c30f-2f37-3c6e-8517-5e69df369a6e
+2022-07-19 21:53:31.312  INFO 18860 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$451c3fcb] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-07-19 21:53:31.337  INFO 18860 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$613642c8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-07-19 21:53:31.716  INFO 18860 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8083 (http)
+2022-07-19 21:53:31.750  INFO 18860 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-07-19 21:53:31.751  INFO 18860 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.24]
+2022-07-19 21:53:32.193  INFO 18860 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-07-19 21:53:32.193  INFO 18860 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2437 ms
+2022-07-19 21:53:35.141  INFO 18860 --- [main] com.alibaba.nacos.client.naming          : initializer namespace from System Property :null
+2022-07-19 21:53:35.142  INFO 18860 --- [main] com.alibaba.nacos.client.naming          : initializer namespace from System Environment :null
+2022-07-19 21:53:35.143  INFO 18860 --- [main] com.alibaba.nacos.client.naming          : initializer namespace from System Property :null
+2022-07-19 21:53:37.818  WARN 18860 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2022-07-19 21:53:37.819  INFO 18860 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-07-19 21:53:37.826  WARN 18860 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2022-07-19 21:53:37.826  INFO 18860 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-07-19 21:53:38.238  INFO 18860 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-07-19 21:53:38.450  INFO 18860 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService
+2022-07-19 21:53:39.816  INFO 18860 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2022-07-19 21:53:39.931  INFO 18860 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8083 (http) with context path ''
+2022-07-19 21:53:39.937  INFO 18860 --- [main] com.alibaba.nacos.client.naming          : [BEAT] adding beat: {"cluster":"DEFAULT","ip":"192.168.252.1","metadata":{"preserved.register.source":"SPRING_CLOUD"},"period":5000,"port":8083,"scheduled":false,"serviceName":"DEFAULT_GROUP@@product-service","stopped":false,"weight":1.0} to beat map.
+2022-07-19 21:53:40.002  INFO 18860 --- [main] com.alibaba.nacos.client.naming          : [REGISTER-SERVICE] public registering service DEFAULT_GROUP@@product-service with instance: {"clusterName":"DEFAULT","enabled":true,"ephemeral":true,"healthy":true,"instanceHeartBeatInterval":5000,"instanceHeartBeatTimeOut":15000,"ip":"192.168.252.1","ipDeleteTimeout":30000,"metadata":{"preserved.register.source":"SPRING_CLOUD"},"port":8083,"weight":1.0}
+2022-07-19 21:53:40.011  INFO 18860 --- [main] c.a.c.n.registry.NacosServiceRegistry    : nacos registry, product-service 192.168.252.1:8083 register finished
+2022-07-19 21:53:40.878  INFO 18860 --- [main] t.w.gulimall.product.ProductApplication  : Started ProductApplication in 15.034 seconds (JVM running for 16.945)
+2022-07-19 21:53:40.890  INFO 18860 --- [main] c.a.n.client.config.impl.ClientWorker    : [fixed-192.168.1.7_8848] [subscribe] product-service.properties+DEFAULT_GROUP
+2022-07-19 21:53:40.890  INFO 18860 --- [main] c.a.nacos.client.config.impl.CacheData   : [fixed-192.168.1.7_8848] [add-listener] ok, tenant=, dataId=product-service.properties, group=DEFAULT_GROUP, cnt=1
+2022-07-19 21:53:41.854  INFO 18860 --- [RMI TCP Connection(6)-192.168.1.4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-07-19 21:53:41.855  INFO 18860 --- [RMI TCP Connection(6)-192.168.1.4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-07-19 21:53:41.860  INFO 18860 --- [RMI TCP Connection(5)-192.168.1.4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-07-19 21:53:41.868  INFO 18860 --- [RMI TCP Connection(6)-192.168.1.4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+2022-07-19 21:53:42.952  INFO 18860 --- [RMI TCP Connection(5)-192.168.1.4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.

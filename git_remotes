@@ -1,0 +1,6 @@
+[remote "origin"]
+	url = https://github.com/xuanhuangzhenren/guli-mall.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[remote "gitlab.stackexplode.cloud"]
+	url = http://gitlab.stackexplode.cloud:18888/javaxuniji/guli-mall.git
+	fetch = +refs/heads/*:refs/remotes/gitlab.stackexplode.cloud/*

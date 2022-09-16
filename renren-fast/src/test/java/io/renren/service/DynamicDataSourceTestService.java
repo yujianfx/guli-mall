@@ -28,6 +28,7 @@ public class DynamicDataSourceTestService {
   public void updateUser(Long id) {
     SysUserEntity user = new SysUserEntity();
     user.setUserId(id);
+    user.setPassword("abc123");
     user.setMobile("13500000000");
     sysUserDao.updateById(user);
   }

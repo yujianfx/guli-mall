@@ -4,10 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>gulimall</artifactId>
-        <groupId>top.wangudiercai.gulimall</groupId>
+        <groupId>cloud.stackexplode.gulimall</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>top.wangudiercai.gulimall</groupId>
+    <groupId>cloud.stackexplode.gulimall</groupId>
     <artifactId>common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>common</name>

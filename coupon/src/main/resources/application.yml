@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://192.168.1.7:3306/mall_sms?useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://stackexplode.cloud:13306/mall_sms?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: abc123
     driverClassName: com.mysql.cj.jdbc.Driver
@@ -10,7 +10,7 @@ spring:
     nacos:
       discovery:
         enabled: true
-        server-addr: 192.168.1.7
+        server-addr: stackexplode.cloud:18848
 
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml

@@ -1,6 +1,7 @@
 package io.renren;
 
 import io.renren.modules.app.utils.JwtUtils;
+import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,10 @@ public class JwtTest {
 
   @Test
   public void test() {
-    String token = jwtUtils.generateToken(1);
+    System.out.println(new Sha256Hash("abc123","stackexplode.cloud").toHex());
 
-    System.out.println(token);
+    //    String token = jwtUtils.generateToken(1);
+//
+//    System.out.println(token);
   }
 }

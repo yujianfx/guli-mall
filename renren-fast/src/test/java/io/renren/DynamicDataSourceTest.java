@@ -29,7 +29,6 @@ public class DynamicDataSourceTest {
     Long id = 1L;
 
     dynamicDataSourceTestService.updateUser(id);
-    dynamicDataSourceTestService.updateUserBySlave1(id);
-    dynamicDataSourceTestService.updateUserBySlave2(id);
+
   }
 }

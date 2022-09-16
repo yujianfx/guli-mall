@@ -25,3 +25,4 @@ server:
 logging:
   file: product-service.log
   level:
+    cloud.stackexplode.gulimall: debug

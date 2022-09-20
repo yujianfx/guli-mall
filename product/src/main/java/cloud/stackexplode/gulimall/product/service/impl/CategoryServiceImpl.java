@@ -42,7 +42,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
                 })
             .collect(Collectors.toList());
 
-    return list;
+    return allLevel1;
   }
 
     @Override

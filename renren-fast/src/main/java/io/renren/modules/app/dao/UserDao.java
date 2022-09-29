@@ -17,4 +17,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @author Mark sunlightcs@gmail.com
  */
 @Mapper
-public interface UserDao extends BaseMapper<UserEntity> {}
+public interface UserDao extends BaseMapper<UserEntity> {
+}

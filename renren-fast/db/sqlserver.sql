@@ -137,7 +137,7 @@ CREATE TABLE schedule_job_log
     times       int     NOT NULL,
     create_time datetime,
     PRIMARY KEY (log_id),
-    INDEX job_id (job_id)
+    INDEX       job_id (job_id)
 );
 
 -- 用户表
@@ -152,13 +152,16 @@ CREATE TABLE tb_user
     UNIQUE (username)
 );
 
-SET IDENTITY_INSERT sys_user ON;
+SET
+IDENTITY_INSERT sys_user ON;
 INSERT INTO sys_user (user_id, username, password, salt, email, mobile, status, create_user_id, create_time)
 VALUES ('1', 'admin', '9ec9750e709431dad22365cabc5c625482e574c74adaebba7dd02f1129e4ce1d', 'YzcmCZNvbXocrsz9dm8e',
         'root@renren.io', '13612345678', '1', '1', '2016-11-11 11:11:11');
-SET IDENTITY_INSERT sys_user OFF;
+SET
+IDENTITY_INSERT sys_user OFF;
 
-SET IDENTITY_INSERT sys_menu ON;
+SET
+IDENTITY_INSERT sys_menu ON;
 INSERT INTO sys_menu(menu_id, parent_id, name, url, perms, type, icon, order_num)
 VALUES (1, 0, '系统管理', NULL, NULL, 0, 'system', 0);
 INSERT INTO sys_menu(menu_id, parent_id, name, url, perms, type, icon, order_num)
@@ -219,7 +222,8 @@ VALUES (29, 1, '系统日志', 'sys/log', 'sys:log:list', 1, 'log', 7);
 INSERT INTO sys_menu(menu_id, parent_id, name, url, perms, type, icon, order_num)
 VALUES (30, 1, '文件上传', 'oss/oss', 'sys:oss:all', 1, 'oss', 6);
 
-SET IDENTITY_INSERT sys_menu OFF;
+SET
+IDENTITY_INSERT sys_menu OFF;
 
 
 INSERT INTO sys_config (param_key, param_value, status, remark)
@@ -238,7 +242,8 @@ VALUES ('mark', '13612345678', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8
 
 
 --  quartz自带表结构
-IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[FK_QRTZ_TRIGGERS_QRTZ_JOB_DETAILS]') AND OBJECTPROPERTY(id, N'ISFOREIGNKEY') = 1)
+IF
+EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[FK_QRTZ_TRIGGERS_QRTZ_JOB_DETAILS]') AND OBJECTPROPERTY(id, N'ISFOREIGNKEY') = 1)
 ALTER TABLE [dbo].[QRTZ_TRIGGERS] DROP CONSTRAINT FK_QRTZ_TRIGGERS_QRTZ_JOB_DETAILS
     GO
     IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[FK_QRTZ_CRON_TRIGGERS_QRTZ_TRIGGERS]') AND OBJECTPROPERTY(id, N'ISFOREIGNKEY') = 1)
@@ -709,7 +714,8 @@ ALTER TABLE [dbo].[QRTZ_CRON_TRIGGERS] ADD
     [TRIGGER_NAME],
     [TRIGGER_GROUP]
     ) ON
-DELETE CASCADE
+DELETE
+CASCADE
     GO
 
 ALTER TABLE [dbo].[QRTZ_SIMPLE_TRIGGERS] ADD
@@ -723,7 +729,8 @@ ALTER TABLE [dbo].[QRTZ_SIMPLE_TRIGGERS] ADD
     [TRIGGER_NAME],
     [TRIGGER_GROUP]
     ) ON
-DELETE CASCADE
+DELETE
+CASCADE
     GO
 
 ALTER TABLE [dbo].[QRTZ_SIMPROP_TRIGGERS] ADD
@@ -737,7 +744,8 @@ ALTER TABLE [dbo].[QRTZ_SIMPROP_TRIGGERS] ADD
     [TRIGGER_NAME],
     [TRIGGER_GROUP]
     ) ON
-DELETE CASCADE
+DELETE
+CASCADE
     GO
 
 ALTER TABLE [dbo].[QRTZ_TRIGGERS] ADD

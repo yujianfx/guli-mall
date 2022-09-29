@@ -17,7 +17,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 public class RenrenApplication {
 
-  public static void main(String[] args) {
-    SpringApplication.run(RenrenApplication.class, args);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(RenrenApplication.class, args);
+    }
 }

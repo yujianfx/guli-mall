@@ -12,4 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2022-07-10 18:27:08
  */
 @Mapper
-public interface BrandDao extends BaseMapper<BrandEntity> {}
+public interface BrandDao extends BaseMapper<BrandEntity> {
+}

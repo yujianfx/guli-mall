@@ -12,4 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2022-07-12 20:57:36
  */
 @Mapper
-public interface WareOrderTaskDao extends BaseMapper<WareOrderTaskEntity> {}
+public interface WareOrderTaskDao extends BaseMapper<WareOrderTaskEntity> {
+}

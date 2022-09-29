@@ -1,8 +1,8 @@
 package cloud.stackexplode.gulimall.coupon.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.coupon.entity.HomeSubjectEntity;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;
 
@@ -15,5 +15,5 @@ import java.util.Map;
  */
 public interface HomeSubjectService extends IService<HomeSubjectEntity> {
 
-  PageUtils queryPage(Map<String, Object> params);
+    PageUtils queryPage(Map<String, Object> params);
 }

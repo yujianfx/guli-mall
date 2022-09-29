@@ -1,0 +1,23 @@
+server:
+  port: 8086
+spring:
+  application:
+    name: oss-service
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  cloud:
+    nacos:
+      discovery:
+        server-addr: stackexplode.cloud:18848
+      config:
+        enabled: true
+        file-extension: properties
+        name: oss-service
+        server-addr: stackexplode.cloud:18848
+  profiles:
+    active: dev
+logging:
+  file: oss-service.log
+  level:
+    cloud.stackexplode.gulimall: debug
+

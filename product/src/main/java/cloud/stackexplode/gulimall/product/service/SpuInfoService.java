@@ -1,8 +1,8 @@
 package cloud.stackexplode.gulimall.product.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.product.entity.SpuInfoEntity;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;
 
@@ -15,5 +15,5 @@ import java.util.Map;
  */
 public interface SpuInfoService extends IService<SpuInfoEntity> {
 
-  PageUtils queryPage(Map<String, Object> params);
+    PageUtils queryPage(Map<String, Object> params);
 }

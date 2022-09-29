@@ -24,22 +24,22 @@ import org.springframework.context.annotation.Configuration;
 @Aspect
 @Configuration
 public class RedisAspect {
-  private Logger logger = LoggerFactory.getLogger(getClass());
-  // 是否开启redis缓存  true开启   false关闭
-  @Value("${spring.redis.open: false}")
-  private boolean open;
+    private Logger logger = LoggerFactory.getLogger(getClass());
+    // 是否开启redis缓存  true开启   false关闭
+    @Value("${spring.redis.open: false}")
+    private boolean open;
 
-  @Around("execution(* io.renren.common.utils.RedisUtils.*(..))")
-  public Object around(ProceedingJoinPoint point) throws Throwable {
-    Object result = null;
-    if (open) {
-      try {
-        result = point.proceed();
-      } catch (Exception e) {
-        logger.error("redis error", e);
-        throw new RRException("Redis服务异常");
-      }
+    @Around("execution(* io.renren.common.utils.RedisUtils.*(..))")
+    public Object around(ProceedingJoinPoint point) throws Throwable {
+        Object result = null;
+        if (open) {
+            try {
+                result = point.proceed();
+            } catch (Exception e) {
+                logger.error("redis error", e);
+                throw new RRException("Redis服务异常");
+            }
+        }
+        return result;
     }
-    return result;
-  }
 }

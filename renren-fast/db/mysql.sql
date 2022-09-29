@@ -33,7 +33,7 @@ create table `sys_user`
 -- 系统用户token
 create table `sys_user_token`
 (
-    `user_id`     bigint(20)   not null,
+    `user_id`     bigint(20) not null,
     `token`       varchar(100) not null comment 'token',
     `expire_time` datetime default null comment '过期时间',
     `update_time` datetime default null comment '更新时间',
@@ -106,7 +106,7 @@ create table `sys_log`
     `operation`   varchar(50) comment '用户操作',
     `method`      varchar(200) comment '请求方法',
     `params`      varchar(5000) comment '请求参数',
-    `time`        bigint     not null comment '执行时长(毫秒)',
+    `time`        bigint not null comment '执行时长(毫秒)',
     `ip`          varchar(64) comment 'ip地址',
     `create_date` datetime comment '创建时间',
     primary key (`id`)
@@ -132,7 +132,7 @@ create table `schedule_job`
     `bean_name`       varchar(200)  default null comment 'spring bean名称',
     `params`          varchar(2000) default null comment '参数',
     `cron_expression` varchar(100)  default null comment 'cron表达式',
-    `status`          tinyint(4)    default null comment '任务状态  0：正常  1：暂停',
+    `status`          tinyint(4) default null comment '任务状态  0：正常  1：暂停',
     `remark`          varchar(255)  default null comment '备注',
     `create_time`     datetime      default null comment '创建时间',
     primary key (`job_id`)
@@ -148,10 +148,10 @@ create table `schedule_job_log`
     `params`      varchar(2000) default null comment '参数',
     `status`      tinyint(4) not null comment '任务状态    0：成功    1：失败',
     `error`       varchar(2000) default null comment '失败信息',
-    `times`       int(11)    not null comment '耗时(单位：毫秒)',
+    `times`       int(11) not null comment '耗时(单位：毫秒)',
     `create_time` datetime      default null comment '创建时间',
     primary key (`log_id`),
-    key `job_id` (`job_id`)
+    key           `job_id` (`job_id`)
 ) engine = `innodb`
   default character set utf8mb4 comment ='定时任务日志';
 
@@ -262,10 +262,9 @@ create table qrtz_job_details
     is_nonconcurrent  varchar(1)   not null,
     is_update_data    varchar(1)   not null,
     requests_recovery varchar(1)   not null,
-    job_data          blob         null,
+    job_data          blob null,
     primary key (sched_name, job_name, job_group)
-)
-    engine = innodb
+) engine = innodb
     default charset = utf8;
 
 create table qrtz_triggers
@@ -276,21 +275,20 @@ create table qrtz_triggers
     job_name       varchar(200) not null,
     job_group      varchar(200) not null,
     description    varchar(250) null,
-    next_fire_time bigint(13)   null,
-    prev_fire_time bigint(13)   null,
-    priority       integer      null,
+    next_fire_time bigint(13) null,
+    prev_fire_time bigint(13) null,
+    priority       integer null,
     trigger_state  varchar(16)  not null,
     trigger_type   varchar(8)   not null,
-    start_time     bigint(13)   not null,
-    end_time       bigint(13)   null,
+    start_time     bigint(13) not null,
+    end_time       bigint(13) null,
     calendar_name  varchar(200) null,
-    misfire_instr  smallint(2)  null,
-    job_data       blob         null,
+    misfire_instr  smallint(2) null,
+    job_data       blob null,
     primary key (sched_name, trigger_name, trigger_group),
     foreign key (sched_name, job_name, job_group)
         references qrtz_job_details (sched_name, job_name, job_group)
-)
-    engine = innodb
+) engine = innodb
     default charset = utf8;
 
 create table qrtz_simple_triggers
@@ -298,14 +296,13 @@ create table qrtz_simple_triggers
     sched_name      varchar(120) not null,
     trigger_name    varchar(200) not null,
     trigger_group   varchar(200) not null,
-    repeat_count    bigint(7)    not null,
-    repeat_interval bigint(12)   not null,
-    times_triggered bigint(10)   not null,
+    repeat_count    bigint(7) not null,
+    repeat_interval bigint(12) not null,
+    times_triggered bigint(10) not null,
     primary key (sched_name, trigger_name, trigger_group),
     foreign key (sched_name, trigger_name, trigger_group)
         references qrtz_triggers (sched_name, trigger_name, trigger_group)
-)
-    engine = innodb
+) engine = innodb
     default charset = utf8;
 
 create table qrtz_cron_triggers
@@ -318,31 +315,29 @@ create table qrtz_cron_triggers
     primary key (sched_name, trigger_name, trigger_group),
     foreign key (sched_name, trigger_name, trigger_group)
         references qrtz_triggers (sched_name, trigger_name, trigger_group)
-)
-    engine = innodb
+) engine = innodb
     default charset = utf8;
 
 create table qrtz_simprop_triggers
 (
-    sched_name    varchar(120)   not null,
-    trigger_name  varchar(200)   not null,
-    trigger_group varchar(200)   not null,
-    str_prop_1    varchar(512)   null,
-    str_prop_2    varchar(512)   null,
-    str_prop_3    varchar(512)   null,
-    int_prop_1    int            null,
-    int_prop_2    int            null,
-    long_prop_1   bigint         null,
-    long_prop_2   bigint         null,
+    sched_name    varchar(120) not null,
+    trigger_name  varchar(200) not null,
+    trigger_group varchar(200) not null,
+    str_prop_1    varchar(512) null,
+    str_prop_2    varchar(512) null,
+    str_prop_3    varchar(512) null,
+    int_prop_1    int null,
+    int_prop_2    int null,
+    long_prop_1   bigint null,
+    long_prop_2   bigint null,
     dec_prop_1    numeric(13, 4) null,
     dec_prop_2    numeric(13, 4) null,
-    bool_prop_1   varchar(1)     null,
-    bool_prop_2   varchar(1)     null,
+    bool_prop_1   varchar(1) null,
+    bool_prop_2   varchar(1) null,
     primary key (sched_name, trigger_name, trigger_group),
     foreign key (sched_name, trigger_name, trigger_group)
         references qrtz_triggers (sched_name, trigger_name, trigger_group)
-)
-    engine = innodb
+) engine = innodb
     default charset = utf8;
 
 create table qrtz_blob_triggers
@@ -350,13 +345,12 @@ create table qrtz_blob_triggers
     sched_name    varchar(120) not null,
     trigger_name  varchar(200) not null,
     trigger_group varchar(200) not null,
-    blob_data     blob         null,
+    blob_data     blob null,
     primary key (sched_name, trigger_name, trigger_group),
     index (sched_name, trigger_name, trigger_group),
     foreign key (sched_name, trigger_name, trigger_group)
         references qrtz_triggers (sched_name, trigger_name, trigger_group)
-)
-    engine = innodb
+) engine = innodb
     default charset = utf8;
 
 create table qrtz_calendars
@@ -365,8 +359,7 @@ create table qrtz_calendars
     calendar_name varchar(200) not null,
     calendar      blob         not null,
     primary key (sched_name, calendar_name)
-)
-    engine = innodb
+) engine = innodb
     default charset = utf8;
 
 create table qrtz_paused_trigger_grps
@@ -374,8 +367,7 @@ create table qrtz_paused_trigger_grps
     sched_name    varchar(120) not null,
     trigger_group varchar(200) not null,
     primary key (sched_name, trigger_group)
-)
-    engine = innodb
+) engine = innodb
     default charset = utf8;
 
 create table qrtz_fired_triggers
@@ -385,28 +377,26 @@ create table qrtz_fired_triggers
     trigger_name      varchar(200) not null,
     trigger_group     varchar(200) not null,
     instance_name     varchar(200) not null,
-    fired_time        bigint(13)   not null,
-    sched_time        bigint(13)   not null,
+    fired_time        bigint(13) not null,
+    sched_time        bigint(13) not null,
     priority          integer      not null,
     state             varchar(16)  not null,
     job_name          varchar(200) null,
     job_group         varchar(200) null,
-    is_nonconcurrent  varchar(1)   null,
-    requests_recovery varchar(1)   null,
+    is_nonconcurrent  varchar(1) null,
+    requests_recovery varchar(1) null,
     primary key (sched_name, entry_id)
-)
-    engine = innodb
+) engine = innodb
     default charset = utf8;
 
 create table qrtz_scheduler_state
 (
     sched_name        varchar(120) not null,
     instance_name     varchar(200) not null,
-    last_checkin_time bigint(13)   not null,
-    checkin_interval  bigint(13)   not null,
+    last_checkin_time bigint(13) not null,
+    checkin_interval  bigint(13) not null,
     primary key (sched_name, instance_name)
-)
-    engine = innodb
+) engine = innodb
     default charset = utf8;
 
 create table qrtz_locks
@@ -414,8 +404,7 @@ create table qrtz_locks
     sched_name varchar(120) not null,
     lock_name  varchar(40)  not null,
     primary key (sched_name, lock_name)
-)
-    engine = innodb
+) engine = innodb
     default charset = utf8;
 
 create index idx_qrtz_j_req_recovery on qrtz_job_details (sched_name, requests_recovery);

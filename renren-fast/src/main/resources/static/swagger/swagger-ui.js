@@ -3927,9 +3927,9 @@
 
                     var output = [];
                     var flags = (separator.ignoreCase ? 'i' : '') +
-                        (separator.multiline ? 'm' : '') +
-                        (separator.unicode ? 'u' : '') + // in ES6
-                        (separator.sticky ? 'y' : ''), // Firefox 3+ and ES6
+                            (separator.multiline ? 'm' : '') +
+                            (separator.unicode ? 'u' : '') + // in ES6
+                            (separator.sticky ? 'y' : ''), // Firefox 3+ and ES6
                         lastLastIndex = 0,
                         // Make `global` and avoid `lastIndex` issues by working with a copy
                         separator2, match, lastIndex, lastLength;
@@ -18654,8 +18654,8 @@
                     if (!noAssert) checkOffset(offset, 4, this.length)
 
                     return ((this[offset]) |
-                        (this[offset + 1] << 8) |
-                        (this[offset + 2] << 16)) +
+                            (this[offset + 1] << 8) |
+                            (this[offset + 2] << 16)) +
                         (this[offset + 3] * 0x1000000)
                 }
 

@@ -23,6 +23,6 @@ mybatis-plus:
 server:
   port: 8083
 logging:
-  file: product-service.log
+  file: E:\Javaprojects\guli-mall\.logs\product-service.log
   level:
     cloud.stackexplode.gulimall: debug

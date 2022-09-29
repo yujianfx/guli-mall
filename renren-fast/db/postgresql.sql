@@ -1,7 +1,7 @@
 -- 菜单
 CREATE TABLE sys_menu
 (
-    menu_id bigserial,
+    menu_id   bigserial,
     parent_id int8,
     name      varchar(50),
     url       varchar(200),
@@ -16,15 +16,15 @@ CREATE TABLE sys_menu
 -- 系统用户
 CREATE TABLE sys_user
 (
-    user_id bigserial,
-    username    varchar(50) NOT NULL,
-    password    varchar(100),
-    salt        varchar(20),
-    email       varchar(100),
-    mobile      varchar(100),
-    status      int,
+    user_id        bigserial,
+    username       varchar(50) NOT NULL,
+    password       varchar(100),
+    salt           varchar(20),
+    email          varchar(100),
+    mobile         varchar(100),
+    status         int,
     create_user_id int8,
-    create_time timestamp,
+    create_time    timestamp,
     PRIMARY KEY (user_id),
     UNIQUE (username)
 );
@@ -33,7 +33,7 @@ CREATE TABLE sys_user
 -- 系统用户Token
 CREATE TABLE sys_user_token
 (
-    user_id bigserial,
+    user_id     bigserial,
     token       varchar(100) NOT NULL,
     expire_time timestamp,
     update_time timestamp,
@@ -53,18 +53,18 @@ CREATE TABLE sys_captcha
 -- 角色
 CREATE TABLE sys_role
 (
-    role_id bigserial,
-    role_name   varchar(100),
-    remark      varchar(100),
+    role_id        bigserial,
+    role_name      varchar(100),
+    remark         varchar(100),
     create_user_id int8,
-    create_time timestamp,
+    create_time    timestamp,
     PRIMARY KEY (role_id)
 );
 
 -- 用户与角色对应关系
 CREATE TABLE sys_user_role
 (
-    id bigserial,
+    id      bigserial,
     user_id int8,
     role_id int8,
     PRIMARY KEY (id)
@@ -73,7 +73,7 @@ CREATE TABLE sys_user_role
 -- 角色与菜单对应关系
 CREATE TABLE sys_role_menu
 (
-    id bigserial,
+    id      bigserial,
     role_id int8,
     menu_id int8,
     PRIMARY KEY (id)
@@ -82,7 +82,7 @@ CREATE TABLE sys_role_menu
 -- 系统配置信息
 CREATE TABLE sys_config
 (
-    id bigserial,
+    id          bigserial,
     param_key   varchar(50),
     param_value varchar(2000),
     status      int DEFAULT 1,
@@ -95,12 +95,12 @@ CREATE TABLE sys_config
 -- 系统日志
 CREATE TABLE sys_log
 (
-    id bigserial,
+    id          bigserial,
     username    varchar(50),
     operation   varchar(50),
     method      varchar(200),
     params      varchar(5000),
-    time int8 NOT NULL,
+    time        int8 NOT NULL,
     ip          varchar(64),
     create_date timestamp,
     PRIMARY KEY (id)
@@ -109,7 +109,7 @@ CREATE TABLE sys_log
 -- 文件上传
 CREATE TABLE sys_oss
 (
-    id bigserial,
+    id          bigserial,
     url         varchar(200),
     create_date timestamp,
     PRIMARY KEY (id)
@@ -119,7 +119,7 @@ CREATE TABLE sys_oss
 -- 定时任务
 CREATE TABLE schedule_job
 (
-    job_id bigserial,
+    job_id          bigserial,
     bean_name       varchar(200),
     params          varchar(2000),
     cron_expression varchar(100),
@@ -132,13 +132,13 @@ CREATE TABLE schedule_job
 -- 定时任务日志
 CREATE TABLE schedule_job_log
 (
-    log_id bigserial,
-    job_id int8 NOT NULL,
+    log_id      bigserial,
+    job_id      int8 NOT NULL,
     bean_name   varchar(200),
     params      varchar(2000),
-    status      int NOT NULL,
+    status      int  NOT NULL,
     error       varchar(2000),
-    times       int NOT NULL,
+    times       int  NOT NULL,
     create_time timestamp,
     PRIMARY KEY (log_id)
 );
@@ -147,7 +147,7 @@ CREATE INDEX index_job_id on schedule_job_log (job_id);
 -- 用户表
 CREATE TABLE tb_user
 (
-    user_id bigserial,
+    user_id     bigserial,
     username    varchar(50) NOT NULL,
     mobile      varchar(20) NOT NULL,
     password    varchar(64),
@@ -238,9 +238,9 @@ VALUES ('mark', '13612345678', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8
 
 
 alter
-sequence sys_menu_menu_id_seq restart with 31;
+    sequence sys_menu_menu_id_seq restart with 31;
 alter
-sequence sys_user_user_id_seq restart with 2;
+    sequence sys_user_user_id_seq restart with 2;
 
 
 --  quartz自带表结构
@@ -256,7 +256,7 @@ CREATE TABLE qrtz_job_details
     IS_NONCONCURRENT  BOOL         NOT NULL,
     IS_UPDATE_DATA    BOOL         NOT NULL,
     REQUESTS_RECOVERY BOOL         NOT NULL,
-    JOB_DATA BYTEA NULL,
+    JOB_DATA          BYTEA NULL,
     PRIMARY KEY (SCHED_NAME, JOB_NAME, JOB_GROUP)
 );
 
@@ -268,16 +268,16 @@ CREATE TABLE qrtz_triggers
     JOB_NAME       VARCHAR(200) NOT NULL,
     JOB_GROUP      VARCHAR(200) NOT NULL,
     DESCRIPTION    VARCHAR(250) NULL,
-    NEXT_FIRE_TIME BIGINT       NULL,
-    PREV_FIRE_TIME BIGINT       NULL,
-    PRIORITY       INTEGER      NULL,
+    NEXT_FIRE_TIME BIGINT NULL,
+    PREV_FIRE_TIME BIGINT NULL,
+    PRIORITY       INTEGER NULL,
     TRIGGER_STATE  VARCHAR(16)  NOT NULL,
     TRIGGER_TYPE   VARCHAR(8)   NOT NULL,
     START_TIME     BIGINT       NOT NULL,
-    END_TIME       BIGINT       NULL,
+    END_TIME       BIGINT NULL,
     CALENDAR_NAME  VARCHAR(200) NULL,
-    MISFIRE_INSTR  SMALLINT     NULL,
-    JOB_DATA BYTEA NULL,
+    MISFIRE_INSTR  SMALLINT NULL,
+    JOB_DATA       BYTEA NULL,
     PRIMARY KEY (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP),
     FOREIGN KEY (SCHED_NAME, JOB_NAME, JOB_GROUP)
         REFERENCES QRTZ_JOB_DETAILS (SCHED_NAME, JOB_NAME, JOB_GROUP)
@@ -310,20 +310,20 @@ CREATE TABLE qrtz_cron_triggers
 
 CREATE TABLE qrtz_simprop_triggers
 (
-    SCHED_NAME    VARCHAR(120)   NOT NULL,
-    TRIGGER_NAME  VARCHAR(200)   NOT NULL,
-    TRIGGER_GROUP VARCHAR(200)   NOT NULL,
-    STR_PROP_1    VARCHAR(512)   NULL,
-    STR_PROP_2    VARCHAR(512)   NULL,
-    STR_PROP_3    VARCHAR(512)   NULL,
-    INT_PROP_1    INT            NULL,
-    INT_PROP_2    INT            NULL,
-    LONG_PROP_1   BIGINT         NULL,
-    LONG_PROP_2   BIGINT         NULL,
+    SCHED_NAME    VARCHAR(120) NOT NULL,
+    TRIGGER_NAME  VARCHAR(200) NOT NULL,
+    TRIGGER_GROUP VARCHAR(200) NOT NULL,
+    STR_PROP_1    VARCHAR(512) NULL,
+    STR_PROP_2    VARCHAR(512) NULL,
+    STR_PROP_3    VARCHAR(512) NULL,
+    INT_PROP_1    INT NULL,
+    INT_PROP_2    INT NULL,
+    LONG_PROP_1   BIGINT NULL,
+    LONG_PROP_2   BIGINT NULL,
     DEC_PROP_1    NUMERIC(13, 4) NULL,
     DEC_PROP_2    NUMERIC(13, 4) NULL,
-    BOOL_PROP_1   BOOL           NULL,
-    BOOL_PROP_2   BOOL           NULL,
+    BOOL_PROP_1   BOOL NULL,
+    BOOL_PROP_2   BOOL NULL,
     PRIMARY KEY (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP),
     FOREIGN KEY (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP)
         REFERENCES QRTZ_TRIGGERS (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP)
@@ -334,7 +334,7 @@ CREATE TABLE qrtz_blob_triggers
     SCHED_NAME    VARCHAR(120) NOT NULL,
     TRIGGER_NAME  VARCHAR(200) NOT NULL,
     TRIGGER_GROUP VARCHAR(200) NOT NULL,
-    BLOB_DATA BYTEA NULL,
+    BLOB_DATA     BYTEA NULL,
     PRIMARY KEY (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP),
     FOREIGN KEY (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP)
         REFERENCES QRTZ_TRIGGERS (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP)
@@ -344,7 +344,7 @@ CREATE TABLE qrtz_calendars
 (
     SCHED_NAME    VARCHAR(120) NOT NULL,
     CALENDAR_NAME VARCHAR(200) NOT NULL,
-    CALENDAR BYTEA NOT NULL,
+    CALENDAR      BYTEA        NOT NULL,
     PRIMARY KEY (SCHED_NAME, CALENDAR_NAME)
 );
 
@@ -369,8 +369,8 @@ CREATE TABLE qrtz_fired_triggers
     STATE             VARCHAR(16)  NOT NULL,
     JOB_NAME          VARCHAR(200) NULL,
     JOB_GROUP         VARCHAR(200) NULL,
-    IS_NONCONCURRENT  BOOL         NULL,
-    REQUESTS_RECOVERY BOOL         NULL,
+    IS_NONCONCURRENT  BOOL NULL,
+    REQUESTS_RECOVERY BOOL NULL,
     PRIMARY KEY (SCHED_NAME, ENTRY_ID)
 );
 

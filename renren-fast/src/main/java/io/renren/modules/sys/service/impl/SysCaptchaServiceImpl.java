@@ -29,43 +29,44 @@ import java.util.Date;
  */
 @Service("sysCaptchaService")
 public class SysCaptchaServiceImpl extends ServiceImpl<SysCaptchaDao, SysCaptchaEntity>
-    implements SysCaptchaService {
-  @Autowired private Producer producer;
+        implements SysCaptchaService {
+    @Autowired
+    private Producer producer;
 
-  @Override
-  public BufferedImage getCaptcha(String uuid) {
-    if (StringUtils.isBlank(uuid)) {
-      throw new RRException("uuid不能为空");
-    }
-    // 生成文字验证码
-    String code = producer.createText();
+    @Override
+    public BufferedImage getCaptcha(String uuid) {
+        if (StringUtils.isBlank(uuid)) {
+            throw new RRException("uuid不能为空");
+        }
+        // 生成文字验证码
+        String code = producer.createText();
 
-    SysCaptchaEntity captchaEntity = new SysCaptchaEntity();
-    captchaEntity.setUuid(uuid);
-    captchaEntity.setCode(code);
-    // 5分钟后过期
-    captchaEntity.setExpireTime(DateUtils.addDateMinutes(new Date(), 5));
-    this.save(captchaEntity);
+        SysCaptchaEntity captchaEntity = new SysCaptchaEntity();
+        captchaEntity.setUuid(uuid);
+        captchaEntity.setCode(code);
+        // 5分钟后过期
+        captchaEntity.setExpireTime(DateUtils.addDateMinutes(new Date(), 5));
+        this.save(captchaEntity);
 
-    return producer.createImage(code);
-  }
-
-  @Override
-  public boolean validate(String uuid, String code) {
-    SysCaptchaEntity captchaEntity =
-        this.getOne(new QueryWrapper<SysCaptchaEntity>().eq("uuid", uuid));
-    if (captchaEntity == null) {
-      return false;
+        return producer.createImage(code);
     }
 
-    // 删除验证码
-    this.removeById(uuid);
+    @Override
+    public boolean validate(String uuid, String code) {
+        SysCaptchaEntity captchaEntity =
+                this.getOne(new QueryWrapper<SysCaptchaEntity>().eq("uuid", uuid));
+        if (captchaEntity == null) {
+            return false;
+        }
 
-    if (captchaEntity.getCode().equalsIgnoreCase(code)
-        && captchaEntity.getExpireTime().getTime() >= System.currentTimeMillis()) {
-      return true;
+        // 删除验证码
+        this.removeById(uuid);
+
+        if (captchaEntity.getCode().equalsIgnoreCase(code)
+                && captchaEntity.getExpireTime().getTime() >= System.currentTimeMillis()) {
+            return true;
+        }
+
+        return false;
     }
-
-    return false;
-  }
 }

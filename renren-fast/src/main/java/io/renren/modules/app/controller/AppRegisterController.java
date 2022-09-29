@@ -32,21 +32,22 @@ import java.util.Date;
 @RequestMapping("/app")
 @Api("APP注册接口")
 public class AppRegisterController {
-  @Autowired private UserService userService;
+    @Autowired
+    private UserService userService;
 
-  @PostMapping("register")
-  @ApiOperation("注册")
-  public R register(@RequestBody RegisterForm form) {
-    // 表单校验
-    ValidatorUtils.validateEntity(form);
+    @PostMapping("register")
+    @ApiOperation("注册")
+    public R register(@RequestBody RegisterForm form) {
+        // 表单校验
+        ValidatorUtils.validateEntity(form);
 
-    UserEntity user = new UserEntity();
-    user.setMobile(form.getMobile());
-    user.setUsername(form.getMobile());
-    user.setPassword(DigestUtils.sha256Hex(form.getPassword()));
-    user.setCreateTime(new Date());
-    userService.save(user);
+        UserEntity user = new UserEntity();
+        user.setMobile(form.getMobile());
+        user.setUsername(form.getMobile());
+        user.setPassword(DigestUtils.sha256Hex(form.getPassword()));
+        user.setCreateTime(new Date());
+        userService.save(user);
 
-    return R.ok();
-  }
+        return R.ok();
+    }
 }

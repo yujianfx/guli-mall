@@ -1,8 +1,8 @@
 package cloud.stackexplode.gulimall.product.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.product.entity.CategoryBrandRelationEntity;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;
 
@@ -15,5 +15,9 @@ import java.util.Map;
  */
 public interface CategoryBrandRelationService extends IService<CategoryBrandRelationEntity> {
 
-  PageUtils queryPage(Map<String, Object> params);
+    PageUtils queryPage(Map<String, Object> params);
+
+    boolean saveDetil(CategoryBrandRelationEntity categoryBrandRelation);
+
+    PageUtils queryPageByBrandId(Map<String, Object> params, Long bId);
 }

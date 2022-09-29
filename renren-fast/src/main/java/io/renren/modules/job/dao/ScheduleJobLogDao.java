@@ -17,4 +17,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @author Mark sunlightcs@gmail.com
  */
 @Mapper
-public interface ScheduleJobLogDao extends BaseMapper<ScheduleJobLogEntity> {}
+public interface ScheduleJobLogDao extends BaseMapper<ScheduleJobLogEntity> {
+}

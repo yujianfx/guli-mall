@@ -12,4 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2022-07-10 21:38:58
  */
 @Mapper
-public interface MemberPriceDao extends BaseMapper<MemberPriceEntity> {}
+public interface MemberPriceDao extends BaseMapper<MemberPriceEntity> {
+}

@@ -12,4 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2022-07-12 20:32:53
  */
 @Mapper
-public interface MemberCollectSpuDao extends BaseMapper<MemberCollectSpuEntity> {}
+public interface MemberCollectSpuDao extends BaseMapper<MemberCollectSpuEntity> {
+}

@@ -24,16 +24,18 @@ import java.util.List;
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
-  @Autowired private AuthorizationInterceptor authorizationInterceptor;
-  @Autowired private LoginUserHandlerMethodArgumentResolver loginUserHandlerMethodArgumentResolver;
+    @Autowired
+    private AuthorizationInterceptor authorizationInterceptor;
+    @Autowired
+    private LoginUserHandlerMethodArgumentResolver loginUserHandlerMethodArgumentResolver;
 
-  @Override
-  public void addInterceptors(InterceptorRegistry registry) {
-    registry.addInterceptor(authorizationInterceptor).addPathPatterns("/app/**");
-  }
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(authorizationInterceptor).addPathPatterns("/app/**");
+    }
 
-  @Override
-  public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-    argumentResolvers.add(loginUserHandlerMethodArgumentResolver);
-  }
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+        argumentResolvers.add(loginUserHandlerMethodArgumentResolver);
+    }
 }

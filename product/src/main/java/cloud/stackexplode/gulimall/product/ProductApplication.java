@@ -12,7 +12,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @MapperScan("cloud.stackexplode.gulimall.product.dao")
 public class ProductApplication {
 
-  public static void main(String[] args) {
-    SpringApplication.run(ProductApplication.class, args);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(ProductApplication.class, args);
+    }
 }

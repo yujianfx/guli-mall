@@ -56,12 +56,18 @@ spring:
             - Path=/api/ware/**
           filters:
             - RewritePath=/api(?<path>/?.*), $\{path}
+        - id: oss
+          uri: lb://oss-service
+          predicates:
+            - Path=/api/oss/**
+          filters:
+            - RewritePath=/api(?<path>/?.*), $\{path}
         - id: renren-fast
           uri: lb://renren-fast
           predicates:
             - Path=/api/**
           filters:
-              - RewritePath=/api(?<path>/?.*), $\{path}
+            - RewritePath=/api(?<path>/?.*), $\{path}
 logging:
   config:
     - level: debug

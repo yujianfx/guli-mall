@@ -12,4 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2022-07-12 20:44:00
  */
 @Mapper
-public interface OrderItemDao extends BaseMapper<OrderItemEntity> {}
+public interface OrderItemDao extends BaseMapper<OrderItemEntity> {
+}

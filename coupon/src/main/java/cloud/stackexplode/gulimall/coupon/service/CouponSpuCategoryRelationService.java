@@ -1,8 +1,8 @@
 package cloud.stackexplode.gulimall.coupon.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.coupon.entity.CouponSpuCategoryRelationEntity;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;
 
@@ -14,7 +14,7 @@ import java.util.Map;
  * @date 2022-07-10 21:38:58
  */
 public interface CouponSpuCategoryRelationService
-    extends IService<CouponSpuCategoryRelationEntity> {
+        extends IService<CouponSpuCategoryRelationEntity> {
 
-  PageUtils queryPage(Map<String, Object> params);
+    PageUtils queryPage(Map<String, Object> params);
 }

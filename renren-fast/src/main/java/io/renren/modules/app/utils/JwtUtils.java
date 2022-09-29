@@ -25,66 +25,68 @@ import java.util.Date;
 @ConfigurationProperties(prefix = "renren.jwt")
 @Component
 public class JwtUtils {
-  private Logger logger = LoggerFactory.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
-  private String secret;
-  private long expire;
-  private String header;
+    private String secret;
+    private long expire;
+    private String header;
 
-  /** 生成jwt token */
-  public String generateToken(long userId) {
-    Date nowDate = new Date();
-    // 过期时间
-    Date expireDate = new Date(nowDate.getTime() + expire * 1000);
+    /**
+     * 生成jwt token
+     */
+    public String generateToken(long userId) {
+        Date nowDate = new Date();
+        // 过期时间
+        Date expireDate = new Date(nowDate.getTime() + expire * 1000);
 
-    return Jwts.builder()
-        .setHeaderParam("typ", "JWT")
-        .setSubject(userId + "")
-        .setIssuedAt(nowDate)
-        .setExpiration(expireDate)
-        .signWith(SignatureAlgorithm.HS512, secret)
-        .compact();
-  }
-
-  public Claims getClaimByToken(String token) {
-    try {
-      return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
-    } catch (Exception e) {
-      logger.debug("validate is token error ", e);
-      return null;
+        return Jwts.builder()
+                .setHeaderParam("typ", "JWT")
+                .setSubject(userId + "")
+                .setIssuedAt(nowDate)
+                .setExpiration(expireDate)
+                .signWith(SignatureAlgorithm.HS512, secret)
+                .compact();
     }
-  }
 
-  /**
-   * token是否过期
-   *
-   * @return true：过期
-   */
-  public boolean isTokenExpired(Date expiration) {
-    return expiration.before(new Date());
-  }
+    public Claims getClaimByToken(String token) {
+        try {
+            return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        } catch (Exception e) {
+            logger.debug("validate is token error ", e);
+            return null;
+        }
+    }
 
-  public String getSecret() {
-    return secret;
-  }
+    /**
+     * token是否过期
+     *
+     * @return true：过期
+     */
+    public boolean isTokenExpired(Date expiration) {
+        return expiration.before(new Date());
+    }
 
-  public void setSecret(String secret) {
-    this.secret = secret;
-  }
+    public String getSecret() {
+        return secret;
+    }
 
-  public long getExpire() {
-    return expire;
-  }
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
 
-  public void setExpire(long expire) {
-    this.expire = expire;
-  }
+    public long getExpire() {
+        return expire;
+    }
 
-  public String getHeader() {
-    return header;
-  }
+    public void setExpire(long expire) {
+        this.expire = expire;
+    }
 
-  public void setHeader(String header) {
-    this.header = header;
-  }
+    public String getHeader() {
+        return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
+    }
 }

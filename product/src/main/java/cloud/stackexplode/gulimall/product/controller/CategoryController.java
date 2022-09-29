@@ -1,14 +1,13 @@
 package cloud.stackexplode.gulimall.product.controller;
 
-import java.util.Arrays;
-import java.util.List;
-
+import cloud.stackexplode.gulimall.common.utils.R;
+import cloud.stackexplode.gulimall.product.entity.CategoryEntity;
+import cloud.stackexplode.gulimall.product.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import cloud.stackexplode.gulimall.product.entity.CategoryEntity;
-import cloud.stackexplode.gulimall.product.service.CategoryService;
-import cloud.stackexplode.gulimall.common.utils.R;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * 商品三级分类
@@ -20,42 +19,53 @@ import cloud.stackexplode.gulimall.common.utils.R;
 @RestController
 @RequestMapping("product/category")
 public class CategoryController {
-  @Autowired private CategoryService categoryService;
+    @Autowired
+    private CategoryService categoryService;
 
-  /** 列表 */
-  @GetMapping("/list")
-  public R list() {
-    List<CategoryEntity> listTree = categoryService.listTree();
-    return R.ok().put("data", listTree);
-  }
+    /**
+     * 列表
+     */
+    @GetMapping("/list")
+    public R list() {
+        List<CategoryEntity> listTree = categoryService.listTree();
+        return R.ok().put("data", listTree);
+    }
 
-  /** 信息 */
-  @GetMapping("/info/{catId}")
-  public R info(@PathVariable("catId") Long catId) {
-    CategoryEntity category = categoryService.getById(catId);
+    /**
+     * 信息
+     */
+    @GetMapping("/info/{catId}")
+    public R info(@PathVariable("catId") Long catId) {
+        CategoryEntity category = categoryService.getById(catId);
 
-    return R.ok().put("category", category);
-  }
+        return R.ok().put("category", category);
+    }
 
-  /** 保存 */
-  @PostMapping("/save")
-  public R save(@RequestBody CategoryEntity category) {
-    categoryService.save(category);
+    /**
+     * 保存
+     */
+    @PostMapping("/save")
+    public R save(@RequestBody CategoryEntity category) {
+        categoryService.save(category);
 
-    return R.ok();
-  }
+        return R.ok();
+    }
 
-  /** 修改 */
-  @PutMapping("/update")
-  public R update(@RequestBody CategoryEntity category) {
-    categoryService.updateById(category);
+    /**
+     * 修改
+     */
+    @PutMapping("/update")
+    public R update(@RequestBody CategoryEntity category) {
+        categoryService.updateDetail(category);
 
-    return R.ok();
-  }
+        return R.ok();
+    }
 
-  /** 删除 */
-  @DeleteMapping("/delete")
-  public R delete(@RequestBody Long[] catIds) {
-    return categoryService.removeMenuByIds(Arrays.asList(catIds)) ? R.ok() : R.error("删除失败");
-  }
+    /**
+     * 删除
+     */
+    @DeleteMapping("/delete")
+    public R delete(@RequestBody Long[] catIds) {
+        return categoryService.removeMenuByIds(Arrays.asList(catIds)) ? R.ok() : R.error("删除失败");
+    }
 }

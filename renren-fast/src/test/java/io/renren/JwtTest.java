@@ -11,14 +11,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class JwtTest {
-  @Autowired private JwtUtils jwtUtils;
+    @Autowired
+    private JwtUtils jwtUtils;
 
-  @Test
-  public void test() {
-    System.out.println(new Sha256Hash("abc123","stackexplode.cloud").toHex());
+    @Test
+    public void test() {
+        System.out.println(new Sha256Hash("abc123", "stackexplode.cloud").toHex());
 
-    //    String token = jwtUtils.generateToken(1);
+        //    String token = jwtUtils.generateToken(1);
 //
 //    System.out.println(token);
-  }
+    }
 }

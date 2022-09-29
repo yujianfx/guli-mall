@@ -27,36 +27,37 @@ import java.util.Map;
 @Configuration
 @EnableConfigurationProperties(DynamicDataSourceProperties.class)
 public class DynamicDataSourceConfig {
-  @Autowired private DynamicDataSourceProperties properties;
+    @Autowired
+    private DynamicDataSourceProperties properties;
 
-  @Bean
-  @ConfigurationProperties(prefix = "spring.datasource.druid")
-  public DataSourceProperties dataSourceProperties() {
-    return new DataSourceProperties();
-  }
+    @Bean
+    @ConfigurationProperties(prefix = "spring.datasource.druid")
+    public DataSourceProperties dataSourceProperties() {
+        return new DataSourceProperties();
+    }
 
-  @Bean
-  public DynamicDataSource dynamicDataSource(DataSourceProperties dataSourceProperties) {
-    DynamicDataSource dynamicDataSource = new DynamicDataSource();
-    dynamicDataSource.setTargetDataSources(getDynamicDataSource());
+    @Bean
+    public DynamicDataSource dynamicDataSource(DataSourceProperties dataSourceProperties) {
+        DynamicDataSource dynamicDataSource = new DynamicDataSource();
+        dynamicDataSource.setTargetDataSources(getDynamicDataSource());
 
-    // 默认数据源
-    DruidDataSource defaultDataSource =
-        DynamicDataSourceFactory.buildDruidDataSource(dataSourceProperties);
-    dynamicDataSource.setDefaultTargetDataSource(defaultDataSource);
+        // 默认数据源
+        DruidDataSource defaultDataSource =
+                DynamicDataSourceFactory.buildDruidDataSource(dataSourceProperties);
+        dynamicDataSource.setDefaultTargetDataSource(defaultDataSource);
 
-    return dynamicDataSource;
-  }
+        return dynamicDataSource;
+    }
 
-  private Map<Object, Object> getDynamicDataSource() {
-    Map<String, DataSourceProperties> dataSourcePropertiesMap = properties.getDatasource();
-    Map<Object, Object> targetDataSources = new HashMap<>(dataSourcePropertiesMap.size());
-    dataSourcePropertiesMap.forEach(
-        (k, v) -> {
-          DruidDataSource druidDataSource = DynamicDataSourceFactory.buildDruidDataSource(v);
-          targetDataSources.put(k, druidDataSource);
-        });
+    private Map<Object, Object> getDynamicDataSource() {
+        Map<String, DataSourceProperties> dataSourcePropertiesMap = properties.getDatasource();
+        Map<Object, Object> targetDataSources = new HashMap<>(dataSourcePropertiesMap.size());
+        dataSourcePropertiesMap.forEach(
+                (k, v) -> {
+                    DruidDataSource druidDataSource = DynamicDataSourceFactory.buildDruidDataSource(v);
+                    targetDataSources.put(k, druidDataSource);
+                });
 
-    return targetDataSources;
-  }
+        return targetDataSources;
+    }
 }

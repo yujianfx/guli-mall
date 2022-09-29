@@ -1,8 +1,8 @@
 package cloud.stackexplode.gulimall.ware.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.ware.entity.PurchaseDetailEntity;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;
 
@@ -13,5 +13,5 @@ import java.util.Map;
  */
 public interface PurchaseDetailService extends IService<PurchaseDetailEntity> {
 
-  PageUtils queryPage(Map<String, Object> params);
+    PageUtils queryPage(Map<String, Object> params);
 }

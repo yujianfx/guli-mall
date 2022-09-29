@@ -22,17 +22,17 @@ import java.util.Map;
 
 @Service("sysLogService")
 public class SysLogServiceImpl extends ServiceImpl<SysLogDao, SysLogEntity>
-    implements SysLogService {
+        implements SysLogService {
 
-  @Override
-  public PageUtils queryPage(Map<String, Object> params) {
-    String key = (String) params.get("key");
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        String key = (String) params.get("key");
 
-    IPage<SysLogEntity> page =
-        this.page(
-            new Query<SysLogEntity>().getPage(params),
-            new QueryWrapper<SysLogEntity>().like(StringUtils.isNotBlank(key), "username", key));
+        IPage<SysLogEntity> page =
+                this.page(
+                        new Query<SysLogEntity>().getPage(params),
+                        new QueryWrapper<SysLogEntity>().like(StringUtils.isNotBlank(key), "username", key));
 
-    return new PageUtils(page);
-  }
+        return new PageUtils(page);
+    }
 }

@@ -12,4 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2022-07-10 21:38:58
  */
 @Mapper
-public interface SeckillSessionDao extends BaseMapper<SeckillSessionEntity> {}
+public interface SeckillSessionDao extends BaseMapper<SeckillSessionEntity> {
+}

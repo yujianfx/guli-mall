@@ -1,8 +1,8 @@
 package cloud.stackexplode.gulimall.product.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.product.entity.CategoryEntity;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Collection;
 import java.util.List;
@@ -17,9 +17,13 @@ import java.util.Map;
  */
 public interface CategoryService extends IService<CategoryEntity> {
 
-  PageUtils queryPage(Map<String, Object> params);
+    PageUtils queryPage(Map<String, Object> params);
 
-  List<CategoryEntity> listTree();
+    List<CategoryEntity> listTree();
 
-  boolean removeMenuByIds(Collection<Long> ids);
+    boolean removeMenuByIds(Collection<Long> ids);
+
+    Long[] findCatelogPath(Long id);
+
+    int updateDetail(CategoryEntity category);
 }

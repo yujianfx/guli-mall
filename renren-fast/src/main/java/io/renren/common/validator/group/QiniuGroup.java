@@ -12,4 +12,5 @@ package io.renren.common.validator.group;
  *
  * @author Mark sunlightcs@gmail.com
  */
-public interface QiniuGroup {}
+public interface QiniuGroup {
+}

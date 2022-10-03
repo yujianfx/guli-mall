@@ -1,5 +1,6 @@
 package cloud.stackexplode.gulimall.coupon.controller;
 
+import cloud.stackexplode.gulimall.common.to.SkuReductionTo;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
 import cloud.stackexplode.gulimall.coupon.entity.SkuFullReductionEntity;
@@ -20,56 +21,50 @@ import java.util.Map;
 @RestController
 @RequestMapping("coupon/skufullreduction")
 public class SkuFullReductionController {
-    @Autowired
-    private SkuFullReductionService skuFullReductionService;
+  @Autowired private SkuFullReductionService skuFullReductionService;
 
-    /**
-     * 列表
-     */
-    @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = skuFullReductionService.queryPage(params);
+  /** 列表 */
+  @RequestMapping("/list")
+  public R list(@RequestParam Map<String, Object> params) {
+    PageUtils page = skuFullReductionService.queryPage(params);
 
-        return R.ok().put("page", page);
-    }
+    return R.ok().put("page", page);
+  }
 
-    /**
-     * 信息
-     */
-    @RequestMapping("/info/{id}")
-    public R info(@PathVariable("id") Long id) {
-        SkuFullReductionEntity skuFullReduction = skuFullReductionService.getById(id);
+  /** 信息 */
+  @RequestMapping("/info/{id}")
+  public R info(@PathVariable("id") Long id) {
+    SkuFullReductionEntity skuFullReduction = skuFullReductionService.getById(id);
 
-        return R.ok().put("skuFullReduction", skuFullReduction);
-    }
+    return R.ok().put("skuFullReduction", skuFullReduction);
+  }
 
-    /**
-     * 保存
-     */
-    @RequestMapping("/save")
-    public R save(@RequestBody SkuFullReductionEntity skuFullReduction) {
-        skuFullReductionService.save(skuFullReduction);
+  /** 保存 */
+  @RequestMapping("/save")
+  public R save(@RequestBody SkuReductionTo skuReductionTo) {
+    Boolean res = skuFullReductionService.saveSkuReductionTo(skuReductionTo);
 
-        return R.ok();
-    }
+    return res ? R.ok("保存成功") : R.error("保存失败");
+  }
+  //    @RequestMapping("/save")
+  //    public R save(@RequestBody SkuFullReductionEntity skuFullReduction) {
+  //        skuFullReductionService.save(skuFullReduction);
+  //
+  //        return R.ok();
+  //    }
+  /** 修改 */
+  @RequestMapping("/update")
+  public R update(@RequestBody SkuFullReductionEntity skuFullReduction) {
+    skuFullReductionService.updateById(skuFullReduction);
 
-    /**
-     * 修改
-     */
-    @RequestMapping("/update")
-    public R update(@RequestBody SkuFullReductionEntity skuFullReduction) {
-        skuFullReductionService.updateById(skuFullReduction);
+    return R.ok();
+  }
 
-        return R.ok();
-    }
+  /** 删除 */
+  @RequestMapping("/delete")
+  public R delete(@RequestBody Long[] ids) {
+    skuFullReductionService.removeByIds(Arrays.asList(ids));
 
-    /**
-     * 删除
-     */
-    @RequestMapping("/delete")
-    public R delete(@RequestBody Long[] ids) {
-        skuFullReductionService.removeByIds(Arrays.asList(ids));
-
-        return R.ok();
-    }
+    return R.ok();
+  }
 }

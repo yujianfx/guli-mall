@@ -20,59 +20,48 @@ import java.util.Map;
 @RestController
 @RequestMapping("product/categorybrandrelation")
 public class CategoryBrandRelationController {
-    @Autowired
-    private CategoryBrandRelationService categoryBrandRelationService;
+  @Autowired private CategoryBrandRelationService categoryBrandRelationService;
 
-    @GetMapping("/list/{brandId}")
-    public R categoryList(
-            @RequestParam Map<String, Object> params, @PathVariable("brandId") Long bId) {
-        PageUtils page = categoryBrandRelationService.queryPageByBrandId(params, bId);
-        return R.ok().put("page", page);
-    }
+  @GetMapping("/list/{brandId}")
+  public R cbRelationList(
+      @RequestParam Map<String, Object> params, @PathVariable("brandId") Long bId) {
+    PageUtils page = categoryBrandRelationService.queryPageByBrandId(params, bId);
+    return R.ok().put("page", page);
+  }
 
-    /**
-     * 列表
-     */
-    @GetMapping("/list")
-    public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = categoryBrandRelationService.queryPage(params);
+  @GetMapping("/brandsList/{cId}")
+  public R cbRelationListBy(
+      @RequestParam Map<String, Object> params, @PathVariable("cId") Long cId) {
+    PageUtils page = categoryBrandRelationService.queryPageByCid(params, cId);
+    return R.ok().put("page", page);
+  }
+  /** 信息 */
+  @GetMapping("/info/{id}")
+  public R info(@PathVariable("id") Long id) {
+    CategoryBrandRelationEntity categoryBrandRelation = categoryBrandRelationService.getById(id);
 
-        return R.ok().put("page", page);
-    }
+    return R.ok().put("categoryBrandRelation", categoryBrandRelation);
+  }
 
-    /**
-     * 信息
-     */
-    @GetMapping("/info/{id}")
-    public R info(@PathVariable("id") Long id) {
-        CategoryBrandRelationEntity categoryBrandRelation = categoryBrandRelationService.getById(id);
+  @PostMapping("/save")
+  public R save(@RequestBody CategoryBrandRelationEntity categoryBrandRelation) {
+    categoryBrandRelationService.saveDetil(categoryBrandRelation);
+    return R.ok();
+  }
 
-        return R.ok().put("categoryBrandRelation", categoryBrandRelation);
-    }
+  /** 修改 */
+  @PutMapping("/update")
+  public R update(@RequestBody CategoryBrandRelationEntity categoryBrandRelation) {
+    categoryBrandRelationService.updateById(categoryBrandRelation);
 
-    @PostMapping("/save")
-    public R save(@RequestBody CategoryBrandRelationEntity categoryBrandRelation) {
-        categoryBrandRelationService.saveDetil(categoryBrandRelation);
-        return R.ok();
-    }
+    return R.ok();
+  }
 
-    /**
-     * 修改
-     */
-    @PutMapping("/update")
-    public R update(@RequestBody CategoryBrandRelationEntity categoryBrandRelation) {
-        categoryBrandRelationService.updateById(categoryBrandRelation);
+  /** 删除 */
+  @DeleteMapping("/delete")
+  public R delete(@RequestBody Long[] ids) {
+    categoryBrandRelationService.removeByIds(Arrays.asList(ids));
 
-        return R.ok();
-    }
-
-    /**
-     * 删除
-     */
-    @DeleteMapping("/delete")
-    public R delete(@RequestBody Long[] ids) {
-        categoryBrandRelationService.removeByIds(Arrays.asList(ids));
-
-        return R.ok();
-    }
+    return R.ok();
+  }
 }

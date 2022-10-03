@@ -32,7 +32,19 @@ spring:
         wall:
           config:
             multi-statement-allow: true
-
+logging:
+  file: E:\Javaprojects\guli-mall\.logs\product-service.log
+  level:
+    org.zalando.logbook: trace
+logbook:
+  exclude:
+    - "**.html"
+    - "**.htm"
+    - "**.js"
+    - "**.css"
+    - "**.jpg"
+    - "**.ico"
+    - "/static/**"
 
 ##多数据源的配置
 #dynamic:

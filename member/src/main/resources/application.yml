@@ -15,4 +15,16 @@ mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
 server:
   port: 8081
-
+logging:
+  file: E:\Javaprojects\guli-mall\.logs\member-service.log
+  level:
+    org.zalando.logbook: trace
+logbook:
+  exclude:
+    - "**.html"
+    - "**.htm"
+    - "**.js"
+    - "**.css"
+    - "**.jpg"
+    - "**.ico"
+    - "/static/**"

@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ import java.util.List;
  *
  * @author Mark sunlightcs@gmail.com
  */
-@Data
+@Data @Accessors(fluent = false, chain = true)
 @TableName("sys_menu")
 public class SysMenuEntity implements Serializable {
     private static final long serialVersionUID = 1L;

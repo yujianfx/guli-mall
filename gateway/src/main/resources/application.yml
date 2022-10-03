@@ -69,8 +69,15 @@ spring:
           filters:
             - RewritePath=/api(?<path>/?.*), $\{path}
 logging:
-  config:
-    - level: debug
-      name: gateway-service
-      type: console
-      format: '%d{yyyy-MM-dd HH:mm:ss} %p %c{1}:%L - %m%n'
+  file: E:\Javaprojects\guli-mall\.logs\gateway-service.log
+  level:
+    org.zalando.logbook: trace
+logbook:
+  exclude:
+    - "**.html"
+    - "**.htm"
+    - "**.js"
+    - "**.css"
+    - "**.jpg"
+    - "**.ico"
+    - "/static/**"

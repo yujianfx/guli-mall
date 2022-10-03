@@ -14,6 +14,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import io.renren.common.validator.group.AddGroup;
 import io.renren.common.validator.group.UpdateGroup;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -26,7 +27,7 @@ import java.util.List;
  *
  * @author Mark sunlightcs@gmail.com
  */
-@Data
+@Data @Accessors(fluent = false, chain = true)
 @TableName("sys_user")
 public class SysUserEntity implements Serializable {
     private static final long serialVersionUID = 1L;

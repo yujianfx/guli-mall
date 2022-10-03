@@ -4,6 +4,7 @@ import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
 import cloud.stackexplode.gulimall.product.entity.SpuInfoEntity;
 import cloud.stackexplode.gulimall.product.service.SpuInfoService;
+import cloud.stackexplode.gulimall.product.vo.SpuVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,56 +21,41 @@ import java.util.Map;
 @RestController
 @RequestMapping("product/spuinfo")
 public class SpuInfoController {
-    @Autowired
-    private SpuInfoService spuInfoService;
+  @Autowired private SpuInfoService spuInfoService;
 
-    /**
-     * 列表
-     */
-    @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = spuInfoService.queryPage(params);
+  /** 列表 */
+  @RequestMapping("/list")
+  public R list(@RequestParam Map<String, Object> params) {
+    PageUtils page = spuInfoService.queryPage(params);
+    return R.ok().put("page", page);
+  }
 
-        return R.ok().put("page", page);
-    }
+  /** 信息 */
+  @RequestMapping("/info/{id}")
+  public R info(@PathVariable("id") Long id) {
+    SpuInfoEntity spuInfo = spuInfoService.getById(id);
 
-    /**
-     * 信息
-     */
-    @RequestMapping("/info/{id}")
-    public R info(@PathVariable("id") Long id) {
-        SpuInfoEntity spuInfo = spuInfoService.getById(id);
+    return R.ok().put("spuInfo", spuInfo);
+  }
 
-        return R.ok().put("spuInfo", spuInfo);
-    }
+  /** 保存 */
+  @RequestMapping("/save")
+  public R save(@RequestBody SpuVo spuVo) throws Exception {
+    return spuInfoService.saveSpuDetail(spuVo) ? R.ok() : R.error();
+  }
+  /** 修改 */
+  @RequestMapping("/update")
+  public R update(@RequestBody SpuInfoEntity spuInfo) {
+    spuInfoService.updateById(spuInfo);
 
-    /**
-     * 保存
-     */
-    @RequestMapping("/save")
-    public R save(@RequestBody SpuInfoEntity spuInfo) {
-        spuInfoService.save(spuInfo);
+    return R.ok();
+  }
 
-        return R.ok();
-    }
+  /** 删除 */
+  @RequestMapping("/delete")
+  public R delete(@RequestBody Long[] ids) {
+    spuInfoService.removeByIds(Arrays.asList(ids));
 
-    /**
-     * 修改
-     */
-    @RequestMapping("/update")
-    public R update(@RequestBody SpuInfoEntity spuInfo) {
-        spuInfoService.updateById(spuInfo);
-
-        return R.ok();
-    }
-
-    /**
-     * 删除
-     */
-    @RequestMapping("/delete")
-    public R delete(@RequestBody Long[] ids) {
-        spuInfoService.removeByIds(Arrays.asList(ids));
-
-        return R.ok();
-    }
+    return R.ok();
+  }
 }

@@ -20,4 +20,6 @@ public interface CategoryBrandRelationService extends IService<CategoryBrandRela
     boolean saveDetil(CategoryBrandRelationEntity categoryBrandRelation);
 
     PageUtils queryPageByBrandId(Map<String, Object> params, Long bId);
+
+    PageUtils queryPageByCid(Map<String, Object> params, Long cId);
 }

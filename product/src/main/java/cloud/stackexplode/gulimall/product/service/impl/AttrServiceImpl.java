@@ -6,6 +6,8 @@ import cloud.stackexplode.gulimall.product.dao.AttrAttrgroupRelationDao;
 import cloud.stackexplode.gulimall.product.dao.AttrDao;
 import cloud.stackexplode.gulimall.product.entity.AttrAttrgroupRelationEntity;
 import cloud.stackexplode.gulimall.product.entity.AttrEntity;
+import cloud.stackexplode.gulimall.product.entity.AttrGroupEntity;
+import cloud.stackexplode.gulimall.product.service.AttrAttrgroupRelationService;
 import cloud.stackexplode.gulimall.product.service.AttrGroupService;
 import cloud.stackexplode.gulimall.product.service.AttrService;
 import cloud.stackexplode.gulimall.product.service.CategoryService;
@@ -19,69 +21,101 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service("attrService")
 public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements AttrService {
-    @Autowired
-    private AttrAttrgroupRelationDao attrAttrgroupRelationDao;
-    @Autowired
-    private CategoryService categoryService;
-    @Autowired
-    private AttrGroupService attrGroupService;
+  @Autowired private AttrAttrgroupRelationDao attrAttrgroupRelationDao;
+  @Autowired private CategoryService categoryService;
+  @Autowired private AttrGroupService attrGroupService;
+  @Autowired private AttrAttrgroupRelationService attrAttrgroupRelationService;
 
-    @Override
-    public PageUtils queryPageByCid(Map<String, Object> params, Long cid) {
-        String key = (String) params.get("key");
-        QueryWrapper<AttrEntity> queryWrapper =
-                new QueryWrapper<AttrEntity>().eq("search_type", 1).eq("enable", 1).eq("show_status", 0);
-        if (cid != 0) {
-            queryWrapper.eq("catelog_id", cid);
-        }
-        return StringUtils.isEmpty(key)
-                ? new PageUtils(this.page(new Query<AttrEntity>().getPage(params), queryWrapper))
-                : new PageUtils(
-                this.page(
-                        new Query<AttrEntity>().getPage(params),
-                        queryWrapper.like("attr_name", key).or().like("value_select", key)));
+  @Override
+  public PageUtils queryPageByCid(Map<String, Object> params, Integer attrType, Long cid) {
+    String key = (String) params.get("key");
+    QueryWrapper<AttrEntity> queryWrapper =
+        new QueryWrapper<AttrEntity>()
+            .eq("enable", 1)
+            .eq("show_status", 0)
+            .eq("attr_type", attrType);
+    if (cid != 0) {
+      queryWrapper.eq("catelog_id", cid);
     }
-
-    @Override
-    public PageUtils queryPage(Map<String, Object> params) {
-        IPage<AttrEntity> page =
-                this.page(new Query<AttrEntity>().getPage(params), new QueryWrapper<AttrEntity>());
-
-        return new PageUtils(page);
+    if (StringUtils.isNotEmpty(key)) {
+      IPage<AttrEntity> keySearchPage =
+          this.page(
+              new Query<AttrEntity>().getPage(params),
+              queryWrapper.like("attr_name", key).or().like("value_select", key));
+      PageUtils pageUtils = new PageUtils(keySearchPage);
+      return pageUtils.setList(allDetails(keySearchPage));
+    } else {
+      IPage<AttrEntity> iPage = this.page(new Query<AttrEntity>().getPage(params), queryWrapper);
+      PageUtils pageUtils = new PageUtils(iPage);
+      return pageUtils.setList(allDetails(iPage));
     }
+  }
 
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public boolean saveAttr(AttrVo attrVo) {
-        AttrEntity attrEntity = new AttrEntity();
-        BeanUtils.copyProperties(attrVo, attrEntity);
-        AttrAttrgroupRelationEntity attrGroupRelationEntity = new AttrAttrgroupRelationEntity();
-        attrGroupRelationEntity.setAttrGroupId(attrVo.getAttrGroupId());
-        attrGroupRelationEntity.setAttrId(attrVo.getAttrId());
-        attrAttrgroupRelationDao.insert(attrGroupRelationEntity);
-        return this.save(attrEntity);
-    }
+  @Override
+  public PageUtils queryPage(Map<String, Object> params) {
+    IPage<AttrEntity> page =
+        this.page(new Query<AttrEntity>().getPage(params), new QueryWrapper<AttrEntity>());
 
-    @Override
-    public AttrRespVo getAttrDetailById(Long attrId) {
-        AttrEntity attrEntity = baseMapper.selectById(attrId);
-        AttrRespVo attrRespVo = new AttrRespVo();
-        BeanUtils.copyProperties(attrEntity, attrRespVo);
-        attrRespVo.setCatelogPath(categoryService.findCatelogPath(attrEntity.getCatelogId()));
-        attrRespVo.setCatelogName(categoryService.getById(attrEntity.getCatelogId()).getName());
-        attrRespVo.setGroupName(
-                attrGroupService
-                        .getById(
-                                attrAttrgroupRelationDao
-                                        .selectOne(
-                                                new QueryWrapper<AttrAttrgroupRelationEntity>().eq("attr_id", attrId))
-                                        .getAttrGroupId())
-                        .getAttrGroupName());
-        return attrRespVo;
-    }
+    return new PageUtils(page);
+  }
+
+  @Transactional(rollbackFor = Exception.class)
+  @Override
+  public boolean saveAttr(AttrVo attrVo) {
+    AttrEntity attrEntity = new AttrEntity();
+    BeanUtils.copyProperties(attrVo, attrEntity);
+    this.save(attrEntity);
+    AttrAttrgroupRelationEntity attrGroupRelationEntity = new AttrAttrgroupRelationEntity();
+    attrGroupRelationEntity.setAttrGroupId(attrVo.getAttrGroupId());
+    attrGroupRelationEntity.setAttrId(attrEntity.getAttrId());
+
+    return 0 < attrAttrgroupRelationDao.insert(attrGroupRelationEntity);
+  }
+
+  @Override
+  public AttrRespVo getAttrDetailById(Integer attrType, Long attrId) {
+    AttrEntity attrEntity = baseMapper.selectById(attrId);
+    assert attrEntity != null : "attrId:"+attrId+"为空";
+    AttrRespVo attrRespVo = new AttrRespVo();
+    BeanUtils.copyProperties(attrEntity, attrRespVo);
+    attrRespVo.setCatelogPath(categoryService.findCatelogPath(attrEntity.getCatelogId()));
+    attrRespVo.setCatelogName(categoryService.getById(attrEntity.getCatelogId()).getName());
+    QueryWrapper<AttrAttrgroupRelationEntity> queryWrapper =
+        new QueryWrapper<AttrAttrgroupRelationEntity>().eq("attr_id", attrId);
+    AttrAttrgroupRelationEntity attrAttrgroupRelationEntity =
+        attrAttrgroupRelationDao.selectOne(queryWrapper);
+    AttrGroupEntity attrGroupEntity =
+        attrGroupService.getById(attrAttrgroupRelationEntity.getAttrGroupId());
+    attrRespVo.setGroupName(attrGroupEntity.getAttrGroupName());
+    attrRespVo.setAttrGroupId(attrGroupEntity.getAttrGroupId());
+    return attrRespVo;
+  }
+
+  private List<AttrRespVo> allDetails(@NotNull IPage<AttrEntity> iPage) {
+    return iPage.getRecords().stream()
+        .map(
+            attrEntity -> {
+              Long attrId = attrEntity.getAttrId();
+              Long catelogId = attrEntity.getCatelogId();
+              String cname = categoryService.getById(catelogId).getName();
+              AttrAttrgroupRelationEntity attrAttrgroupRelationEntity =
+                  attrAttrgroupRelationService.getOne(
+                      new QueryWrapper<AttrAttrgroupRelationEntity>().eq("attr_id", attrId));
+              Long groupId = attrAttrgroupRelationEntity.getAttrGroupId();
+              AttrGroupEntity attrGroupEntity = attrGroupService.getById(groupId);
+              String agName = attrGroupEntity.getAttrGroupName();
+              AttrRespVo attrRespVo = new AttrRespVo();
+              BeanUtils.copyProperties(attrEntity, attrRespVo);
+              attrRespVo.setGroupName(agName).setCatelogName(cname);
+              return attrRespVo;
+            })
+        .collect(Collectors.toList());
+  }
 }

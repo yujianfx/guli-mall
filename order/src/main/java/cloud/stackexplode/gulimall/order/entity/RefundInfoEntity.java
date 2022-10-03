@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +16,7 @@ import java.math.BigDecimal;
  * @email 2653084650@qq.com
  * @date 2022-07-12 20:44:00
  */
-@Data
+@Data @Accessors(fluent = false, chain = true)
 @TableName("oms_refund_info")
 public class RefundInfoEntity implements Serializable {
     private static final long serialVersionUID = 1L;

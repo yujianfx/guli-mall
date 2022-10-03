@@ -17,11 +17,11 @@ import java.util.Map;
  */
 public interface AttrService extends IService<AttrEntity> {
 
-    PageUtils queryPage(Map<String, Object> params);
+  PageUtils queryPage(Map<String, Object> params);
 
-    boolean saveAttr(AttrVo attrVo);
+  boolean saveAttr(AttrVo attrVo);
 
-    PageUtils queryPageByCid(Map<String, Object> params, Long cid);
+  PageUtils queryPageByCid(Map<String, Object> params, Integer attrType, Long cid);
 
-    AttrRespVo getAttrDetailById(Long attrId);
+  AttrRespVo getAttrDetailById(Integer attrType,Long attrId);
 }

@@ -3,6 +3,7 @@ package cloud.stackexplode.gulimall.product.entity;
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
  * @email 2653084650@qq.com
  * @date 2022-07-10 18:27:08
  */
-@Data
+@Data @Accessors(fluent = false, chain = true)
 @TableName("pms_category")
 public class CategoryEntity implements Serializable {
     private static final long serialVersionUID = 1L;

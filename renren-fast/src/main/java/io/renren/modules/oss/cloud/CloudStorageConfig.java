@@ -11,6 +11,7 @@ import io.renren.common.validator.group.AliyunGroup;
 import io.renren.common.validator.group.QcloudGroup;
 import io.renren.common.validator.group.QiniuGroup;
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.URL;
 
@@ -23,7 +24,7 @@ import java.io.Serializable;
  *
  * @author Mark sunlightcs@gmail.com
  */
-@Data
+@Data @Accessors(fluent = false, chain = true)
 public class CloudStorageConfig implements Serializable {
     private static final long serialVersionUID = 1L;
 

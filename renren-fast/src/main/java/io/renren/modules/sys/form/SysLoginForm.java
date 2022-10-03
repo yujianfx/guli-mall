@@ -8,13 +8,14 @@
 package io.renren.modules.sys.form;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * 登录表单
  *
  * @author Mark sunlightcs@gmail.com
  */
-@Data
+@Data @Accessors(fluent = false, chain = true)
 public class SysLoginForm {
     private String username;
     private String password;

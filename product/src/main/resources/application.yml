@@ -25,4 +25,14 @@ server:
 logging:
   file: E:\Javaprojects\guli-mall\.logs\product-service.log
   level:
-    cloud.stackexplode.gulimall: debug
+    org.zalando.logbook: trace
+logbook:
+  exclude:
+      - "**.html"
+      - "**.htm"
+      - "**.js"
+      - "**.css"
+      - "**.jpg"
+      - "**.ico"
+      - "/static/**"
+

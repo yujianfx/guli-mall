@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
@@ -15,7 +16,7 @@ import java.io.Serializable;
  * @email 2653084650@qq.com
  * @date 2022-07-10 18:27:08
  */
-@Data
+@Data @Accessors(fluent = false, chain = true)
 @TableName("pms_spu_info_desc")
 public class SpuInfoDescEntity implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -23,7 +24,7 @@ public class SpuInfoDescEntity implements Serializable {
     /**
      * 商品id
      */
-    @TableId(type = IdType.AUTO)
+    @TableId(type = IdType.INPUT)
     private Long spuId;
     /**
      * 商品介绍

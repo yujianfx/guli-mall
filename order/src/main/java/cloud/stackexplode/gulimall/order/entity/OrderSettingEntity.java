@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
@@ -14,7 +15,7 @@ import java.io.Serializable;
  * @email 2653084650@qq.com
  * @date 2022-07-12 20:44:00
  */
-@Data
+@Data @Accessors(fluent = false, chain = true)
 @TableName("oms_order_setting")
 public class OrderSettingEntity implements Serializable {
     private static final long serialVersionUID = 1L;

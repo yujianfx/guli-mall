@@ -79,7 +79,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuEntity>
                 this.baseMapper.selectList(
                         new QueryWrapper<SysMenuEntity>()
                                 .in(Objects.nonNull(menuIdList), "menu_id", menuIdList)
-                                .in("type", 0, 1));
+                                .in("type", 0, 1,2));
         // 将id和菜单绑定
         HashMap<Long, SysMenuEntity> menuMap = new HashMap<>(12);
         for (SysMenuEntity s : menus) {

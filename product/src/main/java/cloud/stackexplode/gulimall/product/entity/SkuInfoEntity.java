@@ -17,7 +17,7 @@ import java.math.BigDecimal;
  * @email 2653084650@qq.com
  * @date 2022-07-10 18:27:08
  */
-@Data @Accessors(fluent = false, chain = true)
+@Data @Accessors(chain = true)
 @TableName("pms_sku_info")
 public class SkuInfoEntity implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -42,7 +42,7 @@ public class SkuInfoEntity implements Serializable {
     /**
      * 所属分类id
      */
-    private Long catalogId;
+    private Long catelogId;
     /**
      * 品牌id
      */

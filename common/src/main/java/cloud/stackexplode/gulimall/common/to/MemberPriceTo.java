@@ -5,6 +5,9 @@ import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
 
+/**
+ * The type Member price to.
+ */
 @Data
 @Accessors(chain = true)
 public class MemberPriceTo {

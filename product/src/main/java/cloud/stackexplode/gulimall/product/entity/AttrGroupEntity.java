@@ -17,7 +17,8 @@ import java.io.Serializable;
  * @email 2653084650@qq.com
  * @date 2022-07-10 18:27:08
  */
-@Data @Accessors(fluent = false, chain = true)
+@Data
+@Accessors(fluent = false, chain = true)
 @TableName("pms_attr_group")
 public class AttrGroupEntity implements Serializable {
   private static final long serialVersionUID = 1L;

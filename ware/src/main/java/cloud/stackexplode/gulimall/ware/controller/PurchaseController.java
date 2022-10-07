@@ -4,6 +4,7 @@ import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
 import cloud.stackexplode.gulimall.ware.entity.PurchaseEntity;
 import cloud.stackexplode.gulimall.ware.service.PurchaseService;
+import cloud.stackexplode.gulimall.ware.vo.PurchaseDetailMergeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,56 +21,57 @@ import java.util.Map;
 @RestController
 @RequestMapping("ware/purchase")
 public class PurchaseController {
-    @Autowired
-    private PurchaseService purchaseService;
+  @Autowired private PurchaseService purchaseService;
 
-    /**
-     * 列表
-     */
-    @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = purchaseService.queryPage(params);
+  /** 列表 */
+  @GetMapping("/list")
+  public R list(@RequestParam Map<String, Object> params) {
+    PageUtils page = purchaseService.queryPage(params);
+    return R.ok().put("page", page);
+  }
 
-        return R.ok().put("page", page);
-    }
+  @GetMapping("/unReceiveList")
+  public R listUnReceive(@RequestParam Map<String, Object> params) {
+    PageUtils page = purchaseService.queryPage(params);
 
-    /**
-     * 信息
-     */
-    @RequestMapping("/info/{id}")
-    public R info(@PathVariable("id") Long id) {
-        PurchaseEntity purchase = purchaseService.getById(id);
+    return R.ok().put("page", page);
+  }
 
-        return R.ok().put("purchase", purchase);
-    }
+  /** 信息 */
+  @GetMapping("/info/{id}")
+  public R info(@PathVariable("id") Long id) {
+    PurchaseEntity purchase = purchaseService.getById(id);
 
-    /**
-     * 保存
-     */
-    @RequestMapping("/save")
-    public R save(@RequestBody PurchaseEntity purchase) {
-        purchaseService.save(purchase);
+    return R.ok().put("purchase", purchase);
+  }
 
-        return R.ok();
-    }
+  /** 保存 */
+  @PostMapping("/save")
+  public R save(@RequestBody PurchaseEntity purchase) {
+    purchaseService.save(purchase);
 
-    /**
-     * 修改
-     */
-    @RequestMapping("/update")
-    public R update(@RequestBody PurchaseEntity purchase) {
-        purchaseService.updateById(purchase);
+    return R.ok();
+  }
 
-        return R.ok();
-    }
+  /** 修改 */
+  @PutMapping("/update")
+  public R update(@RequestBody PurchaseEntity purchase) {
+    purchaseService.updateById(purchase);
 
-    /**
-     * 删除
-     */
-    @RequestMapping("/delete")
-    public R delete(@RequestBody Long[] ids) {
-        purchaseService.removeByIds(Arrays.asList(ids));
+    return R.ok();
+  }
 
-        return R.ok();
-    }
+  @PutMapping("/merge")
+  public R mergePurchase(@RequestBody PurchaseDetailMergeVo purchase) {
+    purchaseService.mergeDetails(purchase);
+
+    return R.ok();
+  }
+  /** 删除 */
+  @DeleteMapping("/delete")
+  public R delete(@RequestBody Long[] ids) {
+    purchaseService.removeByIds(Arrays.asList(ids));
+
+    return R.ok();
+  }
 }

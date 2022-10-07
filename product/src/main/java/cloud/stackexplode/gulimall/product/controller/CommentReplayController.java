@@ -4,6 +4,7 @@ import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
 import cloud.stackexplode.gulimall.product.entity.CommentReplayEntity;
 import cloud.stackexplode.gulimall.product.service.CommentReplayService;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ public class CommentReplayController {
     /**
      * 列表
      */
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = commentReplayService.queryPage(params);
 
@@ -36,7 +37,7 @@ public class CommentReplayController {
     /**
      * 信息
      */
-    @RequestMapping("/info/{id}")
+    @GetMapping("/info/{id}")
     public R info(@PathVariable("id") Long id) {
         CommentReplayEntity commentReplay = commentReplayService.getById(id);
 
@@ -46,7 +47,7 @@ public class CommentReplayController {
     /**
      * 保存
      */
-    @RequestMapping("/save")
+    @PostMapping("/save")
     public R save(@RequestBody CommentReplayEntity commentReplay) {
         commentReplayService.save(commentReplay);
 
@@ -56,7 +57,7 @@ public class CommentReplayController {
     /**
      * 修改
      */
-    @RequestMapping("/update")
+    @PutMapping("/update")
     public R update(@RequestBody CommentReplayEntity commentReplay) {
         commentReplayService.updateById(commentReplay);
 
@@ -66,7 +67,7 @@ public class CommentReplayController {
     /**
      * 删除
      */
-    @RequestMapping("/delete")
+    @DeleteMapping("/delete")
     public R delete(@RequestBody Long[] ids) {
         commentReplayService.removeByIds(Arrays.asList(ids));
 

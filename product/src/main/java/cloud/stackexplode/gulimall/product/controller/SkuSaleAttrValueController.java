@@ -26,7 +26,7 @@ public class SkuSaleAttrValueController {
     /**
      * 列表
      */
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = skuSaleAttrValueService.queryPage(params);
 
@@ -36,7 +36,7 @@ public class SkuSaleAttrValueController {
     /**
      * 信息
      */
-    @RequestMapping("/info/{id}")
+    @GetMapping("/info/{id}")
     public R info(@PathVariable("id") Long id) {
         SkuSaleAttrValueEntity skuSaleAttrValue = skuSaleAttrValueService.getById(id);
 
@@ -46,7 +46,7 @@ public class SkuSaleAttrValueController {
     /**
      * 保存
      */
-    @RequestMapping("/save")
+    @PostMapping("/save")
     public R save(@RequestBody SkuSaleAttrValueEntity skuSaleAttrValue) {
         skuSaleAttrValueService.save(skuSaleAttrValue);
 
@@ -56,7 +56,7 @@ public class SkuSaleAttrValueController {
     /**
      * 修改
      */
-    @RequestMapping("/update")
+    @PutMapping("/update")
     public R update(@RequestBody SkuSaleAttrValueEntity skuSaleAttrValue) {
         skuSaleAttrValueService.updateById(skuSaleAttrValue);
 
@@ -66,7 +66,7 @@ public class SkuSaleAttrValueController {
     /**
      * 删除
      */
-    @RequestMapping("/delete")
+    @DeleteMapping("/delete")
     public R delete(@RequestBody Long[] ids) {
         skuSaleAttrValueService.removeByIds(Arrays.asList(ids));
 

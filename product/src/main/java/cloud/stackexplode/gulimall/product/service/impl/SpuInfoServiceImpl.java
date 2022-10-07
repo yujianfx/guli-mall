@@ -88,7 +88,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity>
             skuInfoEntity
                 .setSpuId(spuId)
                 .setBrandId(spuVo.getBrandId())
-                .setCatalogId(spuVo.getCatalogId())
+                .setCatelogId(spuVo.getCatelogId())
                 .setSkuDefaultImg(defaultImgs.size() > 0 ? defaultImgs.get(0) : "");
             skuInfoService.save(skuInfoEntity);
             Long skuId = skuInfoEntity.getSkuId();
@@ -137,18 +137,37 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity>
   public PageUtils queryPage(Map<String, Object> params) {
     QueryWrapper<SpuInfoEntity> spuInfoEntityQueryWrapper = new QueryWrapper<>();
     String key = (String) params.get("key");
-    Long catelogId = (Long) params.get("catelogId");
-    Long brandId = (Long) params.get("brandId");
-    String min = (String) params.get("min");
-    String max = (String) params.get("max");
+    String catelogId = (String) params.get("catelogId");
+    String brandId = (String) params.get("brandId");
 
-    if (StringUtils.isNotEmpty(key)) {
-      spuInfoEntityQueryWrapper.like("spu_name", key).or().like("spu_description", key);
-    }
-
+    spuInfoEntityQueryWrapper
+        .like(StringUtils.isNotEmpty(key), "spu_name", key)
+        .or()
+        .like("spu_description", key)
+        .eq(
+            StringUtils.isNotEmpty(catelogId),
+            "catelog_id",
+            Long.valueOf(catelogId == null ? "0" : catelogId))
+        .eq(
+            StringUtils.isNotEmpty(brandId),
+            "brand_id",
+            Long.valueOf(brandId == null ? "0" : brandId));
     IPage<SpuInfoEntity> page =
         this.page(new Query<SpuInfoEntity>().getPage(params), spuInfoEntityQueryWrapper);
-
     return new PageUtils(page);
   }
+
+  @Override
+  public Boolean updateBaseAttrsBySpuId(List<ProductAttrValueEntity> productAttrValueEntity) {
+    productAttrValueEntity.forEach(
+        (p) -> {
+          productAttrValueService
+              .update()
+              .eq("spu_id", p.getSpuId())
+              .eq("attr_id", p.getAttrId())
+              .update(p);
+        });
+    return true;
+  }
+
 }

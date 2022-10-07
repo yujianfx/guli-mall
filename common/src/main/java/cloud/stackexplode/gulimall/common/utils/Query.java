@@ -18,15 +18,30 @@ import java.util.Map;
 /**
  * 查询参数
  *
+ * @param <T>  the type parameter
  * @author Mark sunlightcs@gmail.com
  */
 public class Query<T> {
 
-    public IPage<T> getPage(Map<String, Object> params) {
+    /**
+     * Gets page.
+     *
+     * @param params the params
+     * @return the page
+     */
+public IPage<T> getPage(Map<String, Object> params) {
         return this.getPage(params, null, false);
     }
 
-    public IPage<T> getPage(Map<String, Object> params, String defaultOrderField, boolean isAsc) {
+    /**
+     * Gets page.
+     *
+     * @param params the params
+     * @param defaultOrderField the default order field
+     * @param isAsc the is asc
+     * @return the page
+     */
+public IPage<T> getPage(Map<String, Object> params, String defaultOrderField, boolean isAsc) {
         // 分页参数
         long curPage = 1;
         long limit = 10;

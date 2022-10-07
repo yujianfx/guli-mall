@@ -15,7 +15,7 @@ public class SpuVo {
 
   private Long brandId;
 
-  private Long catalogId;
+  private Long catelogId;
 
   private List<String> decript;
 

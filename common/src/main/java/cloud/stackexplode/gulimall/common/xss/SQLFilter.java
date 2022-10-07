@@ -21,8 +21,9 @@ public class SQLFilter {
      * SQL注入过滤
      *
      * @param str 待验证的字符串
+     * @return the string
      */
-    public static String sqlInject(String str) {
+public static String sqlInject(String str) {
         if (StringUtils.isBlank(str)) {
             return null;
         }

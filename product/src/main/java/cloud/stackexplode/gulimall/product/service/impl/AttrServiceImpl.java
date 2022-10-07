@@ -7,10 +7,8 @@ import cloud.stackexplode.gulimall.product.dao.AttrDao;
 import cloud.stackexplode.gulimall.product.entity.AttrAttrgroupRelationEntity;
 import cloud.stackexplode.gulimall.product.entity.AttrEntity;
 import cloud.stackexplode.gulimall.product.entity.AttrGroupEntity;
-import cloud.stackexplode.gulimall.product.service.AttrAttrgroupRelationService;
-import cloud.stackexplode.gulimall.product.service.AttrGroupService;
-import cloud.stackexplode.gulimall.product.service.AttrService;
-import cloud.stackexplode.gulimall.product.service.CategoryService;
+import cloud.stackexplode.gulimall.product.entity.ProductAttrValueEntity;
+import cloud.stackexplode.gulimall.product.service.*;
 import cloud.stackexplode.gulimall.product.vo.AttrRespVo;
 import cloud.stackexplode.gulimall.product.vo.AttrVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -21,6 +19,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +31,14 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
   @Autowired private CategoryService categoryService;
   @Autowired private AttrGroupService attrGroupService;
   @Autowired private AttrAttrgroupRelationService attrAttrgroupRelationService;
+  @Autowired private ProductAttrValueService productAttrValueService;
+
+  @Override
+  public List<ProductAttrValueEntity> queryPageBySpuId(Long sId) {
+    QueryWrapper<ProductAttrValueEntity> queryWrapper =
+        new QueryWrapper<ProductAttrValueEntity>().eq(sId > 0, "spu_id", sId);
+    return productAttrValueService.list(queryWrapper);
+  }
 
   @Override
   public PageUtils queryPageByCid(Map<String, Object> params, Integer attrType, Long cid) {
@@ -82,7 +89,6 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
   @Override
   public AttrRespVo getAttrDetailById(Integer attrType, Long attrId) {
     AttrEntity attrEntity = baseMapper.selectById(attrId);
-    assert attrEntity != null : "attrId:"+attrId+"为空";
     AttrRespVo attrRespVo = new AttrRespVo();
     BeanUtils.copyProperties(attrEntity, attrRespVo);
     attrRespVo.setCatelogPath(categoryService.findCatelogPath(attrEntity.getCatelogId()));

@@ -132,7 +132,7 @@ public final class HTMLFilter {
     /**
      * Default constructor.
      */
-    public HTMLFilter() {
+public HTMLFilter() {
         vAllowed = new HashMap<>();
 
         final ArrayList<String> a_atts = new ArrayList<String>();
@@ -170,7 +170,7 @@ public final class HTMLFilter {
      *
      * @param debug turn debug on with a true argument
      */
-    public HTMLFilter(final boolean debug) {
+public HTMLFilter(final boolean debug) {
         this();
         vDebug = debug;
     }
@@ -180,7 +180,7 @@ public final class HTMLFilter {
      *
      * @param conf map containing configuration. keys match field names.
      */
-    public HTMLFilter(final Map<String, Object> conf) {
+public HTMLFilter(final Map<String, Object> conf) {
 
         assert conf.containsKey("vAllowed") : "configuration requires vAllowed";
         assert conf.containsKey("vSelfClosingTags") : "configuration requires vSelfClosingTags";
@@ -215,13 +215,25 @@ public final class HTMLFilter {
         }
     }
 
-    // ---------------------------------------------------------------
+    /**
+     * Chr string.
+     *
+     * @param decimal the decimal
+     * @return the string
+     */
+// ---------------------------------------------------------------
     // my versions of some PHP library functions
     public static String chr(final int decimal) {
         return String.valueOf((char) decimal);
     }
 
-    public static String htmlSpecialChars(final String s) {
+    /**
+     * Html special chars string.
+     *
+     * @param s the s
+     * @return the string
+     */
+public static String htmlSpecialChars(final String s) {
         String result = s;
         result = regexReplace(P_AMP, "&amp;", result);
         result = regexReplace(P_QUOTE, "&quot;", result);
@@ -236,9 +248,9 @@ public final class HTMLFilter {
      * given a user submitted input String, filter out any invalid or restricted html.
      *
      * @param input text (i.e. submitted by a user) than may contain html
-     * @return "clean" version of input, with only valid, whitelisted html elements allowed
+     * @return  "clean" version of input, with only valid, whitelisted html elements allowed
      */
-    public String filter(final String input) {
+public String filter(final String input) {
         reset();
         String s = input;
 
@@ -264,11 +276,21 @@ public final class HTMLFilter {
         return s;
     }
 
-    public boolean isAlwaysMakeTags() {
+    /**
+     * Is always make tags boolean.
+     *
+     * @return the boolean
+     */
+public boolean isAlwaysMakeTags() {
         return alwaysMakeTags;
     }
 
-    public boolean isStripComments() {
+    /**
+     * Is strip comments boolean.
+     *
+     * @return the boolean
+     */
+public boolean isStripComments() {
         return stripComment;
     }
 

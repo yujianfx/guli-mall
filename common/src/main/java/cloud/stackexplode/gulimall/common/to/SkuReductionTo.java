@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
+ * The type Sku reduction to.
  * @author 26530
  */
 @Data

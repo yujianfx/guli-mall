@@ -6,6 +6,7 @@ import lombok.experimental.Accessors;
 import java.math.BigDecimal;
 
 /**
+ * The type Spu bound to.
  * @author 26530
  */
 @Data

@@ -26,12 +26,18 @@ spring:
             maxAge: 3600
             preflightMaxAge: 86400
       routes:
+        - id: search-service
+          uri: lb://search-service
+          predicates:
+            - Path=/api/search/**
+          filters:
+            - RewritePath=/api(?<path>.*), /$\{path}
         - id: product
           uri: lb://product-service
           predicates:
             - Path=/api/product/**
           filters:
-            - RewritePath=/api(?<path>/?.*), $\{path}
+            - RewritePath=/api(?<path>.*), /$\{path}
         - id: coupon
           uri: lb://coupon-service
           predicates:

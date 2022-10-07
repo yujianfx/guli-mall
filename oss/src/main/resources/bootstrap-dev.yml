@@ -16,8 +16,5 @@ spring:
         server-addr: stackexplode.cloud:18848
   profiles:
     active: dev
-logging:
-  file: oss-service.log
-  level:
-    cloud.stackexplode.gulimall: debug
+
 

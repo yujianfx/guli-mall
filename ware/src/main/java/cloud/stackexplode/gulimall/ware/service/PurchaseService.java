@@ -2,6 +2,7 @@ package cloud.stackexplode.gulimall.ware.service;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.ware.entity.PurchaseEntity;
+import cloud.stackexplode.gulimall.ware.vo.PurchaseDetailMergeVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;
@@ -15,5 +16,7 @@ import java.util.Map;
  */
 public interface PurchaseService extends IService<PurchaseEntity> {
 
-    PageUtils queryPage(Map<String, Object> params);
+  PageUtils queryPage(Map<String, Object> params);
+
+  Boolean mergeDetails(PurchaseDetailMergeVo purchase);
 }

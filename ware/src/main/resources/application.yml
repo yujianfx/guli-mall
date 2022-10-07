@@ -13,6 +13,9 @@ spring:
     name: ware-service
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-enums-package: cloud.stackexplode.gulimall.common.constant
 server:
   port: 8085
 logging:

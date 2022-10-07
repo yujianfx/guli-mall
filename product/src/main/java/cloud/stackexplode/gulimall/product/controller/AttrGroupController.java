@@ -25,7 +25,7 @@ public class AttrGroupController {
   @Autowired private CategoryService categoryService;
 
   /** 列表 */
-  @RequestMapping("/list/{catelogId}")
+  @GetMapping("/list/{catelogId}")
   public R list(
       @RequestParam Map<String, Object> params, @PathVariable("catelogId") Long catelogid) {
     PageUtils page = attrGroupService.queryPage(params, catelogid);
@@ -33,7 +33,7 @@ public class AttrGroupController {
     return R.ok().put("page", page);
   }
 
-  @RequestMapping("/list/{catelogId}/withAttrs")
+  @GetMapping("/list/{catelogId}/withAttrs")
   public R listWithAttrs(
       @RequestParam Map<String, Object> params, @PathVariable("catelogId") Long catelogid) {
     PageUtils page = attrGroupService.queryPageWithAllAttrs(params, catelogid);
@@ -41,7 +41,7 @@ public class AttrGroupController {
     return R.ok().put("page", page);
   }
   /** 信息 */
-  @RequestMapping("/info/{attrGroupId}")
+  @GetMapping("/info/{attrGroupId}")
   public R info(@PathVariable("attrGroupId") Long attrGroupId) {
     AttrGroupEntity attrGroup = attrGroupService.getById(attrGroupId);
     Long[] path = categoryService.findCatelogPath(attrGroup.getCatelogId());
@@ -50,7 +50,7 @@ public class AttrGroupController {
   }
 
   /** 保存 */
-  @RequestMapping("/save")
+  @PostMapping("/save")
   public R save(@RequestBody AttrGroupEntity attrGroup) {
     attrGroupService.save(attrGroup);
 
@@ -58,7 +58,7 @@ public class AttrGroupController {
   }
 
   /** 修改 */
-  @RequestMapping("/update")
+  @PutMapping("/update")
   public R update(@RequestBody AttrGroupEntity attrGroup) {
     attrGroupService.updateById(attrGroup);
 
@@ -66,7 +66,7 @@ public class AttrGroupController {
   }
 
   /** 删除 */
-  @RequestMapping("/delete")
+  @DeleteMapping("/delete")
   public R delete(@RequestBody Long[] attrGroupIds) {
     attrGroupService.removeByIds(Arrays.asList(attrGroupIds));
 

@@ -14,7 +14,6 @@
     <description>Demo project for Spring Boot</description>
     <properties>
         <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
-
         <java.version>1.8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -116,7 +115,14 @@
             <version>2.1.8.RELEASE</version>
         </dependency>
     </dependencies>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -135,4 +141,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
 </project>

@@ -20,55 +20,44 @@ import java.util.Map;
 @RestController
 @RequestMapping("product/brand")
 public class BrandController {
-    @Autowired
-    private BrandService brandService;
+  @Autowired private BrandService brandService;
 
-    /**
-     * 列表
-     */
-    @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = brandService.queryPage(params);
-        return R.ok().put("page", page);
-    }
+  /** 列表 */
+  @GetMapping("/list")
+  public R list(@RequestParam Map<String, Object> params) {
+    PageUtils page = brandService.queryPage(params);
+    return R.ok().put("page", page);
+  }
 
-    /**
-     * 信息
-     */
-    @RequestMapping("/info/{brandId}")
-    public R info(@PathVariable("brandId") Long brandId) {
-        BrandEntity brand = brandService.getById(brandId);
+  /** 信息 */
+  @GetMapping("/info/{brandId}")
+  public R info(@PathVariable("brandId") Long brandId) {
+    BrandEntity brand = brandService.getById(brandId);
 
-        return R.ok().put("brand", brand);
-    }
+    return R.ok().put("brand", brand);
+  }
 
-    /**
-     * 保存
-     */
-    @RequestMapping("/save")
-    public R save(@RequestBody BrandEntity brand) {
-        brandService.save(brand);
+  /** 保存 */
+  @PostMapping("/save")
+  public R save(@RequestBody BrandEntity brand) {
+    brandService.save(brand);
 
-        return R.ok();
-    }
+    return R.ok();
+  }
 
-    /**
-     * 修改
-     */
-    @RequestMapping("/update")
-    public R update(@RequestBody BrandEntity brand) {
-        brandService.updateDetail(brand);
+  /** 修改 */
+  @PutMapping("/update")
+  public R update(@RequestBody BrandEntity brand) {
+    brandService.updateDetail(brand);
 
-        return R.ok();
-    }
+    return R.ok();
+  }
 
-    /**
-     * 删除
-     */
-    @RequestMapping("/delete")
-    public R delete(@RequestBody Long[] brandIds) {
-        brandService.removeByIds(Arrays.asList(brandIds));
+  /** 删除 */
+  @DeleteMapping("/delete")
+  public R delete(@RequestBody Long[] brandIds) {
+    brandService.removeByIds(Arrays.asList(brandIds));
 
-        return R.ok();
-    }
+    return R.ok();
+  }
 }

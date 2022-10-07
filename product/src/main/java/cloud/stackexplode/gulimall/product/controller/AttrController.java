@@ -3,17 +3,17 @@ package cloud.stackexplode.gulimall.product.controller;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
 import cloud.stackexplode.gulimall.product.entity.AttrEntity;
+import cloud.stackexplode.gulimall.product.entity.ProductAttrValueEntity;
 import cloud.stackexplode.gulimall.product.service.AttrService;
 import cloud.stackexplode.gulimall.product.vo.AttrRespVo;
 import cloud.stackexplode.gulimall.product.vo.AttrVo;
 import org.hibernate.validator.constraints.Range;
-import org.omg.CORBA.INTERNAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,7 +29,7 @@ public class AttrController {
   @Autowired private AttrService attrService;
 
   /** 列表 */
-  @RequestMapping("/list/{attrType}/{cid}")
+  @GetMapping("/list/{attrType}/{cid}")
   public R list(
       @RequestParam Map<String, Object> params,
       @PathVariable("attrType") @Range(min = 0, max = 1) Integer attrType,
@@ -39,15 +39,20 @@ public class AttrController {
     return R.ok().put("page", page);
   }
 
+  @GetMapping("/listBySpuId/{sId}")
+  public R listBySpuId(@PathVariable("sId") @NotNull Long sId) {
+    List<ProductAttrValueEntity> productAttrValueEntities = attrService.queryPageBySpuId(sId);
+    return R.ok().put("data", productAttrValueEntities);
+  }
   /** 信息 */
-  @RequestMapping("/info/{attrType}/{attrId}")
+  @GetMapping("/info/{attrType}/{attrId}")
   public R info(@PathVariable("attrId") Long attrId, @PathVariable("attrType") Integer attrType) {
     AttrRespVo attr = attrService.getAttrDetailById(attrType, attrId);
     return R.ok().put("attr", attr);
   }
 
   /** 保存 */
-  @RequestMapping("/save")
+  @PostMapping("/save")
   public R save(@RequestBody AttrVo attrVo) {
     attrService.saveAttr(attrVo);
 
@@ -55,7 +60,7 @@ public class AttrController {
   }
 
   /** 修改 */
-  @RequestMapping("/update")
+  @PutMapping("/update")
   public R update(@RequestBody AttrEntity attr) {
     attrService.updateById(attr);
 
@@ -63,7 +68,7 @@ public class AttrController {
   }
 
   /** 删除 */
-  @RequestMapping("/delete")
+  @DeleteMapping("/delete")
   public R delete(@RequestBody Long[] attrIds) {
     attrService.removeByIds(Arrays.asList(attrIds));
 

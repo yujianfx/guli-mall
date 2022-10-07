@@ -20,56 +20,45 @@ import java.util.Map;
 @RestController
 @RequestMapping("product/productattrvalue")
 public class ProductAttrValueController {
-    @Autowired
-    private ProductAttrValueService productAttrValueService;
+  @Autowired private ProductAttrValueService productAttrValueService;
 
-    /**
-     * 列表
-     */
-    @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = productAttrValueService.queryPage(params);
+  /** 列表 */
+  @GetMapping("/list")
+  public R list(@RequestParam Map<String, Object> params) {
+    PageUtils page = productAttrValueService.queryPage(params);
 
-        return R.ok().put("page", page);
-    }
+    return R.ok().put("page", page);
+  }
 
-    /**
-     * 信息
-     */
-    @RequestMapping("/info/{id}")
-    public R info(@PathVariable("id") Long id) {
-        ProductAttrValueEntity productAttrValue = productAttrValueService.getById(id);
+  /** 信息 */
+  @GetMapping("/info/{id}")
+  public R info(@PathVariable("id") Long id) {
+    ProductAttrValueEntity productAttrValue = productAttrValueService.getById(id);
 
-        return R.ok().put("productAttrValue", productAttrValue);
-    }
+    return R.ok().put("productAttrValue", productAttrValue);
+  }
 
-    /**
-     * 保存
-     */
-    @RequestMapping("/save")
-    public R save(@RequestBody ProductAttrValueEntity productAttrValue) {
-        productAttrValueService.save(productAttrValue);
+  /** 保存 */
+  @PostMapping("/save")
+  public R save(@RequestBody ProductAttrValueEntity productAttrValue) {
+    productAttrValueService.save(productAttrValue);
 
-        return R.ok();
-    }
+    return R.ok();
+  }
 
-    /**
-     * 修改
-     */
-    @RequestMapping("/update")
-    public R update(@RequestBody ProductAttrValueEntity productAttrValue) {
-        productAttrValueService.updateById(productAttrValue);
+  /** 修改 */
+  @PutMapping("/update")
+  public R update(@RequestBody ProductAttrValueEntity productAttrValue) {
+    productAttrValueService.updateById(productAttrValue);
 
-        return R.ok();
-    }
+    return R.ok();
+  }
 
-    /**
-     * 删除
-     */
-    @RequestMapping("/delete")
-    public R delete(@RequestBody Long[] ids) {
-        productAttrValueService.removeByIds(Arrays.asList(ids));
+  /** 删除 */
+  @DeleteMapping("/delete")
+  public R delete(@RequestBody Long[] ids) {
+    productAttrValueService.removeByIds(Arrays.asList(ids));
 
-        return R.ok();
-    }
+    return R.ok();
+  }
 }

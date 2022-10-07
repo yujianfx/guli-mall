@@ -23,13 +23,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Service("attrGroupService")
+/**
+ * impl attr集团服务
+ *
+ * @author 26530
+ * @date 2022/10/05
+ */@Service("attrGroupService")
 public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEntity>
     implements AttrGroupService {
-  @Autowired private AttrAttrgroupRelationService attrAttrgroupRelationService;
-  @Autowired private AttrService attrService;
+  /** attr attrgroup关系服务 */@Autowired private AttrAttrgroupRelationService attrAttrgroupRelationService;
+  /** attr服务 */@Autowired private AttrService attrService;
 
-  @Override
+  /**
+   * 查询页面
+   *
+   * @param params 参数个数
+   * @return {@link PageUtils}
+   */@Override
   public PageUtils queryPage(Map<String, Object> params) {
     IPage<AttrGroupEntity> page =
         this.page(
@@ -38,7 +48,13 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
     return new PageUtils(page);
   }
 
-  @Override
+  /**
+   * 与所有attrs查询页面
+   *
+   * @param params 参数个数
+   * @param id id
+   * @return {@link PageUtils}
+   */@Override
   public PageUtils queryPageWithAllAttrs(Map<String, Object> params, Long id) {
     String key = (String) params.get("key");
     QueryWrapper<AttrGroupEntity> queryWrapper = new QueryWrapper<>();
@@ -90,7 +106,13 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
     }
   }
 
-  @Override
+  /**
+   * 查询页面
+   *
+   * @param params 参数个数
+   * @param id id
+   * @return {@link PageUtils}
+   */@Override
   public PageUtils queryPage(Map<String, Object> params, Long id) {
     String key = (String) params.get("key");
     QueryWrapper<AttrGroupEntity> queryWrapper = new QueryWrapper<>();

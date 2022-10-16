@@ -11,11 +11,16 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service("wareSkuService")
 public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity>
     implements WareSkuService {
+  @Override
+  public List<WareSkuEntity> getListBySkuId(List<Long> id) {
+    return this.list(new QueryWrapper<WareSkuEntity>().in("sku_id", id));
+  }
 
   @Override
   public PageUtils queryPage(Map<String, Object> params) {

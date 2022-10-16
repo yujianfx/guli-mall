@@ -1,14 +1,16 @@
 spring:
+  thymeleaf:
+    cache: false
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://stackexplode.cloud:13306/mall_pms?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://centos.stackexplode.cloud:13306/mall_pms?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
     password: abc123
   cloud:
     nacos:
       discovery:
         enabled: true
-        server-addr: stackexplode.cloud:18848
+        server-addr: centos.stackexplode.cloud:18848
   application:
     name: product-service
   task:
@@ -19,6 +21,18 @@ spring:
         queue-capacity: 36
   jackson:
     date-format: yyyy-MM-dd HH-mm-ss
+  redis:
+    host: stackexplode.cloud
+    port: 16379
+    timeout: 1000ms
+  data:
+    redis:
+      repositories:
+        enabled: true
+  cache:
+    type: redis
+    redis:
+      time-to-live: 36000ms
 mybatis-plus:
   type-enums-package: cloud.stackexplode.gulimall.common.constant
   mapper-locations: classpath:mapper/*.xml

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**spu信息服务
- * spu信息
+ * spu信息服务 spu信息
  *
  * @author wangudiercai
  * @email 2653084650@qq.com
@@ -22,21 +22,33 @@ public interface SpuInfoService extends IService<SpuInfoEntity> {
    * 查询页面
    *
    * @param params 参数个数
+   *
    * @return {@link PageUtils}
-   */PageUtils queryPage(Map<String, Object> params);
+   */
+  PageUtils queryPage(Map<String, Object> params);
 
   /**
    * 保存spu细节
    *
    * @param spuVo spu签证官
-   * @return {@link Boolean}
    * @throws Exception 异常
-   */Boolean saveSpuDetail(SpuVo spuVo) throws Exception;
+   * @return {@link Boolean}
+   */
+  Boolean saveSpuDetail(SpuVo spuVo) throws Exception;
 
-  /**
+  /**更新基本attrs spu id
    * 更新基本attrs spu id
    *
    * @param productAttrValueEntity 产品attr价值实体
+   *
    * @return {@link Boolean}
-   */Boolean updateBaseAttrsBySpuId(List<ProductAttrValueEntity> productAttrValueEntity);
+   */
+  Boolean updateBaseAttrsBySpuId(List<ProductAttrValueEntity> productAttrValueEntity);
+
+  /**
+   * spu搜索
+   *
+   * @param spuId spu id
+   */
+  void upSpuForSearch(Long spuId);
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+/** The type Attr resp vo. */
 @Data
 @Accessors(fluent = false, chain = true)
 @EqualsAndHashCode(callSuper = false)

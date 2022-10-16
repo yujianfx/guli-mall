@@ -2,6 +2,7 @@ package cloud.stackexplode.gulimall.product.service;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.product.entity.CategoryEntity;
+import cloud.stackexplode.gulimall.product.vo.Catelog2Vo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Collection;
@@ -26,4 +27,8 @@ public interface CategoryService extends IService<CategoryEntity> {
     Long[] findCatelogPath(Long id);
 
     int updateDetail(CategoryEntity category);
+
+    List<CategoryEntity> getLevel1Categories();
+
+    Map<String, List<Catelog2Vo>> getCatelogJsonDbWithSpringCache();
 }

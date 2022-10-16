@@ -24,7 +24,11 @@
         <module>ware</module>
         <module>coupon</module>
         <module>common</module>
+        <module>gateway</module>
+        <module>search</module>
         <module>oss</module>
         <module>renren-fast</module>
+        <module>auth</module>
+        <module>mail</module>
     </modules>
 </project>

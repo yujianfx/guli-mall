@@ -8,12 +8,12 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: stackexplode.cloud:18848
+        server-addr: centos.stackexplode.cloud:18848
       config:
         enabled: true
         file-extension: properties
         name: oss-service
-        server-addr: stackexplode.cloud:18848
+        server-addr: centos.stackexplode.cloud:18848
   profiles:
     active: dev
 

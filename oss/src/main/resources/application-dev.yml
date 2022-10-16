@@ -6,7 +6,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: stackexplode.cloud:18848
+        server-addr: centos.stackexplode.cloud:18848
   application:
     name: oss-service
 

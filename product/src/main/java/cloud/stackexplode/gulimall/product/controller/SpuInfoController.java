@@ -1,11 +1,13 @@
 package cloud.stackexplode.gulimall.product.controller;
 
+import cloud.stackexplode.gulimall.common.constant.SpuConstant;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
 import cloud.stackexplode.gulimall.product.entity.ProductAttrValueEntity;
 import cloud.stackexplode.gulimall.product.entity.SpuInfoEntity;
 import cloud.stackexplode.gulimall.product.service.SpuInfoService;
 import cloud.stackexplode.gulimall.product.vo.SpuVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +23,7 @@ import java.util.Map;
  * @date 2022-07-10 18:27:08
  */
 @RestController
+@Slf4j
 @RequestMapping("product/spuinfo")
 public class SpuInfoController {
   @Autowired private SpuInfoService spuInfoService;
@@ -52,20 +55,33 @@ public class SpuInfoController {
     return R.ok();
   }
 
-  @PutMapping("/updateBaseAttrsBySpuId{spuId}")
-  public R updateBaseAttrsBySpuId(
-      @PathVariable Long spuId, @RequestBody List<ProductAttrValueEntity> productAttrValueEntity) {
-    productAttrValueEntity.forEach(
-        pses -> pses.setSpuId(spuId));
-    spuInfoService.updateBaseAttrsBySpuId(productAttrValueEntity);
+  @PutMapping("/up/{spuId}")
+  public R update(@PathVariable("spuId") Long spuId) {
+    try {
+      SpuInfoEntity spuInfoEntity = new SpuInfoEntity();
+      spuInfoEntity.setId(spuId).setPublishStatus(SpuConstant.SpuStatus.SALEING);
+      spuInfoService.updateById(spuInfoEntity);
+      spuInfoService.upSpuForSearch(spuId);
+    } catch (Exception e) {
+      log.error(e.getMessage());
+      throw new RuntimeException("上架失败");
+    } finally {
+      log.info("上架结束");
+    }
     return R.ok();
   }
 
+  @PutMapping("/updateBaseAttrsBySpuId{spuId}")
+  public R updateBaseAttrsBySpuId(
+      @PathVariable Long spuId, @RequestBody List<ProductAttrValueEntity> productAttrValueEntity) {
+    productAttrValueEntity.forEach(pses -> pses.setSpuId(spuId));
+    spuInfoService.updateBaseAttrsBySpuId(productAttrValueEntity);
+    return R.ok();
+  }
   /** 删除 */
   @DeleteMapping("/delete")
   public R delete(@RequestBody Long[] ids) {
     spuInfoService.removeByIds(Arrays.asList(ids));
-
     return R.ok();
   }
 }

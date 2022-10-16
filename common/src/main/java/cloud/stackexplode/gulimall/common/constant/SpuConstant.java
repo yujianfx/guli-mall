@@ -18,7 +18,9 @@ public class SpuConstant {
    */
   public enum SpuStatus {
     /** 创建 */
-    CREATE(0, "新建");
+    CREATE(0, "新建"),
+    SALEING(1, "已上架"),
+    STOP(2, "已下架");
     /** 代码 */
     @EnumValue @JsonValue private int code;
     /** 味精 */

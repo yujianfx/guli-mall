@@ -5,11 +5,13 @@ import cloud.stackexplode.gulimall.common.utils.Query;
 import cloud.stackexplode.gulimall.product.dao.SkuSaleAttrValueDao;
 import cloud.stackexplode.gulimall.product.entity.SkuSaleAttrValueEntity;
 import cloud.stackexplode.gulimall.product.service.SkuSaleAttrValueService;
+import cloud.stackexplode.gulimall.product.vo.SkuItemSaleAttrVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service("skuSaleAttrValueService")
@@ -22,8 +24,13 @@ public class SkuSaleAttrValueServiceImpl
         IPage<SkuSaleAttrValueEntity> page =
                 this.page(
                         new Query<SkuSaleAttrValueEntity>().getPage(params),
-                        new QueryWrapper<SkuSaleAttrValueEntity>());
+                        new QueryWrapper<>());
 
         return new PageUtils(page);
+    }
+
+    @Override
+    public List<SkuItemSaleAttrVo> listSaleAttrs(Long spuId) {
+        return baseMapper.listSaleAttrs(spuId);
     }
 }

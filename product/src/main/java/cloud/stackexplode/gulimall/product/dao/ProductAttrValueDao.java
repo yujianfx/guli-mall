@@ -1,8 +1,12 @@
 package cloud.stackexplode.gulimall.product.dao;
 
 import cloud.stackexplode.gulimall.product.entity.ProductAttrValueEntity;
+import cloud.stackexplode.gulimall.product.vo.SpuItemAttrGroupVo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * spu属性值
@@ -13,4 +17,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface ProductAttrValueDao extends BaseMapper<ProductAttrValueEntity> {
+    List<SpuItemAttrGroupVo> getProductGroupAttrsBySpuId(@Param("spuId") Long spuId, @Param("catelogId") Long catelogId);
 }

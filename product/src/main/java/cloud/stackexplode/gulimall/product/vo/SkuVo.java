@@ -6,6 +6,9 @@ import lombok.experimental.Accessors;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * The type Sku vo.
+ */
 @Data
 @Accessors(chain = true)
 public class SkuVo {

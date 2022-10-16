@@ -5,6 +5,9 @@ import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
 
+/**
+ * The type Bounds vo.
+ */
 @Data
 @Accessors(chain = true)
 public class BoundsVo {

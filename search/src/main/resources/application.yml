@@ -1,0 +1,44 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: centos.stackexplode.cloud:18848
+      config:
+        enabled: true
+        file-extension: properties
+        name: search-service
+        server-addr: centos.stackexplode.cloud:18848
+  application:
+    name: search-service
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  thymeleaf:
+    cache: false
+    mode: HTML
+    encoding: UTF-8
+    suffix: .html
+    prefix: classpath:/templates/
+
+
+server:
+  port: 8087
+logging:
+  level:
+    org.springframework.data.elasticsearch: TRACE
+    org.zalando.logbook: trace
+  file:
+    name: E:\Javaprojects\guli-mall\.logs\search-service.log
+logbook:
+  exclude:
+    - "**.html"
+    - "**.htm"
+    - "**.js"
+    - "**.css"
+    - "**.jpg"
+    - "**.ico"
+    - "/static/**"

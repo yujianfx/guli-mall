@@ -45,7 +45,7 @@ spring:
     nacos:
       discovery:
         enabled: true
-        server-addr: stackexplode.cloud:18848
+        server-addr: centos.stackexplode.cloud:18848
 
 #  resources:
 #    add-mappings: false

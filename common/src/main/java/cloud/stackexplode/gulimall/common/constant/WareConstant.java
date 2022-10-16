@@ -32,8 +32,8 @@ FINISH(3, "已完成"),
      *Haserror purchase status enum.
      */
 HASERROR(4, "有异常");
-    @JsonValue @EnumValue private int code;
-    private String msg;
+    @JsonValue @EnumValue private final int code;
+    private final String msg;
 
     PurchaseStatusEnum(int code, String msg) {
       this.code = code;

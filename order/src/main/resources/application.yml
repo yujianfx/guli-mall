@@ -1,4 +1,18 @@
 spring:
+  rabbitmq:
+    addresses: centos.stackexplode.cloud:15672
+    port: 15672
+    username: admin
+    password: admin
+    virtual-host: vhost
+    publisher-returns: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 1
+        max-concurrency: 1
+        prefetch: 1
+    publisher-confirm-type: correlated
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://centos.stackexplode.cloud:13306/mall_oms?useUnicode=true&characterEncoding=utf8&useSSL=false
@@ -9,23 +23,79 @@ spring:
       discovery:
         enabled: true
         server-addr: centos.stackexplode.cloud:18848
-
+  jackson:
+    date-format: yyyy-MM-dd HH-mm-ss
   application:
     name: order-service
+  redis:
+    host: centos.stackexplode.cloud
+    port: 16379
+
+  session:
+    redis:
+      namespace: spring:session
+      flush-mode: immediate
+  data:
+    jpa:
+      repositories:
+        enabled: true
+        bootstrap-mode: default
+    redis:
+      repositories:
+        enabled: true
+  task:
+    execution:
+      pool:
+        core-size: 6
+        max-size: 50
+        allow-core-thread-timeout: true
+        queue-capacity: 1000
+        keep-alive: 60s
+        thread-name-prefix: orderTask-
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: false
+        use_sql_comments: true
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        default_schema: mall_oms
+        jdbc:
+        lob:
+          non_contextual_creation: true
+feign:
+  httpclient:
+    connection-timeout: 5000
+    max-connections: 200
+    max-connections-per-route: 10
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
+  type-enums-package: cloud.stackexplode.gulimall.common.enums
+id-worker:
+  worker-id: 16
 server:
   port: 8082
 logging:
-  file: E:\Javaprojects\guli-mall\.logs\order-service.log
   level:
-    org.zalando.logbook: trace
-logbook:
-  exclude:
-    - "**.html"
-    - "**.htm"
-    - "**.js"
-    - "**.css"
-    - "**.jpg"
-    - "**.ico"
-    - "/static/**"
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    cloud.stackexplode.gulimall.order: debug
+    sql: info
+    root: info
+    web: info
+  file:
+    name: E:\Javaprojects\guli-mall\.logs\order-service.log

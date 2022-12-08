@@ -9,7 +9,7 @@ public class SeckillOrderTo {
     /**
      * 订单号
      */
-    private String orderSn;
+    private Long orderSn;
 
     /**
      * 活动场次id

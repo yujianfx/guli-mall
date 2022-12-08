@@ -1,7 +1,7 @@
 package cloud.stackexplode.gulimall.order.service;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
-import cloud.stackexplode.gulimall.order.entity.OrderReturnApplyEntity;
+import cloud.stackexplode.gulimall.common.entities.order.entity.OrderReturnApplyEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;

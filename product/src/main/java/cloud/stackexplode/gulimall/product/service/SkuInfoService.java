@@ -1,8 +1,8 @@
 package cloud.stackexplode.gulimall.product.service;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
-import cloud.stackexplode.gulimall.product.entity.SkuInfoEntity;
-import cloud.stackexplode.gulimall.product.vo.SkuItemVo;
+import cloud.stackexplode.gulimall.common.entities.product.entity.SkuInfoEntity;
+import cloud.stackexplode.gulimall.common.vo.product.vo.SkuItemVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;

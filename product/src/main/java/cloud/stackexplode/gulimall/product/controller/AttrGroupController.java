@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.product.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.product.entity.AttrGroupEntity;
+import cloud.stackexplode.gulimall.common.entities.product.entity.AttrGroupEntity;
 import cloud.stackexplode.gulimall.product.service.AttrGroupService;
 import cloud.stackexplode.gulimall.product.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class AttrGroupController {
       @RequestParam Map<String, Object> params, @PathVariable("catelogId") Long catelogid) {
     PageUtils page = attrGroupService.queryPage(params, catelogid);
 
-    return R.ok().put("page", page);
+    return R.ok(page);
   }
 
   @GetMapping("/list/{catelogId}/withAttrs")
@@ -38,7 +38,7 @@ public class AttrGroupController {
       @RequestParam Map<String, Object> params, @PathVariable("catelogId") Long catelogid) {
     PageUtils page = attrGroupService.queryPageWithAllAttrs(params, catelogid);
 
-    return R.ok().put("page", page);
+    return R.ok(page);
   }
   /** 信息 */
   @GetMapping("/info/{attrGroupId}")
@@ -46,7 +46,7 @@ public class AttrGroupController {
     AttrGroupEntity attrGroup = attrGroupService.getById(attrGroupId);
     Long[] path = categoryService.findCatelogPath(attrGroup.getCatelogId());
     attrGroup.setCatelogPath(path);
-    return R.ok().put("attrGroup", attrGroup);
+    return R.ok( attrGroup);
   }
 
   /** 保存 */

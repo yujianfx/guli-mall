@@ -1,4 +1,28 @@
 spring:
+  rabbitmq:
+    addresses: centos.stackexplode.cloud:15672
+    port: 15672
+    username: admin
+    password: admin
+    virtual-host: vhost
+    publisher-returns: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 1
+        max-concurrency: 1
+        prefetch: 1
+  jackson:
+    date-format: yyyy-MM-dd HH-mm-ss
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: centos.stackexplode.cloud:18848
+  redis:
+    host: centos.stackexplode.cloud
+    port: 16379
+    database: 0
   mail:
     default-encoding: UTF-8
     host: smtp.gmail.com
@@ -8,8 +32,21 @@ spring:
     properties:
       mail:
         smtp:
+          proxy:
+            host: localhost
+            port: 7890
+          socks:
+            host: localhost
+            port: 7890
           auth: true
           starttls:
             enable: true
             required: true
         debug: true
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  application:
+    name: mail-service
+
+server:
+  port: 8088

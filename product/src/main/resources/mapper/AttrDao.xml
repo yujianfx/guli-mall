@@ -4,7 +4,7 @@
 <mapper namespace="cloud.stackexplode.gulimall.product.dao.AttrDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cloud.stackexplode.gulimall.product.entity.AttrEntity" id="attrMap">
+    <resultMap type="cloud.stackexplode.gulimall.common.entities.product.entity.AttrEntity" id="attrMap">
         <result property="attrId" column="attr_id"/>
         <result property="attrName" column="attr_name"/>
         <result property="searchType" column="search_type"/>

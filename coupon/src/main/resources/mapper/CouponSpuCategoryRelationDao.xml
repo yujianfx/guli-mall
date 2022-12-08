@@ -4,7 +4,7 @@
 <mapper namespace="cloud.stackexplode.gulimall.coupon.dao.CouponSpuCategoryRelationDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cloud.stackexplode.gulimall.coupon.entity.CouponSpuCategoryRelationEntity"
+    <resultMap type="cloud.stackexplode.gulimall.common.entities.coupon.entity.CouponSpuCategoryRelationEntity"
                id="couponSpuCategoryRelationMap">
         <result property="id" column="id"/>
         <result property="couponId" column="coupon_id"/>

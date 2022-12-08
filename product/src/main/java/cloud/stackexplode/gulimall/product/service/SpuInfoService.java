@@ -1,15 +1,16 @@
 package cloud.stackexplode.gulimall.product.service;
 
+import cloud.stackexplode.gulimall.common.entities.product.entity.ProductAttrValueEntity;
+import cloud.stackexplode.gulimall.common.entities.product.entity.SpuInfoEntity;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
-import cloud.stackexplode.gulimall.product.entity.ProductAttrValueEntity;
-import cloud.stackexplode.gulimall.product.entity.SpuInfoEntity;
-import cloud.stackexplode.gulimall.product.vo.SpuVo;
+import cloud.stackexplode.gulimall.common.vo.product.vo.SpuVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
 import java.util.Map;
 
-/**spu信息服务
+/**
+ * spu信息服务
  * spu信息服务 spu信息
  *
  * @author wangudiercai
@@ -18,37 +19,38 @@ import java.util.Map;
  */
 public interface SpuInfoService extends IService<SpuInfoEntity> {
 
-  /**
-   * 查询页面
-   *
-   * @param params 参数个数
-   *
-   * @return {@link PageUtils}
-   */
-  PageUtils queryPage(Map<String, Object> params);
+    /**
+     * 查询页面
+     *
+     * @param params 参数个数
+     * @return {@link PageUtils}
+     */
+    PageUtils queryPage(Map<String, Object> params);
 
-  /**
-   * 保存spu细节
-   *
-   * @param spuVo spu签证官
-   * @throws Exception 异常
-   * @return {@link Boolean}
-   */
-  Boolean saveSpuDetail(SpuVo spuVo) throws Exception;
+    /**
+     * 保存spu细节
+     *
+     * @param spuVo spu签证官
+     * @return {@link Boolean}
+     * @throws Exception 异常
+     */
+    Boolean saveSpuDetail(SpuVo spuVo) throws Exception;
 
-  /**更新基本attrs spu id
-   * 更新基本attrs spu id
-   *
-   * @param productAttrValueEntity 产品attr价值实体
-   *
-   * @return {@link Boolean}
-   */
-  Boolean updateBaseAttrsBySpuId(List<ProductAttrValueEntity> productAttrValueEntity);
+    /**
+     * 更新基本attrs spu id
+     * 更新基本attrs spu id
+     *
+     * @param productAttrValueEntity 产品attr价值实体
+     * @return {@link Boolean}
+     */
+    Boolean updateBaseAttrsBySpuId(List<ProductAttrValueEntity> productAttrValueEntity);
 
-  /**
-   * spu搜索
-   *
-   * @param spuId spu id
-   */
-  void upSpuForSearch(Long spuId);
+    /**
+     * spu搜索
+     *
+     * @param spuId spu id
+     */
+    void upSpuForSearch(Long spuId);
+
+    SpuInfoEntity getSpuBySkuId(Long skuId);
 }

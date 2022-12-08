@@ -3,7 +3,7 @@ package cloud.stackexplode.gulimall.ware.service.impl;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.Query;
 import cloud.stackexplode.gulimall.ware.dao.PurchaseDetailDao;
-import cloud.stackexplode.gulimall.ware.entity.PurchaseDetailEntity;
+import cloud.stackexplode.gulimall.common.entities.ware.entity.PurchaseDetailEntity;
 import cloud.stackexplode.gulimall.ware.service.PurchaseDetailService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;

@@ -58,4 +58,49 @@ public PageUtils(IPage<?> page) {
     this.currPage = (int) page.getCurrent();
     this.totalPage = (int) page.getPages();
   }
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
+    public PageUtils setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+        return this;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public PageUtils setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+        return this;
+    }
+
+    public int getTotalPage() {
+        return totalPage;
+    }
+
+    public PageUtils setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
+        return this;
+    }
+
+    public int getCurrPage() {
+        return currPage;
+    }
+
+    public PageUtils setCurrPage(int currPage) {
+        this.currPage = currPage;
+        return this;
+    }
+
+    public List<?> getList() {
+        return list;
+    }
+
+    public PageUtils setList(List<?> list) {
+        this.list = list;
+        return this;
+    }
 }

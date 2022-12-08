@@ -1,6 +1,6 @@
 package cloud.stackexplode.gulimall.product.dao;
 
-import cloud.stackexplode.gulimall.product.entity.CategoryBrandRelationEntity;
+import cloud.stackexplode.gulimall.common.entities.product.entity.CategoryBrandRelationEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

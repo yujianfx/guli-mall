@@ -4,7 +4,7 @@
 <mapper namespace="cloud.stackexplode.gulimall.coupon.dao.HomeAdvDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cloud.stackexplode.gulimall.coupon.entity.HomeAdvEntity" id="homeAdvMap">
+    <resultMap type="cloud.stackexplode.gulimall.common.entities.coupon.entity.HomeAdvEntity" id="homeAdvMap">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="pic" column="pic"/>

@@ -1,7 +1,8 @@
 package cloud.stackexplode.gulimall.ware.service;
 
+import cloud.stackexplode.gulimall.common.entities.ware.entity.WareInfoEntity;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
-import cloud.stackexplode.gulimall.ware.entity.WareInfoEntity;
+import cloud.stackexplode.gulimall.common.vo.order.vo.FareVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;
@@ -15,7 +16,8 @@ import java.util.Map;
  */
 public interface WareInfoService extends IService<WareInfoEntity> {
 
-  PageUtils queryPage(Map<String, Object> params);
+    PageUtils queryPage(Map<String, Object> params);
 
 
+    FareVo getFare(Long addrId, Long wareId);
 }

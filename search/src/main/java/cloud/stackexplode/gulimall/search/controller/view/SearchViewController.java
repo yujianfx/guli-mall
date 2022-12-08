@@ -5,7 +5,6 @@ import cloud.stackexplode.gulimall.search.vo.SearchParam;
 import cloud.stackexplode.gulimall.search.vo.SearchParamVo;
 import cloud.stackexplode.gulimall.search.vo.SearchResult;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

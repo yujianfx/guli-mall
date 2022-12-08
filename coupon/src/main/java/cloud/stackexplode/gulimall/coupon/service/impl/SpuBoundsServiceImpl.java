@@ -3,7 +3,7 @@ package cloud.stackexplode.gulimall.coupon.service.impl;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.Query;
 import cloud.stackexplode.gulimall.coupon.dao.SpuBoundsDao;
-import cloud.stackexplode.gulimall.coupon.entity.SpuBoundsEntity;
+import cloud.stackexplode.gulimall.common.entities.coupon.entity.SpuBoundsEntity;
 import cloud.stackexplode.gulimall.coupon.service.SpuBoundsService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;

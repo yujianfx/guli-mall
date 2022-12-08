@@ -1,33 +1,56 @@
 spring:
+  rabbitmq:
+    addresses: centos.stackexplode.cloud:15672
+    port: 15672
+    username: admin
+    password: admin
+    virtual-host: vhost
+    publisher-returns: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 1
+        max-concurrency: 1
+        prefetch: 1
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://centos.stackexplode.cloud:13306/mall_wms?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: abc123
+  data:
+    redis:
+      repositories:
+        enabled: true
+  session:
+    redis:
+      namespace: spring:session
+      flush-mode: immediate
+  redis:
+    host: centos.stackexplode.cloud
+    port: 16379
   cloud:
     nacos:
       discovery:
         enabled: true
         server-addr: centos.stackexplode.cloud:18848
+  jackson:
+    date-format: yyyy-MM-dd HH-mm-ss
   application:
     name: ware-service
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  type-enums-package: cloud.stackexplode.gulimall.common.constant
+  type-enums-package: cloud.stackexplode.gulimall.common.enums
 server:
   port: 8085
+
 logging:
-  file: E:\Javaprojects\guli-mall\.logs\product-service.log
   level:
-    org.zalando.logbook: trace
-logbook:
-  exclude:
-    - "**.html"
-    - "**.htm"
-    - "**.js"
-    - "**.css"
-    - "**.jpg"
-    - "**.ico"
-    - "/static/**"
+    cloud.stackexplode.gulimall.ware: debug
+    root: info
+    web: info
+    sql: info
+  file:
+    name: E:\Javaprojects\guli-mall\.logs\ware-service.log
+

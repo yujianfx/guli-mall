@@ -1,6 +1,6 @@
 package cloud.stackexplode.gulimall.coupon.dao;
 
-import cloud.stackexplode.gulimall.coupon.entity.SkuLadderEntity;
+import cloud.stackexplode.gulimall.common.entities.coupon.entity.SkuLadderEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

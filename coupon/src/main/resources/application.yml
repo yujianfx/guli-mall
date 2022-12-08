@@ -1,4 +1,6 @@
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH-mm-ss
   datasource:
     url: jdbc:mysql://centos.stackexplode.cloud:13306/mall_sms?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
@@ -11,21 +13,24 @@ spring:
       discovery:
         enabled: true
         server-addr: centos.stackexplode.cloud:18848
-
+  data:
+    redis:
+      repositories:
+        enabled: true
+  session:
+    redis:
+      namespace: spring:session
+      flush-mode: immediate
+  redis:
+    host: centos.stackexplode.cloud
+    port: 16379
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
 server:
-  port: 8080
+  port: 8089
 logging:
   file: E:\Javaprojects\guli-mall\.logs\coupon-service.log
   level:
-    org.zalando.logbook: trace
-logbook:
-  exclude:
-    - "**.html"
-    - "**.htm"
-    - "**.js"
-    - "**.css"
-    - "**.jpg"
-    - "**.ico"
-    - "/static/**"
+    sql: info
+    root: info
+    web: info

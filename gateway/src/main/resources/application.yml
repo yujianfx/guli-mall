@@ -1,6 +1,8 @@
 server:
   port: 10086
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH-mm-ss
   application:
     name: gateway-service
   cloud:
@@ -24,20 +26,37 @@ spring:
               - "*"
             allowCredentials: true
             maxAge: 3600
-            preflightMaxAge: 86400
       routes:
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/api/payment/**
+          filters:
+            - RewritePath=/api(?<path>.*), $\{path}
+        - id: shoppingcart-service
+          uri: lb://shoppingcart-service
+          predicates:
+            - Path=/api/shoppingcart/**
+          filters:
+            - RewritePath=/api(?<path>.*), $\{path}
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - RewritePath=/api(?<path>.*), $\{path}
         - id: search-service
           uri: lb://search-service
           predicates:
             - Path=/api/search/**
           filters:
-            - RewritePath=/api(?<path>.*), /$\{path}
+            - RewritePath=/api(?<path>.*), $\{path}
         - id: product
           uri: lb://product-service
           predicates:
             - Path=/api/product/**
           filters:
-            - RewritePath=/api(?<path>.*), /$\{path}
+            - RewritePath=/api(?<path>.*), $\{path}
         - id: coupon
           uri: lb://coupon-service
           predicates:
@@ -77,13 +96,13 @@ spring:
 logging:
   file: E:\Javaprojects\guli-mall\.logs\gateway-service.log
   level:
-    org.zalando.logbook: trace
-logbook:
-  exclude:
-    - "**.html"
-    - "**.htm"
-    - "**.js"
-    - "**.css"
-    - "**.jpg"
-    - "**.ico"
-    - "/static/**"
+    web: trace
+    org.springframework.web: trace
+    org.springframework.http: trace
+    org.springframework.cloud.gateway: trace
+    org.springframework.cloud.gateway.filter: trace
+    org.springframework.cloud.gateway.handler: trace
+    org.springframework.cloud.gateway.route: trace
+    org.springframework.cloud.gateway.support: trace
+    org.springframework.cloud.gateway.support.ipresolver: trace
+    org.springframework.cloud.gateway.support.server: trace

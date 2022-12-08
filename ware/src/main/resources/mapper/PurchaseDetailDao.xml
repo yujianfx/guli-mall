@@ -4,7 +4,7 @@
 <mapper namespace="cloud.stackexplode.gulimall.ware.dao.PurchaseDetailDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cloud.stackexplode.gulimall.ware.entity.PurchaseDetailEntity" id="purchaseDetailMap">
+    <resultMap type="cloud.stackexplode.gulimall.common.entities.ware.entity.PurchaseDetailEntity" id="purchaseDetailMap">
         <result property="id" column="id"/>
         <result property="purchaseId" column="purchase_id"/>
         <result property="skuId" column="sku_id"/>

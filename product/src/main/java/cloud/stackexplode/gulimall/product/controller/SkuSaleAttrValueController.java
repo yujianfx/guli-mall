@@ -1,13 +1,14 @@
 package cloud.stackexplode.gulimall.product.controller;
 
+import cloud.stackexplode.gulimall.common.entities.product.entity.SkuSaleAttrValueEntity;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.product.entity.SkuSaleAttrValueEntity;
 import cloud.stackexplode.gulimall.product.service.SkuSaleAttrValueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,6 +24,12 @@ public class SkuSaleAttrValueController {
     @Autowired
     private SkuSaleAttrValueService skuSaleAttrValueService;
 
+    @GetMapping("/getSkuSaleAttrValuesAsString/{skuId}")
+    public R<List<String>> getSkuSaleAttrValuesAsString(@PathVariable("skuId") Long skuId) {
+        List<String> skuSaleAttrValuesAsString = skuSaleAttrValueService.getSkuSaleAttrValuesAsString(skuId);
+        return R.ok(skuSaleAttrValuesAsString);
+    }
+
     /**
      * 列表
      */
@@ -30,7 +37,7 @@ public class SkuSaleAttrValueController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = skuSaleAttrValueService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -39,8 +46,7 @@ public class SkuSaleAttrValueController {
     @GetMapping("/info/{id}")
     public R info(@PathVariable("id") Long id) {
         SkuSaleAttrValueEntity skuSaleAttrValue = skuSaleAttrValueService.getById(id);
-
-        return R.ok().put("skuSaleAttrValue", skuSaleAttrValue);
+        return R.ok(skuSaleAttrValue);
     }
 
     /**

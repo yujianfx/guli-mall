@@ -64,10 +64,11 @@
         </b>
         <ul>
             <li>
-                <a href="http://auth.gulimall.com/login.html" class="li_2">你好，[[${session.loginUser==null?"请登录":session.loginUser.nickname}]]</a>
+                <a href="http://windows.stackexplode.cloud:28888/api/auth/loginView" class="li_2"
+                   th:text="session.loginUser==null?'请登录':'你好'+${loginUser?.nickname}"></a>
             </li>
             <li>
-                <a href="http://auth.gulimall.com/reg.html">免费注册</a>
+                <a href="http://windows.stackexplode.cloud:28888/api/auth/registerView" th:if="session.loginUser==null">免费注册</a>
             </li>
             <span>|</span>
             <li>
@@ -690,7 +691,8 @@
                         <a href="#" class="mc_a"><img src="/img/59f5eef1n99542494.jpg" alt=""></a>
                         <div class="mc_div">
                             <a href="#" class="mc_div_a1">
-                                <em>【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待</em>
+                                <em>【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机
+                                    双卡双待</em>
                             </a>
                             <p>
                                 <strong>
@@ -793,7 +795,8 @@
                                 <li th:each="brand: ${result.getBrands()}">
                                     <a href="#"
                                        th:href="${'javascript:searchProducts(&quot;brandId&quot;,'+brand.brandId+')'}">
-                                        <img src="/img/598033b4nd6055897.jpg" alt="未找到图片" th:src="${brand.brandImg}">
+                                        <img src="/img/598033b4nd6055897.jpg" alt="未找到图片"
+                                             th:src="${brand.brandImg}">
                                         <div th:text="${brand.brandName}">
                                             华为(HUAWEI)
                                         </div>
@@ -884,8 +887,10 @@
                                 <li>
                                     <a href="#" title="vivo X9s 全网通 4GB+64GB 磨砂黑 移动联通电信4G手机 双卡双待"><img
                                             src="/img/59bf3c47n91d65c73.jpg" alt=""></a>
-                                    <a href="#" title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
-                                        <em>华为 HUAWEI nova 2S 全面屏四摄 6GB +64GB 曜石黑 移动联通电信4G手机 双卡双待</em>
+                                    <a href="#"
+                                       title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
+                                        <em>华为 HUAWEI nova 2S 全面屏四摄 6GB +64GB 曜石黑 移动联通电信4G手机
+                                            双卡双待</em>
                                     </a>
                                     <div class="mc_price">
                                         <strong class="price">
@@ -904,8 +909,10 @@
                                 <li>
                                     <a href="#" title="vivo X9s 全网通 4GB+64GB 磨砂黑 移动联通电信4G手机 双卡双待"><img
                                             src="/img/59bf3c47n91d65c73.jpg" alt=""></a>
-                                    <a href="#" title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
-                                        <em>华为 HUAWEI nova 2S 全面屏四摄 6GB +64GB 曜石黑 移动联通电信4G手机 双卡双待</em>
+                                    <a href="#"
+                                       title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
+                                        <em>华为 HUAWEI nova 2S 全面屏四摄 6GB +64GB 曜石黑 移动联通电信4G手机
+                                            双卡双待</em>
                                     </a>
                                     <div class="mc_price">
                                         <strong class="price">
@@ -924,7 +931,8 @@
                                 <li>
                                     <a href="#" title="vivo X9s 全网通 4GB+64GB 磨砂黑 移动联通电信4G手机 双卡双待"><img
                                             src="/img/593ba628n8794c6a6.jpg" alt=""></a>
-                                    <a href="#" title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
+                                    <a href="#"
+                                       title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
                                         <em>诺基亚 7 (Nokia 7) 4GB+64GB 黑色 全网通 双卡双待 移动联通电信4G手机</em>
                                     </a>
                                     <div class="mc_price">
@@ -944,7 +952,8 @@
                                 <li>
                                     <a href="#" title="vivo X9s 全网通 4GB+64GB 磨砂黑 移动联通电信4G手机 双卡双待"><img
                                             src="/img/5919637an271a1301.jpg" alt=""></a>
-                                    <a href="#" title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
+                                    <a href="#"
+                                       title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
                                         <em>vivo Xplay6 全网通 6GB+64GB 磨砂黑 移动联通电信4G手机 双卡双待</em>
                                     </a>
                                     <div class="mc_price">
@@ -974,7 +983,8 @@
                                     <a href="#" title="vivo X9s 全网通 4GB+64GB 磨砂黑 移动联通电信4G手机 双卡双待"><img
                                             src="/img/59bf3c47n91d65c73.jpg" alt=""></a>
                                     <a href="#">
-                                        <em>华为 HUAWEI nova 2S 全面屏四摄 6GB +64GB 曜石黑 移动联通电信4G手机 双卡双待</em>
+                                        <em>华为 HUAWEI nova 2S 全面屏四摄 6GB +64GB 曜石黑 移动联通电信4G手机
+                                            双卡双待</em>
                                     </a>
                                     <div class="mc_price">
                                         <strong class="price">
@@ -986,7 +996,8 @@
                                     <a href="#" title="vivo X9s 全网通 4GB+64GB 磨砂黑 移动联通电信4G手机 双卡双待"><img
                                             src="/img/59bf3c47n91d65c73.jpg" alt=""></a>
                                     <a href="#">
-                                        <em>华为 HUAWEI nova 2S 全面屏四摄 6GB +64GB 曜石黑 移动联通电信4G手机 双卡双待</em>
+                                        <em>华为 HUAWEI nova 2S 全面屏四摄 6GB +64GB 曜石黑 移动联通电信4G手机
+                                            双卡双待</em>
                                     </a>
                                     <div class="mc_price">
                                         <strong class="price">
@@ -1076,7 +1087,8 @@
                         </div>
                         <div class="filter_top_right">
                             <span class="fp-text">
-                               <b th:text="${result.getPageNum()}">1</b><em>/</em><i th:text="${result.getTotalPages()}">0</i>
+                               <b th:text="${result.getPageNum()}">1</b><em>/</em><i
+                                    th:text="${result.getTotalPages()}">0</i>
                            </span>
                             <a href="#" class="prev"><</a>
                             <a href="#" class="next"> > </a>
@@ -1216,7 +1228,8 @@
                                 <span th:text="'￥' + ${product.skuPrice}">¥5199.00</span>
                             </p>
                             <p class="tab_JE">
-                                <a th:href="|http://windows.stackexplode.cloud:28888/api/product/${product.getSkuId()}.html|" th:utext="${product.skuTitle}">
+                                <a th:href="|http://windows.stackexplode.cloud:28888/api/product/${product.getSkuId()}.html|"
+                                   th:utext="${product.skuTitle}">
                                     Apple iPhone 7 Plus (A1661) 32G 黑色 移动联通电信4G手机
                                 </a>
                             </p>
@@ -1255,7 +1268,8 @@
                                    th:style="${page==result.pageNum?'border: 0;color:#ee2222;background: #fff':''}"
                                    th:attr="pn=${page}"
                                 >1</a>
-                                <a th:href="${'javascript:nextPage(this)'}" id="npage" class="page_a" th:if="${result.pageNum<result.totalPages}"
+                                <a th:href="${'javascript:nextPage(this)'}" id="npage" class="page_a"
+                                   th:if="${result.pageNum<result.totalPages}"
                                    th:attr="pn=${result.getPageNum()+1}">
                                     下一页 >
                                 </a>
@@ -1285,12 +1299,14 @@
             <ul>
                 <li>
                     <div class="mc_img">
-                        <a href="#" title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
+                        <a href="#"
+                           title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
                             <img src="/img/5a25ffc7N98b35d49.jpg" alt="">
                         </a>
                     </div>
                     <div class="mc_name">
-                        <a href="#" title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
+                        <a href="#"
+                           title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
                             <em>【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待</em>
                         </a>
                     </div>
@@ -1307,12 +1323,14 @@
                 </li>
                 <li>
                     <div class="mc_img">
-                        <a href="#" title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
+                        <a href="#"
+                           title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
                             <img src="/img/5a25ffc7N98b35d49.jpg" alt="">
                         </a>
                     </div>
                     <div class="mc_name">
-                        <a href="#" title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
+                        <a href="#"
+                           title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
                             <em>【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待</em>
                         </a>
                     </div>
@@ -1329,12 +1347,14 @@
                 </li>
                 <li>
                     <div class="mc_img">
-                        <a href="#" title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
+                        <a href="#"
+                           title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
                             <img src="/img/5a25ffc7N98b35d49.jpg" alt="">
                         </a>
                     </div>
                     <div class="mc_name">
-                        <a href="#" title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
+                        <a href="#"
+                           title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
                             <em>【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待</em>
                         </a>
                     </div>
@@ -1351,12 +1371,14 @@
                 </li>
                 <li>
                     <div class="mc_img">
-                        <a href="#" title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
+                        <a href="#"
+                           title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
                             <img src="/img/5a25ffc7N98b35d49.jpg" alt="">
                         </a>
                     </div>
                     <div class="mc_name">
-                        <a href="#" title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
+                        <a href="#"
+                           title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
                             <em>【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待</em>
                         </a>
                     </div>
@@ -1373,12 +1395,14 @@
                 </li>
                 <li>
                     <div class="mc_img">
-                        <a href="#" title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
+                        <a href="#"
+                           title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
                             <img src="/img/5a25ffc7N98b35d49.jpg" alt="">
                         </a>
                     </div>
                     <div class="mc_name">
-                        <a href="#" title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
+                        <a href="#"
+                           title="【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待">
                             <em>【预约版】华为 HUAWEI 畅享7S 全面屏双摄 4GB +64GB 黑色 移动联通电信4G手机 双卡双待</em>
                         </a>
                     </div>

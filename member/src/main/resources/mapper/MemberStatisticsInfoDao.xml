@@ -4,7 +4,7 @@
 <mapper namespace="cloud.stackexplode.gulimall.member.dao.MemberStatisticsInfoDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cloud.stackexplode.gulimall.member.entity.MemberStatisticsInfoEntity" id="memberStatisticsInfoMap">
+    <resultMap type="cloud.stackexplode.gulimall.common.entities.member.entity.MemberStatisticsInfoEntity" id="memberStatisticsInfoMap">
         <result property="id" column="id"/>
         <result property="memberId" column="member_id"/>
         <result property="consumeAmount" column="consume_amount"/>

@@ -5,7 +5,7 @@ import cloud.stackexplode.gulimall.common.utils.Query;
 import cloud.stackexplode.gulimall.product.dao.BrandDao;
 import cloud.stackexplode.gulimall.product.dao.CategoryBrandRelationDao;
 import cloud.stackexplode.gulimall.product.dao.CategoryDao;
-import cloud.stackexplode.gulimall.product.entity.CategoryBrandRelationEntity;
+import cloud.stackexplode.gulimall.common.entities.product.entity.CategoryBrandRelationEntity;
 import cloud.stackexplode.gulimall.product.service.CategoryBrandRelationService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;

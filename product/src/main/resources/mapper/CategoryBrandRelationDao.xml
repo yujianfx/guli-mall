@@ -4,7 +4,7 @@
 <mapper namespace="cloud.stackexplode.gulimall.product.dao.CategoryBrandRelationDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cloud.stackexplode.gulimall.product.entity.CategoryBrandRelationEntity"
+    <resultMap type="cloud.stackexplode.gulimall.common.entities.product.entity.CategoryBrandRelationEntity"
                id="categoryBrandRelationMap">
         <result property="id" column="id"/>
         <result property="brandId" column="brand_id"/>

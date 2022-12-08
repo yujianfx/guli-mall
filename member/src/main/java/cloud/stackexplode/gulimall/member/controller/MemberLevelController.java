@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.member.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.member.entity.MemberLevelEntity;
+import cloud.stackexplode.gulimall.common.entities.member.entity.MemberLevelEntity;
 import cloud.stackexplode.gulimall.member.service.MemberLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class MemberLevelController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = memberLevelService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -40,7 +40,7 @@ public class MemberLevelController {
     public R info(@PathVariable("id") Long id) {
         MemberLevelEntity memberLevel = memberLevelService.getById(id);
 
-        return R.ok().put("memberLevel", memberLevel);
+        return R.ok( memberLevel);
     }
 
     /**

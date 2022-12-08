@@ -1,138 +1,120 @@
 package cloud.stackexplode.gulimall.auth.controller;
 
 import cloud.stackexplode.gulimall.auth.feign.MemberFeignService;
-import cloud.stackexplode.gulimall.auth.feign.ThirdPartFeignService;
+import cloud.stackexplode.gulimall.auth.service.AuthService;
 import cloud.stackexplode.gulimall.auth.vo.UserLoginVo;
 import cloud.stackexplode.gulimall.auth.vo.UserRegisterVo;
+import cloud.stackexplode.gulimall.common.auth.AuthCodeType;
 import cloud.stackexplode.gulimall.common.constant.AuthServerConstant;
+import cloud.stackexplode.gulimall.common.to.session.MemberSessionTo;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.common.vo.MemberResponseVo;
-import cloud.stackexplode.gulimall.member.vo.MemberResponseVo;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
+import cloud.stackexplode.gulimall.common.utils.StatusCode;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 @Controller
+@Slf4j
+@RequestMapping("/auth")
 public class LoginController {
     @Autowired
-    private ThirdPartFeignService thirdPartFeignService;
-
+    private AuthService authService;
     @Autowired
     private StringRedisTemplate redisTemplate;
 
-    @Qualifier("memberFeignService")
     @Autowired
     private MemberFeignService memberFeignService;
 
 
-    @RequestMapping("/login.html")
+    @GetMapping("/loginView")
     public String loginPage(HttpSession session) {
-        if (session.getAttribute(AuthServerConstant.LOGIN_USER) != null) {
-            return "redirect:http://gulimall.com/";
-        }else {
+        if (session.getAttribute(AuthServerConstant.LOGIN_USER) == null) {
             return "login";
+        } else {
+            return "redirect:http://windows.stackexplode.cloud:28888/api/product/";
         }
     }
 
-    @RequestMapping("/login")
-    public String login(UserLoginVo vo, RedirectAttributes attributes, HttpSession session){
-        R r = memberFeignService.login(vo);
-        if (Integer.parseInt((String) r.get("code")) == 0) {
-            String jsonString = JSON.toJSONString(r.get("memberEntity"));
-            MemberResponseVo memberResponseVo = JSON.parseObject(jsonString, new TypeReference<MemberResponseVo>() {
-            });
-            session.setAttribute(AuthServerConstant.LOGIN_USER, memberResponseVo);
-            return "redirect:http://gulimall.com/";
-        }else {
-            String msg = (String) r.get("msg");
+    @PostMapping("/login")
+    public String login(UserLoginVo vo, RedirectAttributes attributes, HttpSession session) {
+        R<MemberSessionTo> r = memberFeignService.login(vo);
+        if (r.getCode().equals(StatusCode.SUCCESS)) {
+            session.setAttribute(AuthServerConstant.LOGIN_USER, r.getData());
+            return session.getAttribute("targetUrl") == null ? "redirect:http://windows.stackexplode.cloud:28888/api/product/" : "redirect:" + session.getAttribute("targetUrl");
+        } else {
+
+            String msg = r.getMsg();
             Map<String, String> errors = new HashMap<>();
             errors.put("msg", msg);
             attributes.addFlashAttribute("errors", errors);
-            return "redirect:http://auth.gulimall.com/login.html";
+            return "redirect:http://windows.stackexplode.cloud:28888/api/auth/loginView";
         }
     }
 
-
-
-    @GetMapping("/sms/sendCode")
+    @GetMapping("/sendCode")
     @ResponseBody
-    public R sendCode(@RequestParam("phone")String phone) {
-       //接口防刷,在redis中缓存phone-code
-        ValueOperations<String, String> ops = redisTemplate.opsForValue();
-        String prePhone = AuthServerConstant.SMS_CODE_CACHE_PREFIX + phone;
-        String v = ops.get(prePhone);
-        if (!StringUtils.isEmpty(v)) {
-            long pre = Long.parseLong(v.split("_")[1]);
-            //如果存储的时间小于60s，说明60s内发送过验证码
-            if (System.currentTimeMillis() - pre < 60000) {
-                return R.error(BizCodeEnum.SMS_CODE_EXCEPTION.getCode(), BizCodeEnum.SMS_CODE_EXCEPTION.getMsg());
-            }
-        }
-        //如果存在的话，删除之前的验证码
-        redisTemplate.delete(prePhone);
-        //获取到6位数字的验证码
-        String code = String.valueOf((int)((Math.random() + 1) * 100000));
-        //在redis中进行存储并设置过期时间
-        ops.set(prePhone,code+"_"+System.currentTimeMillis(),10, TimeUnit.MINUTES);
-        thirdPartFeignService.sendCode(phone, code);
+    public R<Object> sendCode(@Valid UserRegisterVo registerVo, BindingResult result) {
+        AuthCodeType authCodeType = result.hasFieldErrors("target") ? AuthCodeType.SMS : AuthCodeType.EMAIL;
+        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        RequestContextHolder.setRequestAttributes(servletRequestAttributes, true);
+        authService.sendCode(registerVo.getTarget(), authCodeType);
         return R.ok();
     }
 
 
-    @PostMapping("/register")
-    public String register(@Valid UserRegisterVo registerVo, BindingResult result, RedirectAttributes attributes) {
-        //1.判断校验是否通过
+    @PostMapping(value = "/register")
+    public String register(UserRegisterVo registerVo, BindingResult result, RedirectAttributes attributes, HttpSession httpSession) {
+        log.warn("registerVo: {}", registerVo);
+        AuthCodeType authCodeType = result.hasFieldErrors("target") ? AuthCodeType.SMS : AuthCodeType.EMAIL;
+        registerVo.setMobile(AuthCodeType.EMAIL.equals(authCodeType) ? null : registerVo.getMobile());
+        registerVo.setEmail(AuthCodeType.SMS.equals(authCodeType) ? null : registerVo.getEmail());
         Map<String, String> errors = new HashMap<>();
-        if (result.hasErrors()){
-            //1.1 如果校验不通过，则封装校验结果
-            result.getFieldErrors().forEach(item->{
+        if (result.hasFieldErrors("userName") || result.hasFieldErrors("passWord") || result.hasFieldErrors("code")) {
+            log.info("register error: {}", result.getFieldErrors());
+            result.getFieldErrors().forEach(item -> {
                 errors.put(item.getField(), item.getDefaultMessage());
-                //1.2 将错误信息封装到session中
                 attributes.addFlashAttribute("errors", errors);
             });
-            //1.2 重定向到注册页
-            return "redirect:http://auth.gulimall.com/reg.html";
-        }else {
-            //2.若JSR303校验通过
-            //判断验证码是否正确
-            String code = redisTemplate.opsForValue().get(AuthServerConstant.SMS_CODE_CACHE_PREFIX + registerVo.getPhone());
-            //2.1 如果对应手机的验证码不为空且与提交上的相等-》验证码正确
-            if (!StringUtils.isEmpty(code) && registerVo.getCode().equals(code.split("_")[0])) {
-                //2.1.1 使得验证后的验证码失效
-                redisTemplate.delete(AuthServerConstant.SMS_CODE_CACHE_PREFIX + registerVo.getPhone());
-
-                //2.1.2 远程调用会员服务注册
+            return "redirect:http://windows.stackexplode.cloud:28888/api/auth/registerView";
+        } else {
+            String redisKey = (AuthCodeType.EMAIL.equals(authCodeType)
+                    ? AuthServerConstant.MAIL_CODE_KEY_PREFIX + registerVo.getEmail() : AuthServerConstant.SMS_CODE_KEY_PREFIX + registerVo.getMobile());
+            String code = String.valueOf(httpSession.getAttribute("code"));
+            if (!StringUtils.isEmpty(code) && registerVo.getCode().equals(code)) {
+                redisTemplate.delete(redisKey);
                 R r = memberFeignService.register(registerVo);
-                if (r.getCode() == 0) {
+                if (r.getCode().equals(StatusCode.SUCCESS)) {
                     //调用成功，重定向登录页
-                    return "redirect:http://auth.gulimall.com/login.html";
-                }else {
+                    return "redirect:http://windows.stackexplode.cloud:28888/api/auth/loginView";
+                } else {
                     //调用失败，返回注册页并显示错误信息
-                    String msg = (String) r.get("msg");
-                    errors.put("msg", msg);
+
+                    errors.put("msg", r.getMsg());
                     attributes.addFlashAttribute("errors", errors);
-                    return "redirect:http://auth.gulimall.com/reg.html";
+                    return "redirect:http://windows.stackexplode.cloud:28888/api/auth/registerView";
                 }
-            }else {
+            } else {
                 //2.2 验证码错误
                 errors.put("code", "验证码错误");
                 attributes.addFlashAttribute("errors", errors);
-                return "redirect:http://auth.gulimall.com/reg.html";
+                return "redirect:http://windows.stackexplode.cloud:28888/api/auth/registerView";
             }
         }
+
     }
 }

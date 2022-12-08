@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.coupon.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.coupon.entity.CouponHistoryEntity;
+import cloud.stackexplode.gulimall.common.entities.coupon.entity.CouponHistoryEntity;
 import cloud.stackexplode.gulimall.coupon.service.CouponHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,20 +27,20 @@ public class CouponHistoryController {
      * 列表
      */
     @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public R<PageUtils> list(@RequestParam Map<String, Object> params) {
         PageUtils page = couponHistoryService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
      * 信息
      */
     @RequestMapping("/info/{id}")
-    public R info(@PathVariable("id") Long id) {
+    public R<CouponHistoryEntity> info(@PathVariable("id") Long id) {
         CouponHistoryEntity couponHistory = couponHistoryService.getById(id);
 
-        return R.ok().put("couponHistory", couponHistory);
+        return R.ok(couponHistory);
     }
 
     /**

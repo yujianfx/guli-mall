@@ -3,7 +3,7 @@ package cloud.stackexplode.gulimall.member.service.impl;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.Query;
 import cloud.stackexplode.gulimall.member.dao.MemberCollectSpuDao;
-import cloud.stackexplode.gulimall.member.entity.MemberCollectSpuEntity;
+import cloud.stackexplode.gulimall.common.entities.member.entity.MemberCollectSpuEntity;
 import cloud.stackexplode.gulimall.member.service.MemberCollectSpuService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;

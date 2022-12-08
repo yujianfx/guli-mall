@@ -4,11 +4,11 @@ import cloud.stackexplode.gulimall.common.constant.WareConstant;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.Query;
 import cloud.stackexplode.gulimall.ware.dao.PurchaseDao;
-import cloud.stackexplode.gulimall.ware.entity.PurchaseDetailEntity;
-import cloud.stackexplode.gulimall.ware.entity.PurchaseEntity;
+import cloud.stackexplode.gulimall.common.entities.ware.entity.PurchaseDetailEntity;
+import cloud.stackexplode.gulimall.common.entities.ware.entity.PurchaseEntity;
 import cloud.stackexplode.gulimall.ware.service.PurchaseDetailService;
 import cloud.stackexplode.gulimall.ware.service.PurchaseService;
-import cloud.stackexplode.gulimall.ware.vo.PurchaseDetailMergeVo;
+import cloud.stackexplode.gulimall.common.vo.ware.vo.PurchaseDetailMergeVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -19,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Map;
 
@@ -31,7 +30,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
 
   @Transactional(rollbackFor = Exception.class)
   @Override
-  public Boolean mergeDetails(@NotNull PurchaseDetailMergeVo purchase) {
+  public Boolean mergeDetails( PurchaseDetailMergeVo purchase) {
     boolean res = true;
     try {
       Long purchaseId = purchase.getPurchaseId();

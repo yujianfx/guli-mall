@@ -1,8 +1,8 @@
 package cloud.stackexplode.gulimall.product.controller.view;
 
-import cloud.stackexplode.gulimall.product.entity.CategoryEntity;
+import cloud.stackexplode.gulimall.common.entities.product.entity.CategoryEntity;
 import cloud.stackexplode.gulimall.product.service.CategoryService;
-import cloud.stackexplode.gulimall.product.vo.Catelog2Vo;
+import cloud.stackexplode.gulimall.common.vo.product.vo.Catelog2Vo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

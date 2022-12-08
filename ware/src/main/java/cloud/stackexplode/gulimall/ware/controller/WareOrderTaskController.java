@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.ware.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.ware.entity.WareOrderTaskEntity;
+import cloud.stackexplode.gulimall.common.entities.ware.entity.WareOrderTaskEntity;
 import cloud.stackexplode.gulimall.ware.service.WareOrderTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class WareOrderTaskController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = wareOrderTaskService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -40,7 +40,7 @@ public class WareOrderTaskController {
     public R info(@PathVariable("id") Long id) {
         WareOrderTaskEntity wareOrderTask = wareOrderTaskService.getById(id);
 
-        return R.ok().put("wareOrderTask", wareOrderTask);
+        return R.ok(wareOrderTask);
     }
 
     /**

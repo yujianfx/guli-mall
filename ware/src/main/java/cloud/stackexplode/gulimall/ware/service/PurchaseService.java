@@ -1,8 +1,8 @@
 package cloud.stackexplode.gulimall.ware.service;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
-import cloud.stackexplode.gulimall.ware.entity.PurchaseEntity;
-import cloud.stackexplode.gulimall.ware.vo.PurchaseDetailMergeVo;
+import cloud.stackexplode.gulimall.common.entities.ware.entity.PurchaseEntity;
+import cloud.stackexplode.gulimall.common.vo.ware.vo.PurchaseDetailMergeVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;

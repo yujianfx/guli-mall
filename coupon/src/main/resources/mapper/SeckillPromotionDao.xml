@@ -4,7 +4,7 @@
 <mapper namespace="cloud.stackexplode.gulimall.coupon.dao.SeckillPromotionDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cloud.stackexplode.gulimall.coupon.entity.SeckillPromotionEntity" id="seckillPromotionMap">
+    <resultMap type="cloud.stackexplode.gulimall.common.entities.coupon.entity.SeckillPromotionEntity" id="seckillPromotionMap">
         <result property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="startTime" column="start_time"/>

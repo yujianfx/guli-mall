@@ -3,7 +3,7 @@ package cloud.stackexplode.gulimall.order.service.impl;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.Query;
 import cloud.stackexplode.gulimall.order.dao.OrderItemDao;
-import cloud.stackexplode.gulimall.order.entity.OrderItemEntity;
+import cloud.stackexplode.gulimall.common.entities.order.entity.OrderItemEntity;
 import cloud.stackexplode.gulimall.order.service.OrderItemService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;

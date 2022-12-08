@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.order.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.order.entity.PaymentInfoEntity;
+import cloud.stackexplode.gulimall.common.entities.order.entity.PaymentInfoEntity;
 import cloud.stackexplode.gulimall.order.service.PaymentInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class PaymentInfoController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = paymentInfoService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -40,7 +40,7 @@ public class PaymentInfoController {
     public R info(@PathVariable("id") Long id) {
         PaymentInfoEntity paymentInfo = paymentInfoService.getById(id);
 
-        return R.ok().put("paymentInfo", paymentInfo);
+        return R.ok( paymentInfo);
     }
 
     /**

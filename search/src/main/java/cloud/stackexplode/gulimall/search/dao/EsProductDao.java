@@ -1,8 +1,6 @@
 package cloud.stackexplode.gulimall.search.dao;
 
 import cloud.stackexplode.gulimall.search.entity.SkuEsModel;
-import cloud.stackexplode.gulimall.search.vo.SearchParam;
-import cloud.stackexplode.gulimall.search.vo.SearchResult;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;
 

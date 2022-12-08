@@ -1,8 +1,8 @@
 package cloud.stackexplode.gulimall.coupon.service;
 
-import cloud.stackexplode.gulimall.common.to.SkuReductionTo;
+import cloud.stackexplode.gulimall.common.to.product.SkuReductionTo;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
-import cloud.stackexplode.gulimall.coupon.entity.SkuFullReductionEntity;
+import cloud.stackexplode.gulimall.common.entities.coupon.entity.SkuFullReductionEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;

@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.product.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.product.entity.SkuImagesEntity;
+import cloud.stackexplode.gulimall.common.entities.product.entity.SkuImagesEntity;
 import cloud.stackexplode.gulimall.product.service.SkuImagesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class SkuImagesController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = skuImagesService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -40,7 +40,7 @@ public class SkuImagesController {
     public R info(@PathVariable("id") Long id) {
         SkuImagesEntity skuImages = skuImagesService.getById(id);
 
-        return R.ok().put("skuImages", skuImages);
+        return R.ok( skuImages);
     }
 
     /**

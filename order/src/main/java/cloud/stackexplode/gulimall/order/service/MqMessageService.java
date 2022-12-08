@@ -1,7 +1,7 @@
 package cloud.stackexplode.gulimall.order.service;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
-import cloud.stackexplode.gulimall.order.entity.MqMessageEntity;
+import cloud.stackexplode.gulimall.common.entities.order.entity.MqMessageEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;

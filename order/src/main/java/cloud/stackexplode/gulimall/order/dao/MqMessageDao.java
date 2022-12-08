@@ -1,6 +1,6 @@
 package cloud.stackexplode.gulimall.order.dao;
 
-import cloud.stackexplode.gulimall.order.entity.MqMessageEntity;
+import cloud.stackexplode.gulimall.common.entities.order.entity.MqMessageEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

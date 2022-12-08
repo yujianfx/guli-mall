@@ -1,9 +1,10 @@
 package cloud.stackexplode.gulimall.member.service;
 
+import cloud.stackexplode.gulimall.common.entities.member.entity.MemberReceiveAddressEntity;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
-import cloud.stackexplode.gulimall.member.entity.MemberReceiveAddressEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,4 +17,6 @@ import java.util.Map;
 public interface MemberReceiveAddressService extends IService<MemberReceiveAddressEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    List<MemberReceiveAddressEntity> getAllByUserId(Long userId);
 }

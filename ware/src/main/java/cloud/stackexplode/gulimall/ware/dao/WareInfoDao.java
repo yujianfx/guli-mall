@@ -1,6 +1,6 @@
 package cloud.stackexplode.gulimall.ware.dao;
 
-import cloud.stackexplode.gulimall.ware.entity.WareInfoEntity;
+import cloud.stackexplode.gulimall.common.entities.ware.entity.WareInfoEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

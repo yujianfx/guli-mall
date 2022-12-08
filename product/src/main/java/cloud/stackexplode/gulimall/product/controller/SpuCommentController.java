@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.product.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.product.entity.SpuCommentEntity;
+import cloud.stackexplode.gulimall.common.entities.product.entity.SpuCommentEntity;
 import cloud.stackexplode.gulimall.product.service.SpuCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class SpuCommentController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = spuCommentService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -40,7 +40,7 @@ public class SpuCommentController {
     public R info(@PathVariable("id") Long id) {
         SpuCommentEntity spuComment = spuCommentService.getById(id);
 
-        return R.ok().put("spuComment", spuComment);
+        return R.ok( spuComment);
     }
 
     /**

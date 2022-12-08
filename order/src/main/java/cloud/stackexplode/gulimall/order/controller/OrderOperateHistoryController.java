@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.order.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.order.entity.OrderOperateHistoryEntity;
+import cloud.stackexplode.gulimall.common.entities.order.entity.OrderOperateHistoryEntity;
 import cloud.stackexplode.gulimall.order.service.OrderOperateHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class OrderOperateHistoryController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = orderOperateHistoryService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -40,7 +40,7 @@ public class OrderOperateHistoryController {
     public R info(@PathVariable("id") Long id) {
         OrderOperateHistoryEntity orderOperateHistory = orderOperateHistoryService.getById(id);
 
-        return R.ok().put("orderOperateHistory", orderOperateHistory);
+        return R.ok( orderOperateHistory);
     }
 
     /**

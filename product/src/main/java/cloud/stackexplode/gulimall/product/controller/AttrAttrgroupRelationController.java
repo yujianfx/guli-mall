@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.product.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.product.entity.AttrAttrgroupRelationEntity;
+import cloud.stackexplode.gulimall.common.entities.product.entity.AttrAttrgroupRelationEntity;
 import cloud.stackexplode.gulimall.product.service.AttrAttrgroupRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class AttrAttrgroupRelationController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = attrAttrgroupRelationService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -40,7 +40,7 @@ public class AttrAttrgroupRelationController {
     public R info(@PathVariable("id") Long id) {
         AttrAttrgroupRelationEntity attrAttrgroupRelation = attrAttrgroupRelationService.getById(id);
 
-        return R.ok().put("attrAttrgroupRelation", attrAttrgroupRelation);
+        return R.ok(attrAttrgroupRelation);
     }
 
     /**

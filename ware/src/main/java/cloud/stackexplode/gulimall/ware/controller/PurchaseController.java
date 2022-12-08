@@ -2,9 +2,9 @@ package cloud.stackexplode.gulimall.ware.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.ware.entity.PurchaseEntity;
+import cloud.stackexplode.gulimall.common.entities.ware.entity.PurchaseEntity;
 import cloud.stackexplode.gulimall.ware.service.PurchaseService;
-import cloud.stackexplode.gulimall.ware.vo.PurchaseDetailMergeVo;
+import cloud.stackexplode.gulimall.common.vo.ware.vo.PurchaseDetailMergeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,14 +27,14 @@ public class PurchaseController {
   @GetMapping("/list")
   public R list(@RequestParam Map<String, Object> params) {
     PageUtils page = purchaseService.queryPage(params);
-    return R.ok().put("page", page);
+    return R.ok(page);
   }
 
   @GetMapping("/unReceiveList")
   public R listUnReceive(@RequestParam Map<String, Object> params) {
     PageUtils page = purchaseService.queryPage(params);
 
-    return R.ok().put("page", page);
+    return R.ok(page);
   }
 
   /** 信息 */
@@ -42,7 +42,7 @@ public class PurchaseController {
   public R info(@PathVariable("id") Long id) {
     PurchaseEntity purchase = purchaseService.getById(id);
 
-    return R.ok().put("purchase", purchase);
+    return R.ok(purchase);
   }
 
   /** 保存 */

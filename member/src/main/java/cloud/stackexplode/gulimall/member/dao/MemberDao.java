@@ -1,6 +1,6 @@
 package cloud.stackexplode.gulimall.member.dao;
 
-import cloud.stackexplode.gulimall.member.entity.MemberEntity;
+import cloud.stackexplode.gulimall.common.entities.member.entity.MemberEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

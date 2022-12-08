@@ -1,8 +1,8 @@
 package cloud.stackexplode.gulimall.product.service;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
-import cloud.stackexplode.gulimall.product.entity.CategoryEntity;
-import cloud.stackexplode.gulimall.product.vo.Catelog2Vo;
+import cloud.stackexplode.gulimall.common.entities.product.entity.CategoryEntity;
+import cloud.stackexplode.gulimall.common.vo.product.vo.Catelog2Vo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Collection;

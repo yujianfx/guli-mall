@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.product.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.product.entity.CategoryBrandRelationEntity;
+import cloud.stackexplode.gulimall.common.entities.product.entity.CategoryBrandRelationEntity;
 import cloud.stackexplode.gulimall.product.service.CategoryBrandRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,21 +26,21 @@ public class CategoryBrandRelationController {
   public R cbRelationList(
       @RequestParam Map<String, Object> params, @PathVariable("brandId") Long bId) {
     PageUtils page = categoryBrandRelationService.queryPageByBrandId(params, bId);
-    return R.ok().put("page", page);
+    return R.ok(page);
   }
 
   @GetMapping("/brandsList/{cId}")
   public R cbRelationListBy(
       @RequestParam Map<String, Object> params, @PathVariable("cId") Long cId) {
     PageUtils page = categoryBrandRelationService.queryPageByCid(params, cId);
-    return R.ok().put("page", page);
+    return R.ok(page);
   }
   /** 信息 */
   @GetMapping("/info/{id}")
   public R info(@PathVariable("id") Long id) {
     CategoryBrandRelationEntity categoryBrandRelation = categoryBrandRelationService.getById(id);
 
-    return R.ok().put("categoryBrandRelation", categoryBrandRelation);
+    return R.ok( categoryBrandRelation);
   }
 
   @PostMapping("/save")

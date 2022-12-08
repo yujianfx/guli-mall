@@ -1,10 +1,10 @@
 package cloud.stackexplode.gulimall.product.service;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
-import cloud.stackexplode.gulimall.product.entity.AttrEntity;
-import cloud.stackexplode.gulimall.product.entity.ProductAttrValueEntity;
-import cloud.stackexplode.gulimall.product.vo.AttrRespVo;
-import cloud.stackexplode.gulimall.product.vo.AttrVo;
+import cloud.stackexplode.gulimall.common.entities.product.entity.AttrEntity;
+import cloud.stackexplode.gulimall.common.entities.product.entity.ProductAttrValueEntity;
+import cloud.stackexplode.gulimall.common.vo.product.vo.AttrRespVo;
+import cloud.stackexplode.gulimall.common.vo.product.vo.AttrVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;

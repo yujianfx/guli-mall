@@ -1,7 +1,7 @@
 package cloud.stackexplode.gulimall.member.service;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
-import cloud.stackexplode.gulimall.member.entity.MemberStatisticsInfoEntity;
+import cloud.stackexplode.gulimall.common.entities.member.entity.MemberStatisticsInfoEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;

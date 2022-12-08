@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.member.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.member.entity.IntegrationChangeHistoryEntity;
+import cloud.stackexplode.gulimall.common.entities.member.entity.IntegrationChangeHistoryEntity;
 import cloud.stackexplode.gulimall.member.service.IntegrationChangeHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class IntegrationChangeHistoryController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = integrationChangeHistoryService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -41,7 +41,7 @@ public class IntegrationChangeHistoryController {
         IntegrationChangeHistoryEntity integrationChangeHistory =
                 integrationChangeHistoryService.getById(id);
 
-        return R.ok().put("integrationChangeHistory", integrationChangeHistory);
+        return R.ok( integrationChangeHistory);
     }
 
     /**

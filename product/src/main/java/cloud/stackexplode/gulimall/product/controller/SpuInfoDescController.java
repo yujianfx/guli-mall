@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.product.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.product.entity.SpuInfoDescEntity;
+import cloud.stackexplode.gulimall.common.entities.product.entity.SpuInfoDescEntity;
 import cloud.stackexplode.gulimall.product.service.SpuInfoDescService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class SpuInfoDescController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = spuInfoDescService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -40,7 +40,7 @@ public class SpuInfoDescController {
     public R info(@PathVariable("spuId") Long spuId) {
         SpuInfoDescEntity spuInfoDesc = spuInfoDescService.getById(spuId);
 
-        return R.ok().put("spuInfoDesc", spuInfoDesc);
+        return R.ok(spuInfoDesc);
     }
 
     /**

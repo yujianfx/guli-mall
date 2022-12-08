@@ -1,13 +1,15 @@
 package cloud.stackexplode.gulimall.order.controller;
 
+import cloud.stackexplode.gulimall.common.to.mq.StockLockedTo;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.order.entity.MqMessageEntity;
+import cloud.stackexplode.gulimall.common.entities.order.entity.MqMessageEntity;
 import cloud.stackexplode.gulimall.order.service.MqMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -25,10 +27,11 @@ public class MqMessageController {
      * 列表
      */
     @RequestMapping("/list")
+
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = mqMessageService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -38,7 +41,7 @@ public class MqMessageController {
     public R info(@PathVariable("messageId") String messageId) {
         MqMessageEntity mqMessage = mqMessageService.getById(messageId);
 
-        return R.ok().put("mqMessage", mqMessage);
+        return R.ok(mqMessage);
     }
 
     /**

@@ -1,13 +1,15 @@
 package cloud.stackexplode.gulimall.member.controller;
 
+import cloud.stackexplode.gulimall.common.entities.member.entity.MemberReceiveAddressEntity;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.member.entity.MemberReceiveAddressEntity;
 import cloud.stackexplode.gulimall.member.service.MemberReceiveAddressService;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,17 +32,22 @@ public class MemberReceiveAddressController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = memberReceiveAddressService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
+    }
+
+    @RequestMapping("/infoByUserId/{userId}")
+    R<List<MemberReceiveAddressEntity>> getAddressByUserId(@PathVariable("userId") Long userId) {
+        List<MemberReceiveAddressEntity> addressEntities = memberReceiveAddressService.getAllByUserId(userId);
+        return ObjectUtils.allNotNull(addressEntities) ? R.ok(addressEntities) : R.error("还没有添加收货地址哦");
     }
 
     /**
      * 信息
      */
-    @RequestMapping("/info/{id}")
-    public R info(@PathVariable("id") Long id) {
+    @GetMapping("/info/{id}")
+    public R<MemberReceiveAddressEntity> info(@PathVariable("id") Long id) {
         MemberReceiveAddressEntity memberReceiveAddress = memberReceiveAddressService.getById(id);
-
-        return R.ok().put("memberReceiveAddress", memberReceiveAddress);
+        return ObjectUtils.allNotNull(memberReceiveAddress) ? R.ok(memberReceiveAddress) : R.error("No data found");
     }
 
     /**

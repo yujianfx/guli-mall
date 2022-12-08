@@ -3,7 +3,7 @@ package cloud.stackexplode.gulimall.coupon.service.impl;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.Query;
 import cloud.stackexplode.gulimall.coupon.dao.CouponDao;
-import cloud.stackexplode.gulimall.coupon.entity.CouponEntity;
+import cloud.stackexplode.gulimall.common.entities.coupon.entity.CouponEntity;
 import cloud.stackexplode.gulimall.coupon.service.CouponService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;

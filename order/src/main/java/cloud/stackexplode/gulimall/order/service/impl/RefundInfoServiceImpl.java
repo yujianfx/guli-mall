@@ -3,7 +3,7 @@ package cloud.stackexplode.gulimall.order.service.impl;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.Query;
 import cloud.stackexplode.gulimall.order.dao.RefundInfoDao;
-import cloud.stackexplode.gulimall.order.entity.RefundInfoEntity;
+import cloud.stackexplode.gulimall.common.entities.order.entity.RefundInfoEntity;
 import cloud.stackexplode.gulimall.order.service.RefundInfoService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;

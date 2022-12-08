@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.member.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.member.entity.MemberCollectSubjectEntity;
+import cloud.stackexplode.gulimall.common.entities.member.entity.MemberCollectSubjectEntity;
 import cloud.stackexplode.gulimall.member.service.MemberCollectSubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class MemberCollectSubjectController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = memberCollectSubjectService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -40,7 +40,7 @@ public class MemberCollectSubjectController {
     public R info(@PathVariable("id") Long id) {
         MemberCollectSubjectEntity memberCollectSubject = memberCollectSubjectService.getById(id);
 
-        return R.ok().put("memberCollectSubject", memberCollectSubject);
+        return R.ok(memberCollectSubject);
     }
 
     /**

@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.coupon.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.coupon.entity.CouponSpuCategoryRelationEntity;
+import cloud.stackexplode.gulimall.common.entities.coupon.entity.CouponSpuCategoryRelationEntity;
 import cloud.stackexplode.gulimall.coupon.service.CouponSpuCategoryRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class CouponSpuCategoryRelationController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = couponSpuCategoryRelationService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -41,7 +41,7 @@ public class CouponSpuCategoryRelationController {
         CouponSpuCategoryRelationEntity couponSpuCategoryRelation =
                 couponSpuCategoryRelationService.getById(id);
 
-        return R.ok().put("couponSpuCategoryRelation", couponSpuCategoryRelation);
+        return R.ok(couponSpuCategoryRelation);
     }
 
     /**

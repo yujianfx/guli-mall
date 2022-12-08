@@ -2,9 +2,8 @@ package cloud.stackexplode.gulimall.product.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.product.entity.CommentReplayEntity;
+import cloud.stackexplode.gulimall.common.entities.product.entity.CommentReplayEntity;
 import cloud.stackexplode.gulimall.product.service.CommentReplayService;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +30,7 @@ public class CommentReplayController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = commentReplayService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -41,7 +40,7 @@ public class CommentReplayController {
     public R info(@PathVariable("id") Long id) {
         CommentReplayEntity commentReplay = commentReplayService.getById(id);
 
-        return R.ok().put("commentReplay", commentReplay);
+        return R.ok(commentReplay);
     }
 
     /**

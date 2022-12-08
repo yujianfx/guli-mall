@@ -1,7 +1,7 @@
 package cloud.stackexplode.gulimall.product.controller;
 
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.product.entity.CategoryEntity;
+import cloud.stackexplode.gulimall.common.entities.product.entity.CategoryEntity;
 import cloud.stackexplode.gulimall.product.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +28,7 @@ public class CategoryController {
     @GetMapping("/list")
     public R list() {
         List<CategoryEntity> listTree = categoryService.listTree();
-        return R.ok().put("data", listTree);
+        return R.ok(listTree);
     }
 
     /**
@@ -38,7 +38,7 @@ public class CategoryController {
     public R info(@PathVariable("catId") Long catId) {
         CategoryEntity category = categoryService.getById(catId);
 
-        return R.ok().put("category", category);
+        return R.ok(category);
     }
 
     /**

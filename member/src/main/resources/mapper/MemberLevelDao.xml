@@ -4,7 +4,7 @@
 <mapper namespace="cloud.stackexplode.gulimall.member.dao.MemberLevelDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cloud.stackexplode.gulimall.member.entity.MemberLevelEntity" id="memberLevelMap">
+    <resultMap type="cloud.stackexplode.gulimall.common.entities.member.entity.MemberLevelEntity" id="memberLevelMap">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="growthPoint" column="growth_point"/>

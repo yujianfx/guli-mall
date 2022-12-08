@@ -1,9 +1,9 @@
 package cloud.stackexplode.gulimall.coupon.controller;
 
-import cloud.stackexplode.gulimall.common.to.SkuReductionTo;
+import cloud.stackexplode.gulimall.common.to.product.SkuReductionTo;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.coupon.entity.SkuFullReductionEntity;
+import cloud.stackexplode.gulimall.common.entities.coupon.entity.SkuFullReductionEntity;
 import cloud.stackexplode.gulimall.coupon.service.SkuFullReductionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +28,7 @@ public class SkuFullReductionController {
   public R list(@RequestParam Map<String, Object> params) {
     PageUtils page = skuFullReductionService.queryPage(params);
 
-    return R.ok().put("page", page);
+    return R.ok(page);
   }
 
   /** 信息 */
@@ -36,7 +36,7 @@ public class SkuFullReductionController {
   public R info(@PathVariable("id") Long id) {
     SkuFullReductionEntity skuFullReduction = skuFullReductionService.getById(id);
 
-    return R.ok().put("skuFullReduction", skuFullReduction);
+    return R.ok( skuFullReduction);
   }
 
   /** 保存 */

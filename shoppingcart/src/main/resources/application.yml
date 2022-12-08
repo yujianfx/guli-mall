@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: shoppingcart-service
+    thread:
+      corePoolSize: 6
+      maxPoolSize: 12
+      keepAliveTime: 60
+  thymeleaf:
+    cache: false
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: centos.stackexplode.cloud:18848
+  task:
+    execution:
+      pool:
+        core-size: 6
+        max-size: 12
+        queue-capacity: 36
+  jackson:
+    date-format: yyyy-MM-dd HH-mm-ss
+  redis:
+    host: centos.stackexplode.cloud
+    port: 16379
+    timeout: 1000ms
+  data:
+    redis:
+      repositories:
+        enabled: true
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  session:
+    redis:
+      namespace: spring:session
+      flush-mode: immediate
+server:
+  port: 8092
+
+logging:
+  level:
+    sql: debug
+    root: debug
+    web: debug
+  file:
+    name: E:\Javaprojects\guli-mall\.logs\payment-service.log

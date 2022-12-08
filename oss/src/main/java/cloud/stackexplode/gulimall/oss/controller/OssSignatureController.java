@@ -66,6 +66,6 @@ public class OssSignatureController {
         } finally {
             log.info("签名结束");
         }
-        return R.ok().put("data", res);
+        return R.ok(res);
     }
 }

@@ -1,0 +1,27 @@
+server:
+  port: 8090
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH-mm-ss
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: centos.stackexplode.cloud:18848
+  redis:
+    host: centos.stackexplode.cloud
+    port: 16379
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  application:
+    name: sms-service
+sms:
+  secretId: AKIDaJOX2LbrT2z1M8N2jid7Ph9tfRLEo6ZVKFkm
+  secretKey: c7d52i7Clx68z3u52LsqKDdyAbW19bjpupp7aePg
+
+logging:
+  level:
+    org.zalando.logbook: trace
+    cloud.stackexplode.gulimall.sms.feign: trace
+  file:
+    name: E:\Javaprojects\guli-mall\.logs\mail-service.log

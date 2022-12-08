@@ -3,7 +3,7 @@ package cloud.stackexplode.gulimall.coupon.service.impl;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.Query;
 import cloud.stackexplode.gulimall.coupon.dao.SeckillSessionDao;
-import cloud.stackexplode.gulimall.coupon.entity.SeckillSessionEntity;
+import cloud.stackexplode.gulimall.common.entities.coupon.entity.SeckillSessionEntity;
 import cloud.stackexplode.gulimall.coupon.service.SeckillSessionService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;

@@ -4,7 +4,7 @@
 <mapper namespace="cloud.stackexplode.gulimall.order.dao.PaymentInfoDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cloud.stackexplode.gulimall.order.entity.PaymentInfoEntity" id="paymentInfoMap">
+    <resultMap type="cloud.stackexplode.gulimall.common.entities.order.entity.PaymentInfoEntity" id="paymentInfoMap">
         <result property="id" column="id"/>
         <result property="orderSn" column="order_sn"/>
         <result property="orderId" column="order_id"/>

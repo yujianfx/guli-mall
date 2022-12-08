@@ -2,11 +2,11 @@ package cloud.stackexplode.gulimall.product.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.product.entity.AttrEntity;
-import cloud.stackexplode.gulimall.product.entity.ProductAttrValueEntity;
+import cloud.stackexplode.gulimall.common.entities.product.entity.AttrEntity;
+import cloud.stackexplode.gulimall.common.entities.product.entity.ProductAttrValueEntity;
 import cloud.stackexplode.gulimall.product.service.AttrService;
-import cloud.stackexplode.gulimall.product.vo.AttrRespVo;
-import cloud.stackexplode.gulimall.product.vo.AttrVo;
+import cloud.stackexplode.gulimall.common.vo.product.vo.AttrRespVo;
+import cloud.stackexplode.gulimall.common.vo.product.vo.AttrVo;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,19 +36,19 @@ public class AttrController {
       @PathVariable("cid") @NotNull Long cid) {
     PageUtils page = attrService.queryPageByCid(params, attrType, cid);
 
-    return R.ok().put("page", page);
+    return R.ok(page);
   }
 
   @GetMapping("/listBySpuId/{sId}")
   public R listBySpuId(@PathVariable("sId") @NotNull Long sId) {
     List<ProductAttrValueEntity> productAttrValueEntities = attrService.queryPageBySpuId(sId);
-    return R.ok().put("data", productAttrValueEntities);
+    return R.ok(productAttrValueEntities);
   }
   /** 信息 */
   @GetMapping("/info/{attrType}/{attrId}")
   public R info(@PathVariable("attrId") Long attrId, @PathVariable("attrType") Integer attrType) {
     AttrRespVo attr = attrService.getAttrDetailById(attrType, attrId);
-    return R.ok().put("attr", attr);
+    return R.ok( attr);
   }
 
   /** 保存 */

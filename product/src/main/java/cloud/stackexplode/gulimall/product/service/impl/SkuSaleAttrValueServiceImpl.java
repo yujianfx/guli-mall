@@ -3,9 +3,9 @@ package cloud.stackexplode.gulimall.product.service.impl;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.Query;
 import cloud.stackexplode.gulimall.product.dao.SkuSaleAttrValueDao;
-import cloud.stackexplode.gulimall.product.entity.SkuSaleAttrValueEntity;
+import cloud.stackexplode.gulimall.common.entities.product.entity.SkuSaleAttrValueEntity;
 import cloud.stackexplode.gulimall.product.service.SkuSaleAttrValueService;
-import cloud.stackexplode.gulimall.product.vo.SkuItemSaleAttrVo;
+import cloud.stackexplode.gulimall.common.vo.product.vo.SkuItemSaleAttrVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -18,6 +18,10 @@ import java.util.Map;
 public class SkuSaleAttrValueServiceImpl
         extends ServiceImpl<SkuSaleAttrValueDao, SkuSaleAttrValueEntity>
         implements SkuSaleAttrValueService {
+    @Override
+    public List<String> getSkuSaleAttrValuesAsString(Long skuId) {
+        return baseMapper.getSkuSaleAttrValuesAsString(skuId);
+    }
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {

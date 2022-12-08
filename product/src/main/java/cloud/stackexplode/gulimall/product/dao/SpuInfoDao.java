@@ -1,6 +1,6 @@
 package cloud.stackexplode.gulimall.product.dao;
 
-import cloud.stackexplode.gulimall.product.entity.SpuInfoEntity;
+import cloud.stackexplode.gulimall.common.entities.product.entity.SpuInfoEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

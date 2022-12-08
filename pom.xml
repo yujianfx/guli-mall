@@ -30,5 +30,8 @@
         <module>renren-fast</module>
         <module>auth</module>
         <module>mail</module>
+        <module>sms</module>
+        <module>shoppingcart</module>
+        <module>payment</module>
     </modules>
 </project>

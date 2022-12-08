@@ -4,7 +4,7 @@
 <mapper namespace="cloud.stackexplode.gulimall.ware.dao.WareInfoDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cloud.stackexplode.gulimall.ware.entity.WareInfoEntity" id="wareInfoMap">
+    <resultMap type="cloud.stackexplode.gulimall.common.entities.ware.entity.WareInfoEntity" id="wareInfoMap">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="address" column="address"/>

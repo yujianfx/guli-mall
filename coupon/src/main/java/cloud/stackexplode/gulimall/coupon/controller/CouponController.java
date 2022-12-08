@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.coupon.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.coupon.entity.CouponEntity;
+import cloud.stackexplode.gulimall.common.entities.coupon.entity.CouponEntity;
 import cloud.stackexplode.gulimall.coupon.service.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,20 +27,19 @@ public class CouponController {
      * 列表
      */
     @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public R<PageUtils> list(@RequestParam Map<String, Object> params) {
         PageUtils page = couponService.queryPage(params);
-
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
      * 信息
      */
     @RequestMapping("/info/{id}")
-    public R info(@PathVariable("id") Long id) {
+    public R<CouponEntity> info(@PathVariable("id") Long id) {
         CouponEntity coupon = couponService.getById(id);
 
-        return R.ok().put("coupon", coupon);
+        return R.ok(coupon);
     }
 
     /**
@@ -49,7 +48,6 @@ public class CouponController {
     @RequestMapping("/save")
     public R save(@RequestBody CouponEntity coupon) {
         couponService.save(coupon);
-
         return R.ok();
     }
 
@@ -59,7 +57,6 @@ public class CouponController {
     @RequestMapping("/update")
     public R update(@RequestBody CouponEntity coupon) {
         couponService.updateById(coupon);
-
         return R.ok();
     }
 

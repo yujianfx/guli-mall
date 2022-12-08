@@ -4,7 +4,7 @@
 <mapper namespace="cloud.stackexplode.gulimall.member.dao.MemberLoginLogDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cloud.stackexplode.gulimall.member.entity.MemberLoginLogEntity" id="memberLoginLogMap">
+    <resultMap type="cloud.stackexplode.gulimall.common.entities.member.entity.MemberLoginLogEntity" id="memberLoginLogMap">
         <result property="id" column="id"/>
         <result property="memberId" column="member_id"/>
         <result property="createTime" column="create_time"/>

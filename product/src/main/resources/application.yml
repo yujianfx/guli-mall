@@ -22,7 +22,7 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH-mm-ss
   redis:
-    host: stackexplode.cloud
+    host: centos.stackexplode.cloud
     port: 16379
     timeout: 1000ms
   data:
@@ -33,6 +33,10 @@ spring:
     type: redis
     redis:
       time-to-live: 36000ms
+  session:
+    redis:
+      namespace: spring:session
+      flush-mode: immediate
 mybatis-plus:
   type-enums-package: cloud.stackexplode.gulimall.common.constant
   mapper-locations: classpath:mapper/*.xml
@@ -46,15 +50,7 @@ mybatis-plus:
 server:
   port: 8083
 logging:
-  file: E:\Javaprojects\guli-mall\.logs\product-service.log
   level:
     org.zalando.logbook: trace
-logbook:
-  exclude:
-    - "**.html"
-    - "**.htm"
-    - "**.js"
-    - "**.css"
-    - "**.jpg"
-    - "**.ico"
-    - "/static/**"
+  file:
+    name: E:\Javaprojects\guli-mall\.logs\product-service.log

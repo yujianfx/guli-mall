@@ -4,7 +4,7 @@
 <mapper namespace="cloud.stackexplode.gulimall.order.dao.OrderItemDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cloud.stackexplode.gulimall.order.entity.OrderItemEntity" id="orderItemMap">
+    <resultMap type="cloud.stackexplode.gulimall.common.entities.order.entity.OrderItemEntity" id="orderItemMap">
         <result property="id" column="id"/>
         <result property="orderId" column="order_id"/>
         <result property="orderSn" column="order_sn"/>
@@ -25,6 +25,7 @@
         <result property="realAmount" column="real_amount"/>
         <result property="giftIntegration" column="gift_integration"/>
         <result property="giftGrowth" column="gift_growth"/>
+        <result property="wareId" column="ware_id"/>
     </resultMap>
 
 

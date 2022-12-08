@@ -1,7 +1,6 @@
 package cloud.stackexplode.gulimall.search.service.impl;
 
 import cloud.stackexplode.gulimall.search.entity.SkuEsModel;
-import cloud.stackexplode.gulimall.search.service.EsSearchService;
 import cloud.stackexplode.gulimall.search.vo.SearchParam;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;

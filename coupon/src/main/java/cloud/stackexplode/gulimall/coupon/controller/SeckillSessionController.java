@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.coupon.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.coupon.entity.SeckillSessionEntity;
+import cloud.stackexplode.gulimall.common.entities.coupon.entity.SeckillSessionEntity;
 import cloud.stackexplode.gulimall.coupon.service.SeckillSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class SeckillSessionController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = seckillSessionService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -40,7 +40,7 @@ public class SeckillSessionController {
     public R info(@PathVariable("id") Long id) {
         SeckillSessionEntity seckillSession = seckillSessionService.getById(id);
 
-        return R.ok().put("seckillSession", seckillSession);
+        return R.ok( seckillSession);
     }
 
     /**

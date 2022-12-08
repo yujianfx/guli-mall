@@ -1,7 +1,7 @@
 package cloud.stackexplode.gulimall.product.controller.view;
 
 import cloud.stackexplode.gulimall.product.service.SkuInfoService;
-import cloud.stackexplode.gulimall.product.vo.SkuItemVo;
+import cloud.stackexplode.gulimall.common.vo.product.vo.SkuItemVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

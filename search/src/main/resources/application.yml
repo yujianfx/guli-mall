@@ -1,4 +1,6 @@
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH-mm-ss
   cloud:
     nacos:
       discovery:
@@ -12,9 +14,16 @@ spring:
   application:
     name: search-service
   data:
-    elasticsearch:
+    redis:
       repositories:
         enabled: true
+  session:
+    redis:
+      namespace: spring:session
+      flush-mode: immediate
+  redis:
+    host: centos.stackexplode.cloud
+    port: 16379
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   thymeleaf:
@@ -23,22 +32,10 @@ spring:
     encoding: UTF-8
     suffix: .html
     prefix: classpath:/templates/
-
-
 server:
   port: 8087
 logging:
   level:
     org.springframework.data.elasticsearch: TRACE
-    org.zalando.logbook: trace
   file:
     name: E:\Javaprojects\guli-mall\.logs\search-service.log
-logbook:
-  exclude:
-    - "**.html"
-    - "**.htm"
-    - "**.js"
-    - "**.css"
-    - "**.jpg"
-    - "**.ico"
-    - "/static/**"

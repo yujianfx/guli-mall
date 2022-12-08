@@ -4,7 +4,7 @@
 <mapper namespace="cloud.stackexplode.gulimall.member.dao.MemberCollectSubjectDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cloud.stackexplode.gulimall.member.entity.MemberCollectSubjectEntity" id="memberCollectSubjectMap">
+    <resultMap type="cloud.stackexplode.gulimall.common.entities.member.entity.MemberCollectSubjectEntity" id="memberCollectSubjectMap">
         <result property="id" column="id"/>
         <result property="subjectId" column="subject_id"/>
         <result property="subjectName" column="subject_name"/>

@@ -4,7 +4,7 @@
 <mapper namespace="cloud.stackexplode.gulimall.ware.dao.WareOrderTaskDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cloud.stackexplode.gulimall.ware.entity.WareOrderTaskEntity" id="wareOrderTaskMap">
+    <resultMap type="cloud.stackexplode.gulimall.common.entities.ware.entity.WareOrderTaskEntity" id="wareOrderTaskMap">
         <result property="id" column="id"/>
         <result property="orderId" column="order_id"/>
         <result property="orderSn" column="order_sn"/>

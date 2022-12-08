@@ -4,7 +4,7 @@
 <mapper namespace="cloud.stackexplode.gulimall.member.dao.MemberCollectSpuDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cloud.stackexplode.gulimall.member.entity.MemberCollectSpuEntity" id="memberCollectSpuMap">
+    <resultMap type="cloud.stackexplode.gulimall.common.entities.member.entity.MemberCollectSpuEntity" id="memberCollectSpuMap">
         <result property="id" column="id"/>
         <result property="memberId" column="member_id"/>
         <result property="spuId" column="spu_id"/>

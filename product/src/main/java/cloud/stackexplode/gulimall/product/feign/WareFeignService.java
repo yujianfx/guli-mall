@@ -1,6 +1,6 @@
 package cloud.stackexplode.gulimall.product.feign;
 
-import cloud.stackexplode.gulimall.common.to.WareSkuTo;
+import cloud.stackexplode.gulimall.common.to.ware.WareSkuTo;
 import cloud.stackexplode.gulimall.common.utils.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;

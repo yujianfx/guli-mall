@@ -4,7 +4,7 @@
 <mapper namespace="cloud.stackexplode.gulimall.product.dao.CategoryDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cloud.stackexplode.gulimall.product.entity.CategoryEntity" id="categoryMap">
+    <resultMap type="cloud.stackexplode.gulimall.common.entities.product.entity.CategoryEntity" id="categoryMap">
         <result property="catId" column="cat_id"/>
         <result property="name" column="name"/>
         <result property="parentCid" column="parent_cid"/>

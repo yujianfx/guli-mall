@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.coupon.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.coupon.entity.MemberPriceEntity;
+import cloud.stackexplode.gulimall.common.entities.coupon.entity.MemberPriceEntity;
 import cloud.stackexplode.gulimall.coupon.service.MemberPriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class MemberPriceController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = memberPriceService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -40,7 +40,7 @@ public class MemberPriceController {
     public R info(@PathVariable("id") Long id) {
         MemberPriceEntity memberPrice = memberPriceService.getById(id);
 
-        return R.ok().put("memberPrice", memberPrice);
+        return R.ok( memberPrice);
     }
 
     /**

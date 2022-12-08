@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.product.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.product.entity.BrandEntity;
+import cloud.stackexplode.gulimall.common.entities.product.entity.BrandEntity;
 import cloud.stackexplode.gulimall.product.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +26,7 @@ public class BrandController {
   @GetMapping("/list")
   public R list(@RequestParam Map<String, Object> params) {
     PageUtils page = brandService.queryPage(params);
-    return R.ok().put("page", page);
+    return R.ok(page);
   }
 
   /** 信息 */
@@ -34,7 +34,7 @@ public class BrandController {
   public R info(@PathVariable("brandId") Long brandId) {
     BrandEntity brand = brandService.getById(brandId);
 
-    return R.ok().put("brand", brand);
+    return R.ok( brand);
   }
 
   /** 保存 */

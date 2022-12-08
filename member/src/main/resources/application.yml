@@ -1,4 +1,6 @@
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH-mm-ss
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://centos.stackexplode.cloud:13306/mall_ums?useUnicode=true&characterEncoding=utf8&useSSL=false
@@ -6,10 +8,22 @@ spring:
     password: abc123
   application:
     name: member-service
+  session:
+    redis:
+      namespace: spring:session
+      flush-mode: immediate
   cloud:
     nacos:
       discovery:
         server-addr: centos.stackexplode.cloud:18848
+        enabled: true
+  redis:
+    host: centos.stackexplode.cloud
+    port: 16379
+    database: 0
+  data:
+    redis:
+      repositories:
         enabled: true
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
@@ -18,13 +32,6 @@ server:
 logging:
   file: E:\Javaprojects\guli-mall\.logs\member-service.log
   level:
-    org.zalando.logbook: trace
-logbook:
-  exclude:
-    - "**.html"
-    - "**.htm"
-    - "**.js"
-    - "**.css"
-    - "**.jpg"
-    - "**.ico"
-    - "/static/**"
+    web: info
+    root: info
+    sql: info

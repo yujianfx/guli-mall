@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.coupon.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.coupon.entity.HomeSubjectEntity;
+import cloud.stackexplode.gulimall.common.entities.coupon.entity.HomeSubjectEntity;
 import cloud.stackexplode.gulimall.coupon.service.HomeSubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class HomeSubjectController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = homeSubjectService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -40,7 +40,7 @@ public class HomeSubjectController {
     public R info(@PathVariable("id") Long id) {
         HomeSubjectEntity homeSubject = homeSubjectService.getById(id);
 
-        return R.ok().put("homeSubject", homeSubject);
+        return R.ok( homeSubject);
     }
 
     /**

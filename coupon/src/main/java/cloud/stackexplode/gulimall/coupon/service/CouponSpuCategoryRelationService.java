@@ -1,7 +1,7 @@
 package cloud.stackexplode.gulimall.coupon.service;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
-import cloud.stackexplode.gulimall.coupon.entity.CouponSpuCategoryRelationEntity;
+import cloud.stackexplode.gulimall.common.entities.coupon.entity.CouponSpuCategoryRelationEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;

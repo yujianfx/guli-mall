@@ -4,7 +4,7 @@
 <mapper namespace="cloud.stackexplode.gulimall.coupon.dao.SeckillSkuRelationDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cloud.stackexplode.gulimall.coupon.entity.SeckillSkuRelationEntity" id="seckillSkuRelationMap">
+    <resultMap type="cloud.stackexplode.gulimall.common.entities.coupon.entity.SeckillSkuRelationEntity" id="seckillSkuRelationMap">
         <result property="id" column="id"/>
         <result property="promotionId" column="promotion_id"/>
         <result property="promotionSessionId" column="promotion_session_id"/>

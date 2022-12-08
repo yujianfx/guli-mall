@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.ware.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.ware.entity.PurchaseDetailEntity;
+import cloud.stackexplode.gulimall.common.entities.ware.entity.PurchaseDetailEntity;
 import cloud.stackexplode.gulimall.ware.service.PurchaseDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +28,7 @@ public class PurchaseDetailController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = purchaseDetailService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -38,7 +38,7 @@ public class PurchaseDetailController {
     public R info(@PathVariable("id") Long id) {
         PurchaseDetailEntity purchaseDetail = purchaseDetailService.getById(id);
 
-        return R.ok().put("purchaseDetail", purchaseDetail);
+        return R.ok(purchaseDetail);
     }
 
     /**

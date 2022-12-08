@@ -1,7 +1,7 @@
 package cloud.stackexplode.gulimall.product.dao;
 
-import cloud.stackexplode.gulimall.product.entity.ProductAttrValueEntity;
-import cloud.stackexplode.gulimall.product.vo.SpuItemAttrGroupVo;
+import cloud.stackexplode.gulimall.common.entities.product.entity.ProductAttrValueEntity;
+import cloud.stackexplode.gulimall.common.vo.product.vo.SpuItemAttrGroupVo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

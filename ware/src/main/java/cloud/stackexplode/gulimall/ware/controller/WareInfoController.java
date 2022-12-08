@@ -1,8 +1,9 @@
 package cloud.stackexplode.gulimall.ware.controller;
 
+import cloud.stackexplode.gulimall.common.entities.ware.entity.WareInfoEntity;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.ware.entity.WareInfoEntity;
+import cloud.stackexplode.gulimall.common.vo.order.vo.FareVo;
 import cloud.stackexplode.gulimall.ware.service.WareInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,44 +21,62 @@ import java.util.Map;
 @RestController
 @RequestMapping("ware/wareinfo")
 public class WareInfoController {
-  @Autowired private WareInfoService wareInfoService;
+    @Autowired
+    private WareInfoService wareInfoService;
 
-  /** 列表 */
-  @RequestMapping("/list")
-  public R list(@RequestParam Map<String, Object> params) {
-    PageUtils page = wareInfoService.queryPage(params);
-    return R.ok().put("page", page);
-  }
+    /**
+     * 列表
+     */
+    @RequestMapping("/list")
+    public R list(@RequestParam Map<String, Object> params) {
+        PageUtils page = wareInfoService.queryPage(params);
+        return R.ok(page);
+    }
 
-  /** 信息 */
-  @RequestMapping("/info/{id}")
-  public R info(@PathVariable("id") Long id) {
-    WareInfoEntity wareInfo = wareInfoService.getById(id);
+    /**
+     * 信息
+     */
+    @RequestMapping("/info/{id}")
+    public R info(@PathVariable("id") Long id) {
+        WareInfoEntity wareInfo = wareInfoService.getById(id);
 
-    return R.ok().put("wareInfo", wareInfo);
-  }
+        return R.ok(wareInfo);
+    }
 
-  /** 保存 */
-  @RequestMapping("/save")
-  public R save(@RequestBody WareInfoEntity wareInfo) {
-    wareInfoService.save(wareInfo);
+    /**
+     * 保存
+     */
+    @RequestMapping("/save")
+    public R save(@RequestBody WareInfoEntity wareInfo) {
+        wareInfoService.save(wareInfo);
 
-    return R.ok();
-  }
+        return R.ok();
+    }
 
-  /** 修改 */
-  @RequestMapping("/update")
-  public R update(@RequestBody WareInfoEntity wareInfo) {
-    wareInfoService.updateById(wareInfo);
+    /**
+     * 修改
+     */
+    @RequestMapping("/update")
+    public R update(@RequestBody WareInfoEntity wareInfo) {
+        wareInfoService.updateById(wareInfo);
 
-    return R.ok();
-  }
+        return R.ok();
+    }
 
-  /** 删除 */
-  @RequestMapping("/delete")
-  public R delete(@RequestBody Long[] ids) {
-    wareInfoService.removeByIds(Arrays.asList(ids));
+    /**
+     * 删除
+     */
+    @RequestMapping("/delete")
+    public R delete(@RequestBody Long[] ids) {
+        wareInfoService.removeByIds(Arrays.asList(ids));
 
-    return R.ok();
-  }
+        return R.ok();
+    }
+
+    @GetMapping("/fare")
+    public R<FareVo> getFare(@RequestParam("addrId") Long addrId, @RequestParam("wareId") Long wareId) {
+        FareVo fare = wareInfoService.getFare(addrId, wareId);
+        return fare == null ? R.error("获取运费失败") : R.ok(fare);
+    }
+
 }

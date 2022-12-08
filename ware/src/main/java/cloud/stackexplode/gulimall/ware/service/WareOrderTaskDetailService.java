@@ -1,9 +1,10 @@
 package cloud.stackexplode.gulimall.ware.service;
 
+import cloud.stackexplode.gulimall.common.entities.ware.entity.WareOrderTaskDetailEntity;
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
-import cloud.stackexplode.gulimall.ware.entity.WareOrderTaskDetailEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,6 +15,7 @@ import java.util.Map;
  * @date 2022-07-12 20:57:36
  */
 public interface WareOrderTaskDetailService extends IService<WareOrderTaskDetailEntity> {
+    List<WareOrderTaskDetailEntity> getWareOrderTaskDetailByTaskId(Long id);
 
     PageUtils queryPage(Map<String, Object> params);
 }

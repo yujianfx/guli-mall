@@ -2,7 +2,7 @@ package cloud.stackexplode.gulimall.coupon.controller;
 
 import cloud.stackexplode.gulimall.common.utils.PageUtils;
 import cloud.stackexplode.gulimall.common.utils.R;
-import cloud.stackexplode.gulimall.coupon.entity.SkuLadderEntity;
+import cloud.stackexplode.gulimall.common.entities.coupon.entity.SkuLadderEntity;
 import cloud.stackexplode.gulimall.coupon.service.SkuLadderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class SkuLadderController {
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = skuLadderService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok(page);
     }
 
     /**
@@ -40,7 +40,7 @@ public class SkuLadderController {
     public R info(@PathVariable("id") Long id) {
         SkuLadderEntity skuLadder = skuLadderService.getById(id);
 
-        return R.ok().put("skuLadder", skuLadder);
+        return R.ok(skuLadder);
     }
 
     /**
